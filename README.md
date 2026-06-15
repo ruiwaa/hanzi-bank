@@ -168,38 +168,34 @@ src
 
 # 사용 방법
 
-````jsx
-#  사용 방법
-
 # 1. 저장소 클론
 
-```jsx
+```
 git clone https://github.com/your-repo/hanzi-bank.git
-````
-
-```jsx
-# 2. 프로젝트  폴더 이동
 ```
 
+# 2. 프로젝트 폴더 이동
+
+```
 cd hanzi-bank
+```
 
-````
+# 3. 환경 변수 설정
 
-# 3.  환경  변수 설정
-```jsx
+```
 NEXT_PUBLIC_SUPABASE_URL="https://[여기는본인의고유알파벳].supabase.co"
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="공개키"
-````
+```
 
 # 4. 패키지 설치
 
-```jsx
+```
 bun install
 ```
 
 # 5. 개발 서버 실행
 
-```jsx
+```
 bun dev
 ```
 
