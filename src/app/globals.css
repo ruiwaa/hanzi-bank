@@ -1,37 +1,25 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
 @custom-variant dark (&:where(.dark, .dark *));
-
-/* ========================================
-   Theme Tokens
-   CSS Variables ↔ Tailwind Utility 연결
-   Tailwind v4 디자인 토큰
-======================================== */
-
+/* ======================================== 
+ Theme Tokens CSS Variables ↔ Tailwind Utility 연결 Tailwind v4 디자인 토큰 
+ ======================================== */
 @theme inline {
   /* Base Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -40,16 +28,13 @@
   /* Sidebar */
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-
-  /* HSK */
+  --color-sidebar-border: var(--sidebar-border); /* HSK */
   --color-hsk-1: var(--hsk-1);
   --color-hsk-2: var(--hsk-2);
   --color-hsk-3: var(--hsk-3);
   --color-hsk-4: var(--hsk-4);
   --color-hsk-5: var(--hsk-5);
   --color-hsk-6: var(--hsk-6);
-
   --color-hsk-1-accent: var(--hsk-1-accent);
   --color-hsk-2-accent: var(--hsk-2-accent);
   --color-hsk-3-accent: var(--hsk-3-accent);
@@ -62,34 +47,26 @@
   --font-chinese: var(--font-chinese);
 }
 
-/* ========================================
-   Light Theme
-   기본 테마 색상
+/* ======================================== 
+Light Theme 기본 테마 색상 
 ======================================== */
 
 :root {
   /* Base */
   --background: #f9fafb;
   --foreground: #111827;
-
   --card: #ffffff;
   --card-foreground: #111827;
-
   --popover: #ffffff;
   --popover-foreground: #111827;
-
   --primary: #2563eb;
   --primary-foreground: #ffffff;
-
   --secondary: #f8fafc;
   --secondary-foreground: #111827;
-
   --muted: #f8fafc;
   --muted-foreground: #64748b;
-
   --accent: #eff6ff;
   --accent-foreground: #2563eb;
-
   --border: #e5e7eb;
   --input: #e5e7eb;
   --ring: #2563eb;
@@ -98,162 +75,106 @@
   /* Sidebar */
   --sidebar: #ffffff;
   --sidebar-foreground: #111827;
-  --sidebar-border: #e5e7eb;
-
-  /* HSK Colors */
+  --sidebar-border: #e5e7eb; /* HSK Colors */
   --hsk-1: #dff5e5;
   --hsk-1-accent: #34c759;
-
   --hsk-2: #fff1c9;
   --hsk-2-accent: #f6b100;
-
   --hsk-3: #e6efff;
   --hsk-3-accent: #2563eb;
-
   --hsk-4: #eee7ff;
   --hsk-4-accent: #8b5cf6;
-
   --hsk-5: #ffe8d8;
   --hsk-5-accent: #f97316;
-
   --hsk-6: #ffe4ec;
   --hsk-6-accent: #ec4899;
 }
-
 /* ========================================
-   Dark Theme
-   다크모드 색상
-======================================== */
+ Dark Theme 다크모드 색상 
+ ======================================== */
 
 .dark {
   --background: #25292d;
   --foreground: #ffffff;
-
   --card: #2f3439;
   --card-foreground: #ffffff;
-
   --popover: #2f3439;
   --popover-foreground: #ffffff;
-
   --border: rgb(255 255 255 / 10%);
   --input: rgb(255 255 255 / 10%);
-
   --sidebar: #2f3439;
   --sidebar-foreground: #ffffff;
   --sidebar-border: rgb(255 255 255 / 10%);
-}
-
-/* ========================================
-   Base Layer
-   프로젝트 전역 기본 스타일
-======================================== */
-
+} /* ======================================== Base Layer 프로젝트 전역 기본 스타일 ======================================== */
 @layer base {
   * {
     @apply border-border;
   }
-
   html {
     @apply font-sans;
   }
-
   body {
     @apply bg-background text-foreground;
   }
 }
 
 /* ========================================
-   Components Layer
-   공통 레이아웃 및 재사용 클래스
-======================================== */
+ Components Layer 공통 레이아웃 및 재사용 클래스
+  ======================================== */
 
 @layer components {
-  /* ----------------------------------------
-     Layout
-     페이지 최대 너비 및 공통 여백
-  ---------------------------------------- */
-
+  /* ----------- Layout 페이지 최대 너비 및 공통 여백 ------------- */
   .container-layout {
     @apply mx-auto max-w-7xl px-4 md:px-6 lg:px-8;
   }
-
   .page-layout {
     @apply px-4 py-6 md:px-6 md:py-8 lg:px-8;
   }
-
   .page-section {
     @apply space-y-8;
-  }
-
-  /* ----------------------------------------
-     Responsive Navigation
-     Desktop : Sidebar
-     Mobile : Bottom Navigation
-  ---------------------------------------- */
-
+  } /* ----------- Responsive Navigation Desktop : Sidebar Mobile : Bottom Navigation ------------- */
   .desktop-layout {
     @apply lg:grid lg:grid-cols-[16rem_1fr];
   }
-
   .desktop-sidebar {
     @apply hidden w-64 flex-col lg:flex;
   }
-
   .mobile-bottom-nav {
     @apply fixed right-0 bottom-0 left-0 lg:hidden;
   }
 
-  /* ----------------------------------------
-     Chinese Typography
-     중국어 전용 폰트
-  ---------------------------------------- */
-
+  /* --- Chinese Typography 중국어 전용 폰트 -- */
   .font-chinese {
     font-family: var(--font-chinese);
   }
 
-  /* ----------------------------------------
-     HSK Cards
-     급수별 단어 카드 색상
-  ---------------------------------------- */
-
+  /* --------HSK Cards 급수별 단어 카드 색상 ----- */
   .hsk-card-1 {
     background-color: var(--hsk-1);
   }
-
   .hsk-card-2 {
     background-color: var(--hsk-2);
   }
-
   .hsk-card-3 {
     background-color: var(--hsk-3);
   }
-
   .hsk-card-4 {
     background-color: var(--hsk-4);
   }
-
   .hsk-card-5 {
     background-color: var(--hsk-5);
   }
-
   .hsk-card-6 {
     background-color: var(--hsk-6);
   }
 
-  /* ----------------------------------------
-     Typography
-     공통 텍스트 스타일
-  ---------------------------------------- */
-
+  /* -- Typography 공통 텍스트 스타일 ---- */
   .page-title {
     @apply text-2xl font-bold md:text-3xl;
   }
-
   .section-title {
     @apply text-xl font-semibold;
   }
-
   .caption-text {
     @apply text-sm text-muted-foreground;
   }

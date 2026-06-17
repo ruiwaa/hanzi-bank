@@ -1,23 +1,27 @@
 "use client";
 
 import { ArrowLeft, EyeIcon, EyeOff, Lock, LockIcon, Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <form className="bg-white w-full  max-w-md h-132 flex flex-col items-center p-8 shadow-2xs  gap-3 ">
+    <form className="bg-white w-full  max-w-md h-132 flex flex-col items-center p-8 shadow-lg  gap-3  rounded-2xl ">
       <div className="rounded-full bg-[var(--hover)] w-15 h-15 p-4 flex justify-center items-center">
         <Lock size={30} color="var(--primary)" aria-hidden />
       </div>
-      <h2 className="font-semibold  pt-2">로그인</h2>
+      <h2 className="font-bold  text-lg pt-2">로그인</h2>
       <div className="flex flex-col  gap-3  w-full items-center">
         <span className="text-sm text-gray-500">
           중단어 창고에 오신 것을 환영합니다.
         </span>
+        {/* 이메일 규칙에  대한 설명이 필요함. */}
         <div className="space-y-2 w-full">
           <label htmlFor="userEmail" className="sr-only">
             이메일
@@ -28,7 +32,7 @@ export default function LoginForm() {
               aria-hidden
             />
             <input
-              type="text"
+              type="email"
               id="userEmail"
               placeholder="이메일을 입력하세요."
               aria-describedby="idHelp"
@@ -40,6 +44,7 @@ export default function LoginForm() {
             이메일을 입력하세요.
           </span>
         </div>
+        {/* 비밀번호 규칙에 대한 설명이 필요함 */}
         <div className="space-y-2  w-full">
           <label htmlFor="userPassword" className="sr-only">
             비밀번호
@@ -57,6 +62,7 @@ export default function LoginForm() {
               className="w-full pl-12 text-gray-700 bg-gray-100 py-2  rounded-lg"
             />
             <button
+              type="button"
               className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
               onClick={handleShowPassword}
             >
@@ -86,7 +92,8 @@ export default function LoginForm() {
       </div>
       <button
         type="button"
-        className="w-full rounded-lg  p-1 hover:var(--hover) border  border-primary text-primary font-semibold  hover:bg-accent"
+        className="w-full rounded-lg  p-1 border  border-primary text-primary font-semibold  hover:bg-accent"
+        onClick={() => router.push("/signup")}
       >
         회원가입
       </button>
