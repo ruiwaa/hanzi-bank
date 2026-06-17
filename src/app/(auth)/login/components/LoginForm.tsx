@@ -12,11 +12,11 @@ export default function LoginForm() {
     setShowPassword(!showPassword);
   };
   return (
-    <form className="bg-white w-full  max-w-md h-132 flex flex-col items-center p-8 shadow-2xs  gap-3 ">
+    <form className="bg-white w-full  max-w-md h-132 flex flex-col items-center p-8 shadow-lg  gap-3  rounded-2xl ">
       <div className="rounded-full bg-[var(--hover)] w-15 h-15 p-4 flex justify-center items-center">
         <Lock size={30} color="var(--primary)" aria-hidden />
       </div>
-      <h2 className="font-semibold  pt-2">로그인</h2>
+      <h2 className="font-bold  text-lg pt-2">로그인</h2>
       <div className="flex flex-col  gap-3  w-full items-center">
         <span className="text-sm text-gray-500">
           중단어 창고에 오신 것을 환영합니다.
@@ -62,6 +62,7 @@ export default function LoginForm() {
               className="w-full pl-12 text-gray-700 bg-gray-100 py-2  rounded-lg"
             />
             <button
+              type="button"
               className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
               onClick={handleShowPassword}
             >
