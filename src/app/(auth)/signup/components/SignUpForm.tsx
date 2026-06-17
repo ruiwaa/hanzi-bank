@@ -27,7 +27,7 @@ export default function SignUpForm() {
       </span>
       {/* 닉네임,  비밀번호 규칙에 대해 설명을 해줘야함 */}
       <div className="space-y-2 w-full">
-        <label htmlFor="nickName" className="sr-only">
+        <label htmlFor="userEmail" className="sr-only">
           이름(닉네임)
         </label>
         <div className="relative">
@@ -36,14 +36,14 @@ export default function SignUpForm() {
             aria-hidden
           />
           <input
-            type="text"
-            id="nickName"
-            placeholder="이름 또는 닉네임"
+            type="email"
+            id="userEmail"
+            placeholder="사용자 이메일"
             aria-describedby="userName"
             className="w-full pl-12 text-gray-700 bg-gray-100  py-3  rounded-lg "
           />
           <span id="userName" className="sr-only">
-            이름 또는 닉네임을 입력하세요.
+            이메일을 입력하세요.
           </span>
         </div>
       </div>

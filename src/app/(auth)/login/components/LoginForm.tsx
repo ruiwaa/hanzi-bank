@@ -32,7 +32,7 @@ export default function LoginForm() {
               aria-hidden
             />
             <input
-              type="text"
+              type="email"
               id="userEmail"
               placeholder="이메일을 입력하세요."
               aria-describedby="idHelp"
