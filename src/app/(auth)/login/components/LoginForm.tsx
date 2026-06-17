@@ -1,10 +1,13 @@
 "use client";
 
 import { ArrowLeft, EyeIcon, EyeOff, Lock, LockIcon, Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -18,6 +21,7 @@ export default function LoginForm() {
         <span className="text-sm text-gray-500">
           중단어 창고에 오신 것을 환영합니다.
         </span>
+        {/* 이메일 규칙에  대한 설명이 필요함. */}
         <div className="space-y-2 w-full">
           <label htmlFor="userEmail" className="sr-only">
             이메일
@@ -40,6 +44,7 @@ export default function LoginForm() {
             이메일을 입력하세요.
           </span>
         </div>
+        {/* 비밀번호 규칙에 대한 설명이 필요함 */}
         <div className="space-y-2  w-full">
           <label htmlFor="userPassword" className="sr-only">
             비밀번호
@@ -86,7 +91,8 @@ export default function LoginForm() {
       </div>
       <button
         type="button"
-        className="w-full rounded-lg  p-1 hover:var(--hover) border  border-primary text-primary font-semibold  hover:bg-accent"
+        className="w-full rounded-lg  p-1 border  border-primary text-primary font-semibold  hover:bg-accent"
+        onClick={() => router.push("/signup")}
       >
         회원가입
       </button>
