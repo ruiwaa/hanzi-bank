@@ -1,8 +1,4 @@
 import { z } from "zod";
-import { ko } from "zod/v4/locales";
-
-// zod 메시지 출력 언어 설정
-z.config(ko());
 
 export const loginSchema = z.object({
   email: z.email("올바른 이메일 형식이 아닙니다."),

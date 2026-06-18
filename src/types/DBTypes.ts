@@ -5,6 +5,7 @@ export interface User {
   email: string;
   profile_image: string | null;
   nickname: string;
+  level: number;
 }
 
 // meaning

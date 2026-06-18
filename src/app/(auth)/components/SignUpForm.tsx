@@ -6,26 +6,54 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Eye, EyeOff, Lock, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { signupFormValues, signupSchema } from "../schemas/signupSchemas";
+import { signup } from "../api/signup";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm({ resolver: zodResolver(signupSchema) });
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const router = useRouter();
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
   const handleShowPasswordConfirm = () => {
     setShowPasswordConfirm(!showPasswordConfirm);
   };
+  const onSubmit = async (data: signupFormValues) => {
+    try {
+      const result = await signup({
+        email: data.email,
+        password: data.password,
+        hskLevel: data.hskLevel,
+      });
+
+      if (result) router.replace("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
-    <form className="bg-white w-full  max-w-md h-150 flex  flex-col p-8 gap-3 rounded-2xl shadow-lg">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="bg-white w-full  max-w-md h-150 flex  flex-col p-8 gap-3 rounded-2xl shadow-lg"
+    >
       <h2 className="font-bold text-xl">회원가입</h2>
       <span className="text-sm  text-gray-500">
         중단어 창고에 오신 것을 환영합니다.
       </span>
-      {/* 닉네임,  비밀번호 규칙에 대해 설명을 해줘야함 */}
+
       <div className="space-y-2 w-full">
         <label htmlFor="userEmail" className="sr-only">
           이름(닉네임)
@@ -41,11 +69,15 @@ export default function SignUpForm() {
             placeholder="사용자 이메일"
             aria-describedby="userName"
             className="w-full pl-12 text-gray-700 bg-gray-100  py-3  rounded-lg "
+            {...register("email")}
           />
           <span id="userName" className="sr-only">
             이메일을 입력하세요.
           </span>
         </div>
+        {errors.email && (
+          <p className="text-sm text-red-600">{errors.email.message}</p>
+        )}
       </div>
       <div className="space-y-2 w-full">
         <label htmlFor="password" className="sr-only">
@@ -53,7 +85,7 @@ export default function SignUpForm() {
         </label>
         <div className="relative">
           <Lock
-            className="absolute  left-3 top-1/2  -translate-y-1/2  text-primary"
+            className="absolute left-3 top-1/2  -translate-y-1/2  text-primary"
             aria-hidden
           />
           <input
@@ -62,6 +94,7 @@ export default function SignUpForm() {
             placeholder="비밀번호"
             aria-describedby="userPassword"
             className="w-full pl-12 text-gray-700 bg-gray-100  py-3  rounded-lg "
+            {...register("password")}
           />
           <button
             type="button"
@@ -77,10 +110,14 @@ export default function SignUpForm() {
               />
             )}
           </button>
+
           <span id="userPassword" className="sr-only">
             비밀번호를 입력하세요.
           </span>
         </div>
+        {errors.password && (
+          <p className="text-sm text-red-600 mt-2">{errors.password.message}</p>
+        )}
       </div>
       <div className="w-full space-y-2">
         <label htmlFor="passwordCheck" className="sr-only">
@@ -98,6 +135,7 @@ export default function SignUpForm() {
             placeholder="비밀번호 확인"
             aria-describedby="userPasswordCheck"
             className="w-full pl-12 text-gray-700 bg-gray-100  py-3  rounded-lg "
+            {...register("passwordConfirm")}
           />
           <button
             type="button"
@@ -117,26 +155,45 @@ export default function SignUpForm() {
             설정한 비밀번호를 한번 더 입력해주세요.
           </span>
         </div>
+        {errors.passwordConfirm && (
+          <p className="text-sm text-red-600 mt-2">
+            {errors.passwordConfirm.message}
+          </p>
+        )}
       </div>
       <div>
         <label id="hsk-level-label" className="sr-only">
           HSK 급수
         </label>
-        <Select>
-          <SelectTrigger className="w-full" aria-labelledby=" hsk-lebel-label">
-            <SelectValue placeholder="HSK 급수  선택" />
-          </SelectTrigger>
+        <Controller
+          name="hskLevel"
+          control={control}
+          render={({ field }) => (
+            <Select
+              value={field.value?.toString() ?? ""}
+              onValueChange={(value) => field.onChange(Number(value))}
+            >
+              <SelectTrigger
+                className="w-full"
+                aria-labelledby="hsk-level-label"
+              >
+                <SelectValue placeholder="HSK 급수  선택" />
+              </SelectTrigger>
 
-          <SelectContent>
-            <SelectItem value="all">전체</SelectItem>
-            <SelectItem value="level-1">Hsk 1급</SelectItem>
-            <SelectItem value="level-2">Hsk 2급</SelectItem>
-            <SelectItem value="level-3">Hsk 3급</SelectItem>
-            <SelectItem value="level-4">Hsk 4급</SelectItem>
-            <SelectItem value="level-5">Hsk 5급</SelectItem>
-            <SelectItem value="level-6">Hsk 6급</SelectItem>
-          </SelectContent>
-        </Select>
+              <SelectContent>
+                <SelectItem value="1">Hsk 1급</SelectItem>
+                <SelectItem value="2">Hsk 2급</SelectItem>
+                <SelectItem value="3">Hsk 3급</SelectItem>
+                <SelectItem value="4">Hsk 4급</SelectItem>
+                <SelectItem value="5">Hsk 5급</SelectItem>
+                <SelectItem value="6">Hsk 6급</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
+        />
+        {errors.hskLevel && (
+          <p className="text-sm text-red-600 mt-2">{errors.hskLevel.message}</p>
+        )}
       </div>
       <button
         type="submit"
