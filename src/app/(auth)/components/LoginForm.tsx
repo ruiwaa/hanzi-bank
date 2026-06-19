@@ -7,17 +7,23 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormValues, loginSchema } from "../schemas/loginSchemas";
 import { login } from "../api/login";
+import ResetButton from "./ResetButton";
 
 export default function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
+    setValue,
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  // eslint-disable-next-line react-hooks/incompatible-library
+  const email = watch("email");
+  const password = watch("password");
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -61,6 +67,7 @@ export default function LoginForm() {
               "
               {...register("email")}
             />
+            {email && <ResetButton onClick={() => setValue("email", "")} />}
           </div>
           {errors.email && (
             <p className="text-sm text-red-600">{errors.email.message}</p>
@@ -87,17 +94,19 @@ export default function LoginForm() {
               className="w-full pl-12 text-gray-700 bg-gray-100 py-2  rounded-lg"
               {...register("password")}
             />
-            <button
-              type="button"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-              onClick={handleShowPassword}
-            >
-              {showPassword ? (
-                <EyeOff aria-label="비밀번호 숨기기" />
-              ) : (
-                <EyeIcon aria-label="비밀번호 표시" />
-              )}
-            </button>
+            {password && (
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                onClick={handleShowPassword}
+              >
+                {showPassword ? (
+                  <EyeOff aria-label="비밀번호 숨기기" />
+                ) : (
+                  <EyeIcon aria-label="비밀번호 표시" />
+                )}
+              </button>
+            )}
           </div>
           {errors.password && (
             <p className="text-sm text-red-600">{errors.password.message}</p>
