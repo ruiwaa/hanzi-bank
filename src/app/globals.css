@@ -105,7 +105,9 @@ Light Theme 기본 테마 색상
   --sidebar: #2f3439;
   --sidebar-foreground: #ffffff;
   --sidebar-border: rgb(255 255 255 / 10%);
-} /* ======================================== Base Layer 프로젝트 전역 기본 스타일 ======================================== */
+}
+
+/* ====== Base Layer 프로젝트 전역 기본 스타일 ======= */
 @layer base {
   * {
     @apply border-border;
@@ -132,15 +134,23 @@ Light Theme 기본 테마 색상
   }
   .page-section {
     @apply space-y-8;
-  } /* ----------- Responsive Navigation Desktop : Sidebar Mobile : Bottom Navigation ------------- */
+  }
+
+  /* ----------- Responsive Navigation Desktop : Sidebar  ------------- */
   .desktop-layout {
-    @apply lg:grid lg:grid-cols-[16rem_1fr];
+    @apply grid md:grid-cols-[5rem_1fr] lg:grid-cols-[16rem_1fr];
   }
   .desktop-sidebar {
-    @apply hidden w-64 flex-col lg:flex;
+    @apply w-64 flex-col lg:flex;
+  }
+  .tablet-sidebar {
+    @apply hidden md:flex lg:hidden flex-col;
+  }
+  .sidebar {
+    @apply hidden md:flex flex-col;
   }
   .mobile-bottom-nav {
-    @apply fixed right-0 bottom-0 left-0 lg:hidden;
+    @apply fixed right-0 bottom-0 left-0 md:hidden;
   }
 
   /* --- Chinese Typography 중국어 전용 폰트 -- */
