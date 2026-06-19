@@ -15,6 +15,7 @@ import { signupFormValues, signupSchema } from "../schemas/signupSchemas";
 import { signup } from "../api/signup";
 import { useRouter } from "next/navigation";
 import ResetButton from "./ResetButton";
+import { toast } from "sonner";
 
 export default function SignUpForm() {
   const {
@@ -50,8 +51,12 @@ export default function SignUpForm() {
         hskLevel: data.hskLevel,
       });
 
-      if (result) router.replace("/");
+      if (result) {
+        toast.success("회원가입이 완료되었습니다.");
+        router.replace("/");
+      }
     } catch (error) {
+      toast.error("회원가입에 실패하였습니다.");
       console.error(error);
     }
   };
