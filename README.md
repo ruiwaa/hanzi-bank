@@ -1,5 +1,9 @@
 # 🐼 중단어 창고
 
+<p align="center">
+  <img src="./public/logo2.png" alt="중단어 창고 로고" width="250" />
+</p>
+
 next.js 기반으로 구현한 중국어 학습 플랫폼
 
 ---
