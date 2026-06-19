@@ -10,10 +10,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Eye, EyeOff, Lock, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { signupFormValues, signupSchema } from "../schemas/signupSchemas";
 import { signup } from "../api/signup";
 import { useRouter } from "next/navigation";
+import ResetButton from "./ResetButton";
+import { toast } from "sonner";
 
 export default function SignUpForm() {
   const {
@@ -21,10 +23,20 @@ export default function SignUpForm() {
     handleSubmit,
     formState: { errors },
     control,
+    setValue,
   } = useForm({ resolver: zodResolver(signupSchema) });
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const router = useRouter();
+  const email = useWatch({ control, name: "email" });
+  const passwordValue = useWatch({
+    control,
+    name: "password",
+  });
+  const passwordConfirmValue = useWatch({
+    control,
+    name: "passwordConfirm",
+  });
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -39,8 +51,12 @@ export default function SignUpForm() {
         hskLevel: data.hskLevel,
       });
 
-      if (result) router.replace("/");
+      if (result) {
+        toast.success("회원가입이 완료되었습니다.");
+        router.replace("/");
+      }
     } catch (error) {
+      toast.error("회원가입에 실패하였습니다.");
       console.error(error);
     }
   };
@@ -74,6 +90,7 @@ export default function SignUpForm() {
           <span id="userName" className="sr-only">
             이메일을 입력하세요.
           </span>
+          {email && <ResetButton onClick={() => setValue("email", "")} />}
         </div>
         {errors.email && (
           <p className="text-sm text-red-600">{errors.email.message}</p>
@@ -93,24 +110,25 @@ export default function SignUpForm() {
             id="password"
             placeholder="비밀번호"
             aria-describedby="userPassword"
-            className="w-full pl-12 text-gray-700 bg-gray-100  py-3  rounded-lg "
+            className="w-full pl-12 text-gray-500 bg-gray-100  py-3  rounded-lg "
             {...register("password")}
           />
-          <button
-            type="button"
-            className="group  absolute right-3  top-1/2  -translate-y-1/2 text-gray-700"
-            onClick={handleShowPassword}
-          >
-            {showPassword ? (
-              <EyeOff aria-label="비밀번호 숨기기" />
-            ) : (
-              <Eye
-                aria-label="
+          {passwordValue && (
+            <button
+              type="button"
+              className="group  absolute right-3  top-1/2  -translate-y-1/2 text-gray-500"
+              onClick={handleShowPassword}
+            >
+              {showPassword ? (
+                <EyeOff aria-label="비밀번호 숨기기" />
+              ) : (
+                <Eye
+                  aria-label="
             비밀번호 표시"
-              />
-            )}
-          </button>
-
+                />
+              )}
+            </button>
+          )}
           <span id="userPassword" className="sr-only">
             비밀번호를 입력하세요.
           </span>
@@ -137,20 +155,23 @@ export default function SignUpForm() {
             className="w-full pl-12 text-gray-700 bg-gray-100  py-3  rounded-lg "
             {...register("passwordConfirm")}
           />
-          <button
-            type="button"
-            className="group  absolute right-3  top-1/2  -translate-y-1/2 text-gray-700"
-            onClick={handleShowPasswordConfirm}
-          >
-            {showPasswordConfirm ? (
-              <EyeOff aria-label="비밀번호 숨기기" />
-            ) : (
-              <Eye
-                aria-label="
+          {passwordConfirmValue && (
+            <button
+              type="button"
+              className="group  absolute right-3  top-1/2  -translate-y-1/2 text-gray-500"
+              onClick={handleShowPasswordConfirm}
+            >
+              {showPasswordConfirm ? (
+                <EyeOff aria-label="비밀번호 숨기기" />
+              ) : (
+                <Eye
+                  aria-label="
             비밀번호 표시"
-              />
-            )}
-          </button>
+                />
+              )}
+            </button>
+          )}
+
           <span id="userPasswordCheck" className="sr-only">
             설정한 비밀번호를 한번 더 입력해주세요.
           </span>
