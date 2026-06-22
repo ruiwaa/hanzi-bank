@@ -7,6 +7,7 @@ export interface TodayWords extends HskWord {
 }
 export async function fetchTodayWords(): Promise<TodayWords[]> {
   "use cache";
+  console.log("fetchTodayWords 실행");
   cacheLife("days");
 
   const { data, error } = await supabase
@@ -22,8 +23,14 @@ export async function fetchTodayWords(): Promise<TodayWords[]> {
   if (!data) {
     return [];
   }
-
-  const todayWords = [...data].toSorted(() => Math.random() - 0.5).slice(0, 3);
+  const today = new Date().toISOString().slice(0, 10);
+  const formatDate = Number(today.replaceAll("-", ""));
+  const start = formatDate % data.length;
+  const todayWords = [
+    data[start],
+    data[(start + 1) % data.length],
+    data[(start + 2) % data.length],
+  ];
 
   return todayWords;
 }

@@ -21,7 +21,7 @@ export interface HskWord {
   word: string;
   pinyin: string;
   pos: string[];
-  meaning: Meaning[];
+  meanings: Meaning[];
   hsk_level: number;
   frequency: number;
 }
