@@ -1,5 +1,5 @@
 "use server";
-import { fetchTodayWords } from "@/app/(auth)/api/fetchTodayWords";
+import { fetchTodayWords } from "@/app/api/fetchTodayWords";
 import { Speech } from "lucide-react";
 import TodayWordsSwiper from "./TodayWordSwiper";
 

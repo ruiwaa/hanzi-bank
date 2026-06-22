@@ -5,7 +5,7 @@ import "swiper/css";
 import { Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { TodayWords } from "@/app/(auth)/api/fetchTodayWords";
+import { TodayWords } from "@/app/api/fetchTodayWords";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SaveWordBtn from "./SaveWordBtn";

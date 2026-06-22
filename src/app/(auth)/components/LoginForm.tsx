@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormValues, loginSchema } from "../schemas/loginSchemas";
-import { login } from "../api/login";
+import { login } from "../../api/login";
 import ResetButton from "./ResetButton";
 
 export default function LoginForm() {

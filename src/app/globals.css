@@ -75,7 +75,9 @@ Light Theme 기본 테마 색상
   /* Sidebar */
   --sidebar: #ffffff;
   --sidebar-foreground: #111827;
-  --sidebar-border: #e5e7eb; /* HSK Colors */
+  --sidebar-border: #e5e7eb;
+
+  /* HSK Colors */
   --hsk-1: #dff5e5;
   --hsk-1-accent: #34c759;
   --hsk-2: #fff1c9;
