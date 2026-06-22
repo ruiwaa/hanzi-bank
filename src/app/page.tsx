@@ -1,3 +1,4 @@
+import HskLevelWords from "@/components/ui/HskLevelWords";
 import Sidebar from "@/components/ui/Sidebar";
 import SidebarMobile from "@/components/ui/SidebarMobile";
 import TodayWord from "@/components/ui/TodayWord";
@@ -35,6 +36,7 @@ export default function Home() {
         </div>
         <main className=" flex-1 dark:bg-black p-3">
           <TodayWord />
+          <HskLevelWords />
         </main>
         <SidebarMobile />
       </div>
