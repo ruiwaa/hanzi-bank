@@ -1,5 +1,7 @@
+import HskLevelWords from "@/components/ui/HskLevelWords";
 import Sidebar from "@/components/ui/Sidebar";
 import SidebarMobile from "@/components/ui/SidebarMobile";
+import TodayWord from "@/components/ui/TodayWord";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,18 +21,23 @@ export default function Home() {
         </Link>
         <Sidebar />
       </aside>
-      <div>
-        <header className="h-16 border-b border-border bg-white">
-          <Link href={"/"}>
-            <Image
-              src="/logo2.png"
-              alt={"중단어 창고 로고"}
-              width={150}
-              height={100}
-            />
-          </Link>
-        </header>
-        <main className="  dark:bg-black bg-purple-300">메인 페이지 영역</main>
+      <div className="flex flex-col min-w-0 ">
+        <div className="bg-white ">
+          <header className="h-16 border-b border-border mt-3 ">
+            <Link href={"/"}>
+              <Image
+                src="/logo2.png"
+                alt={"중단어 창고 로고"}
+                width={150}
+                height={100}
+              />
+            </Link>
+          </header>
+        </div>
+        <main className=" flex-1 dark:bg-black p-3">
+          <TodayWord />
+          <HskLevelWords />
+        </main>
         <SidebarMobile />
       </div>
     </div>

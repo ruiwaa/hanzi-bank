@@ -20,7 +20,10 @@ export default function SidebarMobile() {
                   isActive ? "text-primary" : "text-sidebar-foreground"
                 }
               >
-                <Link href={menu.href}>
+                <Link
+                  href={menu.href}
+                  aria-current={isActive ? "page" : undefined}
+                >
                   <Icon
                     aria-label={menu.ariaLabel}
                     className="hover:text-primary"
