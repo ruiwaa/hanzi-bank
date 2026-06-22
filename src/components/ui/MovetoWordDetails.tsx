@@ -13,7 +13,10 @@ export default function MovetoWordDetails() {
   whitespace-nowrap
   w-30
   transition-colors
-  hover:bg-blue-500/80
+  hover:bg-white
+  hover:text-blue-500
+  hover:border
+  hover: border-pink-300
   focus-visible:outline-none
   focus-visible:ring-2
   focus-visible:ring-primary
@@ -28,7 +31,7 @@ export default function MovetoWordDetails() {
       left-5
       size-2
       rounded-full
-      bg-pink-100
+      bg-pink-300
 
       opacity-0
       scale-0
@@ -51,7 +54,7 @@ export default function MovetoWordDetails() {
       size-2.5
       -translate-y-1/2
       rounded-full
-      bg-pink-100
+      bg-pink-300
 
       opacity-0
       scale-0
@@ -74,7 +77,7 @@ export default function MovetoWordDetails() {
       right-2
       size-3
       rounded-full
-      bg-pink-100
+      bg-pink-300
 
       opacity-0
       scale-0

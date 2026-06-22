@@ -15,14 +15,17 @@ export default function SaveWordBtn() {
         whitespace-nowrap
         w-30
         transition-colors
-        hover:bg-primary/5
+        hover:bg-pink-300
+        hover:text-white
+        hover:border-none
+
         focus-visible:outline-none
         focus-visible:ring-2
         focus-visible:ring-primary
         focus-visible:ring-offset-2
       "
     >
-      <span>단어 저장하기</span>
+      <span>단어 수집하기</span>
 
       <span aria-hidden="true">
         <span
@@ -32,7 +35,7 @@ export default function SaveWordBtn() {
             right-5
             size-2
             rounded-full
-            bg-blue-300
+            bg-blue-200
 
             opacity-0
             scale-0
@@ -55,7 +58,7 @@ export default function SaveWordBtn() {
             size-2.5
             -translate-y-1/2
             rounded-full
-            bg-blue-300
+            bg-blue-200
 
             opacity-0
             scale-0
@@ -78,7 +81,7 @@ export default function SaveWordBtn() {
             left-1
             size-3.5
             rounded-full
-            bg-blue-300
+            bg-blue-200
 
             opacity-0
             scale-0

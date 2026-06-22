@@ -39,7 +39,7 @@ export default function TodayWordsSwiper({ words }: Props) {
             aria-hidden={activeIndex !== index}
             className="h-full"
           >
-            <article className="flex flex-col gap-2 bg-white/70 p-3 rounded-2xl items-center h-full py-5 pb-10">
+            <article className="flex flex-col gap-2 bg-white/70 p-3 rounded-2xl items-center justify-center h-full py-5 pb-10">
               {/* h3 링크 태그로 감싸고 해당 단어 상세 페이지로 이동할 수 있도록 추후에 기능 추가 필요 */}
               {/* 단어, 예문 옆에 음성 지원 서비스 추가 필요 */}
               <h3 className="font-chinese font-bold text-3xl">{word.word}</h3>
