@@ -20,6 +20,7 @@ export default function Sidebar() {
                     ? "rounded-2xl bg-[#EFF6FF] text-primary"
                     : "hover:rounded-2xl hover:bg-[#EFF6FF] hover:text-primary"
                 }`}
+                aria-current={isActive ? "page" : undefined}
               >
                 <Link
                   href={menu.href}

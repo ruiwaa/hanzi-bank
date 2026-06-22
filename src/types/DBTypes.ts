@@ -9,7 +9,7 @@ export interface User {
 }
 
 // meaning
-export interface Meanings {
+export interface Meaning {
   en: string;
   ko: string;
 }
@@ -21,8 +21,7 @@ export interface HskWord {
   word: string;
   pinyin: string;
   pos: string[];
-  meaning: Meanings[];
-  meaning_ko: string;
+  meaning: Meaning[];
   hsk_level: number;
   frequency: number;
 }

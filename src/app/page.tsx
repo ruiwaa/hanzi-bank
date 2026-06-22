@@ -1,5 +1,6 @@
 import Sidebar from "@/components/ui/Sidebar";
 import SidebarMobile from "@/components/ui/SidebarMobile";
+import TodayWord from "@/components/ui/TodayWord";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +20,7 @@ export default function Home() {
         </Link>
         <Sidebar />
       </aside>
-      <div>
+      <div className="flex flex-col min-w-0">
         <header className="h-16 border-b border-border bg-white">
           <Link href={"/"}>
             <Image
@@ -30,7 +31,9 @@ export default function Home() {
             />
           </Link>
         </header>
-        <main className="  dark:bg-black bg-purple-300">메인 페이지 영역</main>
+        <main className=" flex-1 dark:bg-black p-3">
+          <TodayWord />
+        </main>
         <SidebarMobile />
       </div>
     </div>
