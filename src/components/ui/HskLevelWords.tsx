@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import HskLevelCardList from "./HskLevelCardList";
+import { fetchMainLevelWords } from "@/app/api/fetchMainLevelWord";
 
 export default async function HskLevelWords() {
+  const simpleLevelWords = await fetchMainLevelWords();
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between mt-5">
@@ -13,7 +15,7 @@ export default async function HskLevelWords() {
         </Link>
       </div>
       <div className="flex flex-row gap-3">
-        <HskLevelCardList />
+        <HskLevelCardList levelWords={simpleLevelWords} />
       </div>
     </div>
   );

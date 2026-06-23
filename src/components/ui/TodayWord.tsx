@@ -5,7 +5,6 @@ import TodayWordsSwiper from "./TodayWordSwiper";
 
 export default async function TodayWord() {
   const todayWords = await fetchTodayWords();
-  console.log(todayWords);
 
   return (
     <div className="bg-linear-to-br from-blue-100 via-violet-50 to-pink-100 h-100 p-5 rounded-2xl flex flex-col">

@@ -38,6 +38,7 @@ export default function TodayWordsSwiper({ words }: Props) {
             key={word.id}
             aria-hidden={activeIndex !== index}
             className="h-full"
+            inert={activeIndex !== index}
           >
             <article className="flex flex-col gap-2 bg-white/70 p-3 rounded-2xl items-center justify-center h-full py-5 pb-10">
               {/* h3 링크 태그로 감싸고 해당 단어 상세 페이지로 이동할 수 있도록 추후에 기능 추가 필요 */}
