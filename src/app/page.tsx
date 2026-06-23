@@ -34,7 +34,7 @@ export default function Home() {
             </Link>
           </header>
         </div>
-        <main className=" flex-1 dark:bg-black p-3">
+        <main className="flex-1 dark:bg-black p-3 ">
           <TodayWord />
           <HskLevelWords />
         </main>

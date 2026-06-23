@@ -12,7 +12,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { signupFormValues, signupSchema } from "../schemas/signupSchemas";
-import { signup } from "../api/signup";
+import { signup } from "../../api/signup";
 import { useRouter } from "next/navigation";
 import ResetButton from "./ResetButton";
 import { toast } from "sonner";

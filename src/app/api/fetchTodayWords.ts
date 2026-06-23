@@ -26,6 +26,7 @@ export async function fetchTodayWords(): Promise<TodayWords[]> {
   const today = new Date().toISOString().slice(0, 10);
   const formatDate = Number(today.replaceAll("-", ""));
   const start = formatDate % data.length;
+
   const todayWords = [
     data[start],
     data[(start + 1) % data.length],
