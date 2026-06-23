@@ -41,12 +41,14 @@ export default function HskLevelCardList({ levelWords }: Props) {
             <span className="bg-blue-200 text-primary p-1 w-10 rounded-xl self-center text-center font-semibold">
               {word.hsk_level}급{" "}
             </span>
-            <div className="flex flex-col flex-1 gap-2 py-2 md:justify-center ">
-              <h3 className="font-chinese font-semibold text-center md:text-left md:pl-2">
+            <div className="flex flex-col flex-1 gap-2 py-2 md:justify-center group">
+              <h3 className="font-chinese font-semibold text-center md:text-left  group-hover:text-primary ">
                 {word.word}{" "}
-                <span className="text-muted-foreground">[{word.pinyin}]</span>
+                <span className="text-muted-foreground group-hover:text-primary ">
+                  [{word.pinyin}]
+                </span>
               </h3>
-              <span className="self-center md:self-start">
+              <span className="self-center md:self-start group-hover:text-primary ">
                 {word.meanings[0].ko}
               </span>
             </div>
