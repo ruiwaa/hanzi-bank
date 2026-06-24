@@ -1,5 +1,11 @@
-export default function SaveWordBtn() {
-  return (
+import { Bookmark } from "lucide-react";
+
+interface Props {
+  showText?: boolean;
+}
+
+export default function SaveWordBtn({ showText = false }: Props) {
+  return showText ? (
     <button
       type="button"
       className="
@@ -97,6 +103,13 @@ export default function SaveWordBtn() {
           "
         />
       </span>
+    </button>
+  ) : (
+    <button
+      aria-label="단어 수집하기"
+      className="text-muted-foreground hover:text-primary "
+    >
+      <Bookmark />
     </button>
   );
 }

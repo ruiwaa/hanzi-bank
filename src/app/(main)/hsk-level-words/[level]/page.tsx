@@ -1,11 +1,14 @@
+import { fetchAllHskLevelWords } from "@/app/api/fetchAllHskLevelWords";
 import { HSK_LEVELS } from "@/constants/hskLevelStyle";
+import HskLevelWordsHeader from "./components/HskLevelWordsHeader";
 
 export default async function HskLevelDetailPage({
   params,
 }: {
-  params: Promise<{ level: number }>;
+  params: Promise<{ level: string }>;
 }) {
   const { level } = await params;
+  const words = await fetchAllHskLevelWords(Number(level));
   const levelData = HSK_LEVELS.find((h) => String(h.level) === String(level));
 
   return (
@@ -20,6 +23,14 @@ export default async function HskLevelDetailPage({
           {levelData?.label}
         </span>
       </div>
+      <ol>
+        <HskLevelWordsHeader />
+        {words.words.map((word) => (
+          <li key={word.id} className="flex flex-col px-2">
+            <h4>{word.word}</h4>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
