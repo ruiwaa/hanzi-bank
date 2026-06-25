@@ -28,7 +28,7 @@ export default async function HskLevelDetailPage({
     <div className="container-layout flex flex-col overflow-y-auto">
       <div className="flex flex-row gap-2 items-center">
         <h2 className={`font-bold ${levelData?.textClass} flex flex-row gap-2`}>
-          <BackButton />
+          <BackButton page={`/hsk-level-words`} />
           {levelData?.label} 단어 목록
         </h2>
         <span
