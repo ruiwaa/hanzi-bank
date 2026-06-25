@@ -23,7 +23,9 @@ export default function HskLevelPage() {
                   >
                     {levels.label}
                   </span>
-                  <ArrowRight aria-label="학습하러 가기" />
+                  <button className="cursor-pointer transition-transform duration-300 hover:translate-x-2">
+                    <ArrowRight aria-label="학습하러 가기" />
+                  </button>
                 </div>
                 <div className="flex flex-row gap-3">
                   <BookOpen className="bg-white  rounded-lg p-2" size={50} />
