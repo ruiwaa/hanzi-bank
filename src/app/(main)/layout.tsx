@@ -15,10 +15,10 @@ export default function MainLayout({
       <h1 className="sr-only">중단어 창고 메인페이지</h1>
       <Suspense fallback={<div className="animate-pulse">로딩 중...</div>}>
         <aside className="sidebar border-r border-border bg-white min-h-screen">
-          <Link href={"/"}>
+          <Link href={"/"} aria-label="중단어 창고 홈 이동">
             <Image
               src="/logo2.png"
-              alt={"중단어 창고 로고"}
+              alt=""
               width={200}
               height={200}
               className="hidden lg:block px-4 w-full"
@@ -30,7 +30,7 @@ export default function MainLayout({
           <div className="bg-white border-b border-border p-2">
             <Header />
           </div>
-          <main className="flex-1 dark:bg-black p-3">{children}</main>
+          <main className="flex-1 dark:bg-black p-3 pb-5">{children}</main>
           <SidebarMobile />
         </div>
       </Suspense>

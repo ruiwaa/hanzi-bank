@@ -1,7 +1,7 @@
 "use client";
 import { MainLevelWords } from "@/app/api/fetchMainLevelWord";
 import { HSK_LEVELS } from "@/constants/hskLevelStyle";
-import { Bookmark, Volume2 } from "lucide-react";
+import { Volume2 } from "lucide-react";
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
 import SaveWordBtn from "./SaveWordBtn";
