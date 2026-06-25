@@ -30,7 +30,7 @@ export default function MainLayout({
           <div className="bg-white border-b border-border p-2">
             <Header />
           </div>
-          <main className="flex-1 dark:bg-black p-3 pb-5">{children}</main>
+          <main className="flex-1 dark:bg-black p-3 mb-20">{children}</main>
           <SidebarMobile />
         </div>
       </Suspense>

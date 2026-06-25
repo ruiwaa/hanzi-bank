@@ -19,15 +19,20 @@ export default async function DetailHskLevelList({ words }: Props) {
             href={`/hsk-level-words/${word.hsk_level}/${word.id}`}
             className="contents"
           >
-            <h3 className="font-chinese">{word.word}</h3>
-            <span className="text-muted-foreground">[ {word.pinyin} ]</span>
+            <h3 className="font-chinese font-semibold text-lg">{word.word}</h3>
+            <span className="text-muted-foreground whitespace-nowrap">
+              [ {word.pinyin} ]
+            </span>
             <span className="md:whitespace-normal md:break-keep text-center">
               {word.meanings
                 .map((meaning) => meaning.ko.replace(/\s*;\s*/g, ", "))
                 .join(", ")}
             </span>
             <span className="hidden md:break-keep whitespace-normal md:block text-center">
-              {word.pos.map((pos) => POS_KO_MAP[pos] ?? pos).join(", ")}
+              {word.pos
+                .map((pos) => POS_KO_MAP[pos] ?? pos)
+                .slice(0, 3)
+                .join(", ")}
             </span>
             <span className=" hidden md:block">{word.hsk_level} 급</span>
           </Link>

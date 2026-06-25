@@ -5,6 +5,7 @@ export const POS_KO_MAP: Record<string, string> = {
   an: "명사형 형용사",
   b: "비술어 형용사",
   c: "접속사",
+  cc: "접속사",
   d: "부사",
   dg: "부사 어간",
   e: "감탄사",

@@ -25,10 +25,10 @@ export default async function HskLevelDetailPage({
   const levelData = HSK_LEVELS.find((h) => String(h.level) === String(level));
 
   return (
-    <div className="container-layout flex flex-col overflow-y-auto">
-      <div className="flex flex-row gap-2 items-center">
-        <h2 className={`font-bold ${levelData?.textClass} flex flex-row gap-2`}>
-          <BackButton page={`/hsk-level-words`} />
+    <div className="container-layout flex flex-col ">
+      <div className="flex items-center gap-2 ">
+        <BackButton page={`/hsk-level-words`} level={levelData} />
+        <h2 className={`font-bold ${levelData?.textClass} m-0 `}>
           {levelData?.label} 단어 목록
         </h2>
         <span
@@ -38,7 +38,7 @@ export default async function HskLevelDetailPage({
         </span>
       </div>
       <HskLevelWordsHeader />
-      <ol className="p-2">
+      <ol>
         <DetailHskLevelList words={words} />
       </ol>
       <Pagination page={currentPage} totalPages={totalPages} />

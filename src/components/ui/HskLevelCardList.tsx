@@ -55,7 +55,7 @@ export default function HskLevelCardList({ levelWords }: Props) {
             </div>
             <Link
               className="text-primary self-center hover:bg-input hover:rounded-xl p-2"
-              href={""}
+              href={`/hsk-level-words/${word.hsk_level}/${word.id}`}
             >
               보기
             </Link>

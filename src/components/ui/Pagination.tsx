@@ -35,7 +35,7 @@ export default function Pagination({ page, totalPages }: Props) {
   );
 
   return (
-    <div className="flex flex-row justify-center  items-center md:justify-evenly gap-2 mb-3">
+    <div className="flex flex-row justify-center  items-center md:justify-evenly gap-2 mt-5">
       <button
         onClick={() => handlePageChange(1)}
         aria-disabled={page === 1}
