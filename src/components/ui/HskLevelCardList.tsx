@@ -1,9 +1,10 @@
 "use client";
 import { MainLevelWords } from "@/app/api/fetchMainLevelWord";
 import { HSK_LEVELS } from "@/constants/hskLevelStyle";
-import { Bookmark, Volume2 } from "lucide-react";
+import { Volume2 } from "lucide-react";
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
+import SaveWordBtn from "./SaveWordBtn";
 
 interface Props {
   levelWords: MainLevelWords[];
@@ -54,7 +55,7 @@ export default function HskLevelCardList({ levelWords }: Props) {
             </div>
             <Link
               className="text-primary self-center hover:bg-input hover:rounded-xl p-2"
-              href={""}
+              href={`/hsk-level-words/${word.hsk_level}/${word.id}`}
             >
               보기
             </Link>
@@ -62,12 +63,7 @@ export default function HskLevelCardList({ levelWords }: Props) {
             {/* 이미 저장된 단어일 경우 아이콘 색깔이 꽉 채워지게 설정 */}
             {/* 저장됨을 안내해주는 aria-label 삼항 연산자로 표시해줘야함 */}
             <div className="flex justify-between md:flex-row md:justify-center md:items-center gap-2 h-full ">
-              <button
-                aria-label="단어 수집하기"
-                className="text-muted-foreground hover:text-primary "
-              >
-                <Bookmark />
-              </button>
+              <SaveWordBtn />
               <button
                 aria-label={`중단어 ${word.word} 발음 듣기`}
                 className="hover:text-primary text-muted-foreground"

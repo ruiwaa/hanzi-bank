@@ -52,7 +52,7 @@ export default function TodayWordsSwiper({ words }: Props) {
               </span>
               <span>{word.word_examples[0].meaning}</span>
               <div className="flex justify-between mt-auto gap-5 ">
-                <SaveWordBtn />
+                <SaveWordBtn showText={true} />
                 <MovetoWordDetails />
               </div>
             </article>

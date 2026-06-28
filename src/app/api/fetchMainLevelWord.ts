@@ -17,7 +17,7 @@ export async function fetchMainLevelWords(): Promise<MainLevelWords[]> {
         .select("*")
         .eq("hsk_level", level)
         .order("frequency", { ascending: true })
-        .limit(4);
+        .limit(8);
 
       if (error) throw error;
 

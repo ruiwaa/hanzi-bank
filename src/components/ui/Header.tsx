@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Header() {
   return (
     <header className="h-16  mt-3 w-full">
-      <Link href={"/"}>
+      <Link href={"/"} className="inline-block">
         <Image
           src="/logo2.png"
           alt={"중단어 창고 로고"}
