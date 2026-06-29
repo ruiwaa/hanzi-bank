@@ -1,10 +1,12 @@
 "use client";
 import { SIDEBAR_MENUS } from "@/constants/navigation";
+import { useSearchModal } from "@/stores/searchModalStore";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function SidebarMobile() {
   const pathName = usePathname();
+  const { open, isOpen } = useSearchModal();
 
   return (
     <>
@@ -12,7 +14,10 @@ export default function SidebarMobile() {
         <ol className="flex flex-row items-center justify-around ">
           {SIDEBAR_MENUS.map((menu) => {
             const Icon = menu.icon;
-            const isActive = menu.href === pathName;
+            const isActive =
+              menu.type === "modal"
+                ? isOpen || pathName === "/search"
+                : menu.href === pathName;
             return (
               <li
                 key={menu.href}
@@ -20,15 +25,21 @@ export default function SidebarMobile() {
                   isActive ? "text-primary" : "text-sidebar-foreground"
                 }
               >
-                <Link
-                  href={menu.href}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  <Icon
-                    aria-label={menu.ariaLabel}
-                    className="hover:text-primary"
-                  />
-                </Link>
+                {menu.type === "modal" ? (
+                  <button onClick={open} aria-pressed={isOpen}>
+                    <Icon aria-label={menu.ariaLabel} />
+                  </button>
+                ) : (
+                  <Link
+                    href={menu.href}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    <Icon
+                      aria-label={menu.ariaLabel}
+                      className="hover:text-primary"
+                    />
+                  </Link>
+                )}
               </li>
             );
           })}
