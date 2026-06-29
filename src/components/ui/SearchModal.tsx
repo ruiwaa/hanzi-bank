@@ -2,10 +2,12 @@
 
 import { searchSchema, searchValue } from "@/app/(auth)/schemas/searchSchemas";
 import SearchForm from "@/app/(main)/search/components/SearchForm";
+import VoiceForm from "@/app/(main)/search/components/VoiceForm";
 import { useSearchModal } from "@/stores/searchModalStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function SearchModal() {
@@ -16,7 +18,9 @@ export default function SearchModal() {
     formState: { errors },
     control,
     resetField,
+    setValue,
   } = useForm<searchValue>({ resolver: zodResolver(searchSchema) });
+  const [language, setLanguage] = useState<"ko-KR" | "zh-CN">("ko-KR");
   const router = useRouter();
   const onSubmit = (data: searchValue) => {
     close();
@@ -51,6 +55,16 @@ export default function SearchModal() {
               errors={errors}
               control={control}
               reset={handleReset}
+            />
+            <div className="w-full flex items-center ">
+              <div className="flex-1 border-t border-slate-200" />
+              <span className="px-3 text-muted-foreground pt-3">또는</span>
+              <div className="flex-1 border-t border-slate-200" />
+            </div>
+            <VoiceForm
+              setValue={setValue}
+              language={language}
+              setLanguage={setLanguage}
             />
           </form>
         </div>

@@ -25,7 +25,7 @@ export default function SearchForm({
   const searchWord = useWatch({ control, name: "keyWord" });
   return (
     <div className="flex flex-col gap-1">
-      <h3 className="text-muted-foreground">텍스트 검색</h3>
+      <h3 className="text-muted-foreground font-semibold">텍스트 검색</h3>
       <label htmlFor="textSearch" className="sr-only">
         텍스트 검색
       </label>
@@ -43,7 +43,7 @@ export default function SearchForm({
               onClick={() => reset("keyWord")}
               className="absolute top-1/2 right-3 -translate-y-1/2"
             >
-              <X />
+              <X aria-label="검색어 초기화하히기" />
             </button>
           )}
         </div>
