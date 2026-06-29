@@ -14,11 +14,16 @@ export default function SearchModal() {
     register,
     handleSubmit,
     formState: { errors },
+    control,
+    resetField,
   } = useForm<searchValue>({ resolver: zodResolver(searchSchema) });
   const router = useRouter();
   const onSubmit = (data: searchValue) => {
     close();
     router.push(`/search=${data.keyWord}`);
+  };
+  const handleReset = () => {
+    resetField("keyWord");
   };
   if (!isOpen) return null;
 
@@ -41,7 +46,12 @@ export default function SearchModal() {
             </button>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <SearchForm register={register} errors={errors} />
+            <SearchForm
+              register={register}
+              errors={errors}
+              control={control}
+              reset={handleReset}
+            />
           </form>
         </div>
       </div>

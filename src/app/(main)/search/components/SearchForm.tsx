@@ -1,28 +1,61 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+"use client";
+import { searchValue } from "@/app/(auth)/schemas/searchSchemas";
+import { X } from "lucide-react";
+import {
+  Control,
+  FieldErrors,
+  UseFormRegister,
+  UseFormResetField,
+  useWatch,
+} from "react-hook-form";
 
 interface Props {
-  register: UseFormRegister<{
-    keyWord: string;
-  }>;
-  errors: FieldErrors<{
-    keyWord: string;
-  }>;
+  register: UseFormRegister<searchValue>;
+  errors: FieldErrors<searchValue>;
+  control: Control<searchValue>;
+  reset: UseFormResetField<searchValue>;
 }
 
-export default function SearchForm({ register, errors }: Props) {
+export default function SearchForm({
+  register,
+  errors,
+  control,
+  reset,
+}: Props) {
+  const searchWord = useWatch({ control, name: "keyWord" });
   return (
     <div className="flex flex-col gap-1">
       <h3 className="text-muted-foreground">텍스트 검색</h3>
       <label htmlFor="textSearch" className="sr-only">
         텍스트 검색
       </label>
-      <input
-        id="textSearch"
-        placeholder="찾으시는 단어를 검색해주세요."
-        aria-describedby="textSearchHelp"
-        className="bg-input p-2 rounded-xl"
-        {...register("keyWord")}
-      />
+      <div className="flex flex-row gap-2 ">
+        <div className="relative flex-1">
+          <input
+            id="textSearch"
+            placeholder="찾으시는 단어를 검색해주세요."
+            aria-describedby="textSearchHelp"
+            className="bg-input p-2 rounded-xl w-full"
+            {...register("keyWord")}
+          />
+          {searchWord?.trim() && (
+            <button
+              onClick={() => reset("keyWord")}
+              className="absolute top-1/2 right-3 -translate-y-1/2"
+            >
+              <X />
+            </button>
+          )}
+        </div>
+        {searchWord?.trim() && (
+          <button
+            type="submit"
+            className="border-2 border-primary p-2 rounded-2xl hover:bg-primary hover:text-white font-semibold"
+          >
+            검색하기
+          </button>
+        )}
+      </div>
       {errors.keyWord && (
         <p className="text-red-500">{errors.keyWord.message}</p>
       )}
