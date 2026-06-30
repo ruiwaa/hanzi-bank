@@ -35,7 +35,7 @@ export default function SearchForm({
             id="textSearch"
             placeholder="찾으시는 단어를 검색해주세요."
             aria-describedby="textSearchHelp"
-            className="bg-input p-2 rounded-xl w-full"
+            className="bg-input p-2 rounded-xl w-full font-chinese"
             {...register("keyWord")}
           />
           {searchWord?.trim() && (

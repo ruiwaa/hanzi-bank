@@ -18,9 +18,17 @@ type voiceStatus = keyof typeof VOICE_STATUS;
 export default function VoiceForm({ setValue, language, setLanguage }: Props) {
   const [voiceStatus, setVoiceStatus] = useState<voiceStatus>("idle");
   const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+
+  // 현재 음성 인식 상태 값 저장하기
+  const recognitionRef =
+    useRef<ReturnType<typeof createSpeechRecognition>>(null);
+
+  // 사용자가 직접 음성 인식을 종료한 것인지 확인을 위한 값 저장
+  const isSpeechStop = useRef(false);
+
   const handleVoiceSearch = () => {
     if (isListening) {
+      isSpeechStop.current = true;
       recognitionRef.current?.stop();
       setVoiceStatus("idle");
       return;
@@ -48,7 +56,6 @@ export default function VoiceForm({ setValue, language, setLanguage }: Props) {
     };
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
-      setVoiceStatus("processing");
       // 인식된 텍스트 추출
       const transcript = event.results[0][0].transcript;
 
@@ -57,16 +64,23 @@ export default function VoiceForm({ setValue, language, setLanguage }: Props) {
         shouldValidate: true,
         shouldDirty: true,
       });
+
+      setVoiceStatus("success");
     };
     recognition.onend = () => {
       setIsListening(false);
-      setVoiceStatus("success");
       recognitionRef.current = null;
+
+      if (isSpeechStop.current) {
+        setVoiceStatus("idle");
+        return;
+      }
+      setVoiceStatus("success");
     };
 
     recognition.onerror = () => {
       setIsListening(false);
-      setVoiceStatus("fail");
+      setVoiceStatus("error");
       recognitionRef.current = null;
     };
 
@@ -76,7 +90,7 @@ export default function VoiceForm({ setValue, language, setLanguage }: Props) {
   return (
     <>
       <h3 className="text-muted-foreground font-semibold pb-3">음성 검색</h3>
-      <div className="flex flex-col gap-5 items-center">
+      <div className="flex flex-col gap-3 items-center">
         <div className="flex flex-row gap-2">
           <label htmlFor="korean">한국어</label>
           <input
@@ -95,15 +109,20 @@ export default function VoiceForm({ setValue, language, setLanguage }: Props) {
             onChange={() => setLanguage("zh-CN")}
           />
         </div>
+        <p className="text-sm text-muted-foreground">
+          선택한 언어로 말씀해 주세요.
+        </p>
+        <p className="text-sm text-muted-foreground">
+          다른 언어를 말하면 음성 인식 정확도가 떨어질 수 있습니다.
+        </p>
         <button
+          type="button"
           onClick={handleVoiceSearch}
           aria-label={isListening ? "음성 검색 종료" : "음성 검색 시작"}
         >
           <Mic
             className={`bg-blue-200 rounded-full p-3 
-              isListening
-                ? "text-red-500"
-                : "text-primary"
+             ${isListening ? "text-red-500" : "text-primary"} 
             `}
             size={50}
           />

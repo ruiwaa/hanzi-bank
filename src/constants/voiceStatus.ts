@@ -15,8 +15,8 @@ export const VOICE_STATUS = {
     text: "✅ 음성 인식이 완료되었습니다.",
     className: "bg-green-500 font-medium text-white",
   },
-  fail: {
-    text: "❌ 음성을 인식하지 못했습니다.",
+  error: {
+    text: "❌ 음성을 인식하지 못했습니다. 선택한 언어를 확인한 후 다시 시도해 주세요.",
     className: "bg-red-500 font-medium text-white",
   },
 } as const;
