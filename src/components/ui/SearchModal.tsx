@@ -33,8 +33,10 @@ export default function SearchModal() {
 
   const router = useRouter();
   const onSubmit = (data: searchValue) => {
+    console.log(data);
+
     close();
-    router.push(`/search=${data.keyWord}`);
+    router.push(`/search?keyword=${encodeURIComponent(data.keyWord)}`);
   };
 
   // 모달창 키보드 이벤트 연결
