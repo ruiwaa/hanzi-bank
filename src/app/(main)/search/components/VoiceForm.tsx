@@ -32,6 +32,9 @@ export default function VoiceForm({
   // 사용자가 직접 음성 인식을 종료한 것인지 확인을 위한 값 저장
   const isSpeechStop = useRef(false);
 
+  // 음성 인식 결과 값을 받았는지 확인
+  const hasResult = useRef(false);
+
   const handleVoiceSearch = () => {
     if (isListening) {
       isSpeechStop.current = true;
@@ -57,11 +60,14 @@ export default function VoiceForm({
     recognition.maxAlternatives = 1;
 
     recognition.onstart = () => {
+      hasResult.current = false;
       setIsListening(true);
       setVoiceStatus("listening");
     };
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
+      hasResult.current = true;
+
       // 인식된 텍스트 추출
       const transcript = event.results[0][0].transcript;
 
@@ -70,6 +76,7 @@ export default function VoiceForm({
         shouldValidate: true,
         shouldDirty: true,
       });
+
       setFocus("keyWord");
       setVoiceStatus("success");
     };
@@ -82,13 +89,14 @@ export default function VoiceForm({
         setVoiceStatus("idle");
         return;
       }
-      setVoiceStatus("success");
+      if (!hasResult.current) {
+        setVoiceStatus("error");
+      }
     };
 
     recognition.onerror = () => {
       setIsListening(false);
       setVoiceStatus("error");
-      recognitionRef.current = null;
     };
 
     recognition.start();
