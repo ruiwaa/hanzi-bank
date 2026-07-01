@@ -24,6 +24,7 @@ export interface HskWord {
   meanings: Meaning[];
   hsk_level: number;
   frequency: number;
+  meaning_ko: string[];
 }
 
 // word_examples

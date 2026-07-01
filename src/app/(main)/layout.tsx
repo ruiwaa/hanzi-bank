@@ -1,4 +1,5 @@
 import Header from "@/components/ui/Header";
+import SearchModal from "@/components/ui/SearchModal";
 import Sidebar from "@/components/ui/Sidebar";
 import SidebarMobile from "@/components/ui/SidebarMobile";
 import Image from "next/image";
@@ -26,6 +27,7 @@ export default function MainLayout({
           </Link>
           <Sidebar />
         </aside>
+        <SearchModal />
         <div className="flex flex-col min-w-0">
           <div className="bg-white border-b border-border p-2">
             <Header />

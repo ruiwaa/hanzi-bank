@@ -22,7 +22,7 @@ export default function MovetoWordDetails() {
   focus-visible:ring-primary
   focus-visible:ring-offset-2"
     >
-      <span>학습하기</span>
+      <span className="md:text-lg text-[16px]">학습하기</span>
       <span aria-hidden="true">
         <span
           className="

@@ -16,7 +16,7 @@ export default async function WordDetailPage({
   return (
     <div className="container-layout flex flex-col gap-5">
       <div className="flex items-center justify-between md:flex-col md:items-start gap-3">
-        <BackButton showText page={`/hsk-level-words/${level}`} />
+        <BackButton text="뒤로 가기" page={`/hsk-level-words/${level}`} />
 
         <h2 className="text-lg md:text-3xl font-bold">단어 상세</h2>
         <div className="w-16 md:hidden" />
