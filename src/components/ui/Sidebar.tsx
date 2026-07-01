@@ -1,17 +1,27 @@
 "use client";
 import { SIDEBAR_MENUS } from "@/constants/navigation";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSearchModal } from "@/stores/searchModalStore";
 import { supabase } from "@/lib/supabase";
 import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/navigation";
+import { useLoginModal } from "@/stores/loginModalStore";
 
 export default function Sidebar() {
   const pathName = usePathname();
   const router = useRouter();
   const { open, isOpen } = useSearchModal();
+  const { open: openLoginModal } = useLoginModal();
   const { user } = useSession();
+
+  const handleMoveMemu = (menu: (typeof SIDEBAR_MENUS)[number]) => {
+    if (menu.requireAuth && !user) {
+      openLoginModal();
+      return;
+    }
+
+    router.push(menu.href);
+  };
   return (
     <>
       <nav className="sidebar py-5 ">
@@ -43,13 +53,13 @@ export default function Sidebar() {
                     <span className="hidden lg:block">{menu.label}</span>
                   </button>
                 ) : (
-                  <Link
-                    href={menu.href}
+                  <button
+                    onClick={() => handleMoveMemu(menu)}
                     className="flex flex-row lg:gap-3 justify-start"
                   >
                     <Icon aria-label={menu.ariaLabel} />
                     <span className="hidden lg:block">{menu.label}</span>
-                  </Link>
+                  </button>
                 )}
               </li>
             );
