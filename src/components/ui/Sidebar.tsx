@@ -3,10 +3,15 @@ import { SIDEBAR_MENUS } from "@/constants/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSearchModal } from "@/stores/searchModalStore";
+import { supabase } from "@/lib/supabase";
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const pathName = usePathname();
+  const router = useRouter();
   const { open, isOpen } = useSearchModal();
+  const { user } = useSession();
   return (
     <>
       <nav className="sidebar py-5 ">
@@ -50,6 +55,26 @@ export default function Sidebar() {
             );
           })}
         </ol>
+        <div className="mt-auto px-4">
+          {user ? (
+            <button
+              onClick={async () => {
+                await supabase.auth.signOut();
+                location.reload();
+              }}
+              className="w-full rounded-xl border border-red-500 py-2"
+            >
+              로그아웃
+            </button>
+          ) : (
+            <button
+              onClick={() => router.push("/login")}
+              className="w-full rounded-xl border border-primary py-2"
+            >
+              로그인
+            </button>
+          )}
+        </div>
       </nav>
     </>
   );

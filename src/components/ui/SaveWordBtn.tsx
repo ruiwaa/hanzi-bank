@@ -1,3 +1,6 @@
+"use client";
+import { useSession } from "@/hooks/useSession";
+import { useLoginModal } from "@/stores/loginModalStore";
 import { Bookmark } from "lucide-react";
 
 interface Props {
@@ -9,9 +12,24 @@ export default function SaveWordBtn({
   showText = false,
   className = "",
 }: Props) {
+  const { user } = useSession();
+  const { open } = useLoginModal();
+
+  const handleSaveWord = () => {
+    console.log("클릭");
+
+    if (!user) {
+      console.log("모달 열기");
+
+      open();
+      return;
+    }
+    console.log(user);
+  };
   return showText ? (
     <button
       type="button"
+      onClick={handleSaveWord}
       className={`
         group
         relative
@@ -104,6 +122,7 @@ export default function SaveWordBtn({
     <button
       aria-label="단어 수집하기"
       className={`text-muted-foreground hover:text-primary ${className}`}
+      onClick={handleSaveWord}
     >
       <Bookmark />
     </button>

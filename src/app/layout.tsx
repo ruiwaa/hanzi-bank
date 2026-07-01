@@ -5,6 +5,7 @@ import ThemeProvider from "@/components/providers/ThemeProvider";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
+import LoginRequiredModal from "./(auth)/components/LoginRequiredModal";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background">
         <Toaster />
         <ThemeProvider>{children}</ThemeProvider>
+        <LoginRequiredModal />
       </body>
     </html>
   );

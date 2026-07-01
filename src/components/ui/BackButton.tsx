@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   text?: string;
-  page: string;
+  page?: string;
   level?: (typeof HSK_LEVELS)[number];
 }
 
