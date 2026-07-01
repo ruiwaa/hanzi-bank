@@ -9,11 +9,11 @@ interface Props {
 }
 export default function SearchResult({ words }: Props) {
   return (
-    <div className="flex flex-col gap-3">
+    <ul className="flex flex-col gap-3">
       {words.map((word) => (
-        <div
+        <li
           key={word.id}
-          className="flex flex-row gap-3 items-center w-full border border-olive-200 p-8 rounded-2xl bg-white hover:bg-blue-100/55 transition-transform duration-200 hover:-translate-y-2"
+          className="flex flex-row gap-3 items-center w-full border border-olive-200 p-8 rounded-2xl bg-white hover:bg-blue-100/55 "
         >
           <Link
             href={`/hsk-level-words/${word.hsk_level}/${word.id}`}
@@ -41,8 +41,8 @@ export default function SearchResult({ words }: Props) {
           </Link>
           <SaveWordBtn />
           <SoundButton size={30} />
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

@@ -5,17 +5,23 @@ import { VOICE_STATUS } from "@/constants/voiceStatus";
 import { createSpeechRecognition } from "@/lib/speech";
 import { Mic } from "lucide-react";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { UseFormSetValue } from "react-hook-form";
+import { UseFormSetFocus, UseFormSetValue } from "react-hook-form";
 
 interface Props {
   setValue: UseFormSetValue<searchValue>;
+  setFocus: UseFormSetFocus<searchValue>;
   language: "ko-KR" | "zh-CN";
   setLanguage: Dispatch<SetStateAction<"ko-KR" | "zh-CN">>;
 }
 
 type voiceStatus = keyof typeof VOICE_STATUS;
 
-export default function VoiceForm({ setValue, language, setLanguage }: Props) {
+export default function VoiceForm({
+  setValue,
+  language,
+  setLanguage,
+  setFocus,
+}: Props) {
   const [voiceStatus, setVoiceStatus] = useState<voiceStatus>("idle");
   const [isListening, setIsListening] = useState(false);
 
@@ -64,9 +70,10 @@ export default function VoiceForm({ setValue, language, setLanguage }: Props) {
         shouldValidate: true,
         shouldDirty: true,
       });
-
+      setFocus("keyWord");
       setVoiceStatus("success");
     };
+
     recognition.onend = () => {
       setIsListening(false);
       recognitionRef.current = null;
@@ -113,7 +120,8 @@ export default function VoiceForm({ setValue, language, setLanguage }: Props) {
           선택한 언어로 말씀해 주세요.
         </p>
         <p className="text-sm text-muted-foreground">
-          다른 언어를 말하면 음성 인식 정확도가 떨어질 수 있습니다.
+          해당 언어 외의 언어로 검색할 시, 음성 인식 정확도가 떨어질 수
+          있습니다.
         </p>
         <button
           type="button"
@@ -130,13 +138,26 @@ export default function VoiceForm({ setValue, language, setLanguage }: Props) {
         {
           <p
             className={`${VOICE_STATUS[voiceStatus].className} px-10 py-1 rounded-2xl flex`}
+            aria-live="polite"
           >
             {VOICE_STATUS[voiceStatus].text}
             {voiceStatus === "listening" && (
-              <span className="ml-1 inline-flex text-xl">
-                <span className="animate-pulse ">.</span>
-                <span className="animate-pulse [animation-delay:0.2s]">.</span>
-                <span className="animate-pulse [animation-delay:0.4s]">.</span>
+              <span className="ml-1 inline-flex text-xl" aria-hidden="true">
+                <span className="animate-pulse " aria-hidden="true">
+                  .
+                </span>
+                <span
+                  className="animate-pulse [animation-delay:0.2s]"
+                  aria-hidden="true"
+                >
+                  .
+                </span>
+                <span
+                  className="animate-pulse [animation-delay:0.4s]"
+                  aria-hidden="true"
+                >
+                  .
+                </span>
               </span>
             )}
           </p>

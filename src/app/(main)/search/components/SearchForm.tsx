@@ -40,6 +40,7 @@ export default function SearchForm({
           />
           {searchWord?.trim() && (
             <button
+              type="button"
               onClick={() => reset("keyWord")}
               className="absolute top-1/2 right-3 -translate-y-1/2"
             >

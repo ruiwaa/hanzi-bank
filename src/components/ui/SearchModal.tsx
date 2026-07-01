@@ -33,14 +33,17 @@ export default function SearchModal() {
 
   const router = useRouter();
   const onSubmit = (data: searchValue) => {
-    console.log(data);
-
-    close();
     router.push(`/search?keyword=${encodeURIComponent(data.keyWord)}`);
+    resetField("keyWord");
+    close();
   };
 
   // 모달창 키보드 이벤트 연결
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Escape") {
+      close();
+      return;
+    }
     if (e.key !== "Tab") return;
     if (!modalRef.current) return;
 
@@ -106,6 +109,7 @@ export default function SearchModal() {
               setValue={setValue}
               language={language}
               setLanguage={setLanguage}
+              setFocus={setFocus}
             />
           </form>
         </div>
