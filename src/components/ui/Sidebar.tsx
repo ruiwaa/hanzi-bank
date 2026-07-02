@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/navigation";
 import { useLoginModal } from "@/stores/loginModalStore";
+import { KeyRound, LogOut } from "lucide-react";
 
 export default function Sidebar() {
   const pathName = usePathname();
@@ -65,23 +66,25 @@ export default function Sidebar() {
             );
           })}
         </ol>
-        <div className="mt-auto px-4">
+        <div className="mt-3 px-4 whitespace-nowrap font-semibold ">
           {user ? (
             <button
               onClick={async () => {
                 await supabase.auth.signOut();
                 location.reload();
               }}
-              className="w-full rounded-xl border border-red-500 py-2"
+              className="w-full rounded-xl  p-3 hover:bg-red-500/10 hover:border-0 hover:text-red-500 flex flex-row gap-2 items-center "
             >
-              로그아웃
+              <LogOut aria-label="로그아웃하기" />
+              <span className="hidden lg:block">로그아웃</span>
             </button>
           ) : (
             <button
               onClick={() => router.push("/login")}
-              className="w-full rounded-xl border border-primary py-2"
+              className="w-full rounded-xl  p-3 hover:bg-[#EFF6FF] hover:border-0 hover:text-primary flex gap-2 items-center"
             >
-              로그인
+              <KeyRound aria-label="로그인하기" />
+              <span className="hidden lg:block">로그인</span>
             </button>
           )}
         </div>

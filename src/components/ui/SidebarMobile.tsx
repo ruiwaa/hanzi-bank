@@ -1,12 +1,24 @@
 "use client";
 import { SIDEBAR_MENUS } from "@/constants/navigation";
+import { useSession } from "@/hooks/useSession";
+import { useLoginModal } from "@/stores/loginModalStore";
 import { useSearchModal } from "@/stores/searchModalStore";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function SidebarMobile() {
   const pathName = usePathname();
+  const router = useRouter();
   const { open, isOpen } = useSearchModal();
+  const { open: openLoginModal } = useLoginModal();
+  const { user } = useSession();
+
+  const handleMoveMemu = (menu: (typeof SIDEBAR_MENUS)[number]) => {
+    if (!user && menu.requireAuth) {
+      openLoginModal();
+      return;
+    }
+    router.push(`${menu.href}`);
+  };
 
   return (
     <>
@@ -30,15 +42,15 @@ export default function SidebarMobile() {
                     <Icon aria-label={menu.ariaLabel} />
                   </button>
                 ) : (
-                  <Link
-                    href={menu.href}
+                  <button
+                    onClick={() => handleMoveMemu(menu)}
                     aria-current={isActive ? "page" : undefined}
                   >
                     <Icon
                       aria-label={menu.ariaLabel}
                       className="hover:text-primary"
                     />
-                  </Link>
+                  </button>
                 )}
               </li>
             );
