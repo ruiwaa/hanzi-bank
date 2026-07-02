@@ -2,11 +2,11 @@
 import { SIDEBAR_MENUS } from "@/constants/navigation";
 import { usePathname } from "next/navigation";
 import { useSearchModal } from "@/stores/searchModalStore";
-import { supabase } from "@/lib/supabase";
 import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/navigation";
 import { useLoginModal } from "@/stores/loginModalStore";
-import { KeyRound, LogOut } from "lucide-react";
+import { KeyRound } from "lucide-react";
+import Logout from "@/app/(auth)/components/Logout";
 
 export default function Sidebar() {
   const pathName = usePathname();
@@ -68,16 +68,7 @@ export default function Sidebar() {
         </ol>
         <div className="mt-3 px-4 whitespace-nowrap font-semibold ">
           {user ? (
-            <button
-              onClick={async () => {
-                await supabase.auth.signOut();
-                location.reload();
-              }}
-              className="w-full rounded-xl  p-3 hover:bg-red-500/10 hover:border-0 hover:text-red-500 flex flex-row gap-2 items-center "
-            >
-              <LogOut aria-label="로그아웃하기" />
-              <span className="hidden lg:block">로그아웃</span>
-            </button>
+            <Logout />
           ) : (
             <button
               onClick={() => router.push("/login")}
