@@ -33,6 +33,25 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background">
+        <a
+          href="#main-content"
+          className="
+      sr-only
+      focus:not-sr-only
+      focus:absolute
+      focus:top-4
+      focus:left-4
+      focus:z-50
+      focus:rounded-md
+      focus:bg-background
+      focus:px-4
+      focus:py-2
+      focus:ring-2
+      focus:ring-primary
+    "
+        >
+          본문 바로가기
+        </a>
         <Toaster />
         <ThemeProvider>{children}</ThemeProvider>
         <LoginRequiredModal />
