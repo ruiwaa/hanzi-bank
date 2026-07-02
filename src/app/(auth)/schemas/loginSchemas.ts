@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const loginSchema = z.object({
-  email: z.email("올바른 이메일 형식이 아닙니다."),
+  email: z.string().trim().email("올바른 이메일 형식이 아닙니다."),
   password: z
     .string()
     .regex(

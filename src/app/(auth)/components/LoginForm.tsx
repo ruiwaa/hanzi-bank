@@ -2,23 +2,31 @@
 
 import { ArrowLeft, EyeIcon, EyeOff, Lock, LockIcon, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormValues, loginSchema } from "../schemas/loginSchemas";
 import { login } from "../../api/login";
 import ResetButton from "./ResetButton";
+import { toast } from "sonner";
 
 export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     watch,
     setValue,
+    reset,
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
+
+  // 이전 로그인 상태 초기화
+  useEffect(() => {
+    reset();
+  }, [reset]);
+
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -30,18 +38,35 @@ export default function LoginForm() {
   };
 
   const onSubmit = async (data: LoginFormValues) => {
-    const { error } = await login(data.email, data.password);
+    try {
+      const result = await login(data.email.trim(), data.password);
+      const nickName =
+        result.user.user_metadata.nickname ??
+        result.user.email?.split("@")[0] ??
+        "회원";
+      toast.success(`${nickName}님, 어서오세요! 🙌`);
 
-    if (!error) {
       router.replace("/");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+
+        if (error.message === "Invalid login credentials") {
+          toast.error("이메일 또는 비밀번호가 올바르지 않습니다.");
+
+          return;
+        }
+      }
+      toast.error("로그인 중 오류가 발생했습니다. 다시 시도하세요.");
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="bg-white w-full  max-w-md  flex flex-col items-center p-8 shadow-lg  gap-3  rounded-2xl "
     >
-      <div className="rounded-full bg-[var(--hover)] w-15 h-15 p-4 flex justify-center items-center">
+      <div className="rounded-full bg-hover w-15 h-15 p-4 flex justify-center items-center">
         <Lock size={30} color="var(--primary)" aria-hidden />
       </div>
       <h2 className="font-bold  text-lg pt-2">로그인</h2>
@@ -117,10 +142,11 @@ export default function LoginForm() {
         </div>
         <button
           type="submit"
-          className="w-full rounded-lg  p-1 hover:bg-accent hover:text-gray-400
-           bg-primary text-white font-semibold"
+          className={`w-full rounded-lg  p-1 hover:bg-accent hover:text-gray-400
+           bg-primary text-white font-semibold aria-disabled:cursor-not-allowed`}
+          aria-disabled={isSubmitting}
         >
-          로그인하기
+          {isSubmitting ? "로그인 중..." : "로그인 하기"}
         </button>
       </div>
       <div className="w-full flex items-center ">

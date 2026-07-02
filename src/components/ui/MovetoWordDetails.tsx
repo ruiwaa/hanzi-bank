@@ -1,7 +1,22 @@
-export default function MovetoWordDetails() {
+"use client";
+
+import { useRouter } from "next/navigation";
+
+interface Props {
+  wordId: string;
+  level: number;
+}
+export default function MovetoWordDetails({ wordId, level }: Props) {
+  const router = useRouter();
+
+  const handleWordDetails = () => {
+    router.push(`/hsk-level-words/${level}/${wordId}`);
+  };
+
   return (
     <button
       type="button"
+      onClick={handleWordDetails}
       className="group
   relative
   overflow-hidden

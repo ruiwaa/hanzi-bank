@@ -21,5 +21,6 @@ export const SIDEBAR_MENUS = [
     label: "마이페이지",
     icon: User,
     ariaLabel: "마이페이지로 이동",
+    requireAuth: true,
   },
 ];

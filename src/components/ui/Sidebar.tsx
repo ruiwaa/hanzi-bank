@@ -1,12 +1,28 @@
 "use client";
 import { SIDEBAR_MENUS } from "@/constants/navigation";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSearchModal } from "@/stores/searchModalStore";
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
+import { useLoginModal } from "@/stores/loginModalStore";
+import { KeyRound } from "lucide-react";
+import Logout from "@/app/(auth)/components/Logout";
 
 export default function Sidebar() {
   const pathName = usePathname();
+  const router = useRouter();
   const { open, isOpen } = useSearchModal();
+  const { open: openLoginModal } = useLoginModal();
+  const { user } = useSession();
+
+  const handleMoveMemu = (menu: (typeof SIDEBAR_MENUS)[number]) => {
+    if (menu.requireAuth && !user) {
+      openLoginModal();
+      return;
+    }
+
+    router.push(menu.href);
+  };
   return (
     <>
       <nav className="sidebar py-5 ">
@@ -38,18 +54,31 @@ export default function Sidebar() {
                     <span className="hidden lg:block">{menu.label}</span>
                   </button>
                 ) : (
-                  <Link
-                    href={menu.href}
+                  <button
+                    onClick={() => handleMoveMemu(menu)}
                     className="flex flex-row lg:gap-3 justify-start"
                   >
                     <Icon aria-label={menu.ariaLabel} />
                     <span className="hidden lg:block">{menu.label}</span>
-                  </Link>
+                  </button>
                 )}
               </li>
             );
           })}
         </ol>
+        <div className="mt-3 px-4 whitespace-nowrap font-semibold ">
+          {user ? (
+            <Logout />
+          ) : (
+            <button
+              onClick={() => router.push("/login")}
+              className="w-full rounded-xl  p-3 hover:bg-[#EFF6FF] hover:border-0 hover:text-primary flex gap-2 items-center"
+            >
+              <KeyRound aria-label="로그인하기" />
+              <span className="hidden lg:block">로그인</span>
+            </button>
+          )}
+        </div>
       </nav>
     </>
   );
