@@ -40,7 +40,11 @@ export default function SearchResult({ words }: Props) {
             ))}
           </Link>
           <SaveWordBtn />
-          <SoundButton size={30} />
+          <SoundButton
+            text={word.word}
+            size={30}
+            ariaLabel={`${word.meaning_ko} 중국어 발음 듣기`}
+          />
         </li>
       ))}
     </ul>
