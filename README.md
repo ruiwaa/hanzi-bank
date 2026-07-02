@@ -48,126 +48,97 @@ next.js 기반으로 구현한 중국어 학습 플랫폼
 
 ```jsx
 src
-│
-├─ app
-│
-│  ├─ layout.tsx
-│
-│  ├─ (main)
-│  │   ├─ layout.tsx
-│  │
-│  │   ├─ page.tsx
-│  │
-│  │   ├─ components
-│  │   │   ├─ HomeBanner.tsx
-│  │   │   ├─ TodayWordCard.tsx
-│  │   │   └─ StudyTipCard.tsx
-│  │
-│  │   ├─ search
-│  │   │   ├─ page.tsx
-│  │   │   └─ components
-│  │   │       ├─ SearchFilter.tsx
-│  │   │       └─ SearchResultList.tsx
-│  │
-│  │   ├─ hsk
-│  │   │   ├─ page.tsx
-│  │   │   ├─ components
-│  │   │   │   ├─ HskCard.tsx
-│  │   │   │   └─ HskFilter.tsx
-│  │   │   │
-│  │   │   └─ [level]
-│  │   │       ├─ page.tsx
-│  │   │       └─ components
-│  │   │           └─ WordTable.tsx
-│  │
-│  │   ├─ words
-│  │   │   └─ [id]
-│  │   │       ├─ page.tsx
-│  │   │       └─ components
-│  │   │           ├─ WordCard.tsx
-│  │   │           ├─ ExampleCard.tsx
-│  │   │           └─ WordCardList.tsx
-│  │
-│  │   └─ mypage
-│  │       ├─ page.tsx
-│  │       │
-│  │       ├─ components
-│  │       │   ├─ ProfileCard.tsx
-│  │       │   ├─ StatsCard.tsx
-│  │       │   └─ MenuCard.tsx
-│  │       │
-│  │       ├─ myWords
-│  │       │   ├─ page.tsx
-│  │       │   └─ components
-│  │       │       ├─ SavedWordCard.tsx
-│  │       │       └─ SavedWordFilter.tsx
-│  │       │
-│  │       ├─ mySentences
-│  │       │   ├─ page.tsx
-│  │       │   └─ components
-│  │       │       ├─ SentenceCard.tsx
-│  │       │       └─ SentenceFilter.tsx
-│  │       │
-│  │       └─ settings
-│  │           ├─ layout.tsx
-│  │           ├─ page.tsx
-│  │           │
-│  │           ├─ profile
-│  │           │   ├─ page.tsx
-│  │           │   └─ components
-│  │           │       └─ ProfileForm.tsx
-│  │           │
-│  │           ├─ password
-│  │           │   ├─ page.tsx
-│  │           │   └─ components
-│  │           │       └─ PasswordForm.tsx
-│  │           │
-│  │           └─ withdraw
-│  │               ├─ page.tsx
-│  │               └─ components
-│  │                   └─ WithdrawForm.tsx
-│
-│  └─ (auth)
-│      ├─ layout.tsx
-│      │
-│      ├─ login
-│      │   ├─ page.tsx
-│      │   └─ components
-│      │       └─ LoginForm.tsx
-│      │
-│      └─ signup
-│          ├─ page.tsx
-│          └─ components
-│              └─ SignupForm.tsx
-│
-├─ components
-│   └─ layout
-│       ├─ Sidebar.tsx
-│       ├─ BottomNavigation.tsx
-│       └─ PageContainer.tsx
-│
-├─ fonts
-│
-├─ lib
-│   ├─ supabase
-│   ├─ api
-│   ├─ fonts.ts
-│   └─ utils
-│
-├─ services
-│   ├─ hsk.service.ts
-│   ├─ word.service.ts
-│   ├─ auth.service.ts
-│   └─ user.service.ts
-│
-├─ types
-│   ├─ hsk.types.ts
-│   ├─ word.types.ts
-│   ├─ user.types.ts
-│   └─ api.types.ts
-│
-└─ store
-    └─ modal.ts
+├── app
+│   ├── (auth)
+│   │   ├── components
+│   │   │   ├── LoginForm.tsx
+│   │   │   ├── LoginRequiredModal.tsx
+│   │   │   ├── Logout.tsx
+│   │   │   ├── ResetButton.tsx
+│   │   │   └── SignUpForm.tsx
+│   │   ├── layout.tsx
+│   │   ├── login
+│   │   │   └── page.tsx
+│   │   ├── schemas
+│   │   │   ├── loginSchemas.ts
+│   │   │   ├── searchSchemas.ts
+│   │   │   └── signupSchemas.ts
+│   │   └── signup
+│   │       └── page.tsx
+│   ├── (main)
+│   │   ├── hsk-level-words
+│   │   │   ├── [level]
+│   │   │   │   ├── [id]
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   └── WordDetailCard.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── components
+│   │   │   │   │   ├── DetailHskLevelList.tsx
+│   │   │   │   │   └── HskLevelWordsHeader.tsx
+│   │   │   │   ├── loading.tsx
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── mypage
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   └── search
+│   │       ├── components
+│   │       │   ├── SearchForm.tsx
+│   │       │   ├── SearchResult.tsx
+│   │       │   └── VoiceForm.tsx
+│   │       └── page.tsx
+│   ├── api
+│   │   ├── fetchAllHskLevelWords.ts
+│   │   ├── fetchHskLevelCounts.ts
+│   │   ├── fetchHskWordDetail.ts
+│   │   ├── fetchMainLevelWord.ts
+│   │   ├── fetchSearchWord.ts
+│   │   ├── fetchTodayWords.ts
+│   │   ├── login.ts
+│   │   ├── logout.ts
+│   │   └── signup.ts
+│   ├── favicon.ico
+│   ├── globals.css
+│   └── layout.tsx
+├── components
+│   ├── providers
+│   │   └── ThemeProvider.tsx
+│   └── ui
+│       ├── BackButton.tsx
+│       ├── Header.tsx
+│       ├── HskLevelCardList.tsx
+│       ├── HskLevelWords.tsx
+│       ├── MovetoWordDetails.tsx
+│       ├── Pagination.tsx
+│       ├── SaveWordBtn.tsx
+│       ├── SearchModal.tsx
+│       ├── Sidebar.tsx
+│       ├── SidebarMobile.tsx
+│       ├── SoundButton.tsx
+│       ├── TodayWord.tsx
+│       ├── TodayWordSwiper.tsx
+│       └── select.tsx
+├── constants
+│   ├── hskLevelStyle.ts
+│   ├── navigation.ts
+│   ├── posToKo.ts
+│   └── voiceStatus.ts
+├── fonts
+│   └── PretendardVariable.woff2
+├── hooks
+│   └── useSession.ts
+├── lib
+│   ├── fonts.ts
+│   ├── speech.ts
+│   ├── supabase.ts
+│   └── utils.ts
+├── stores
+│   ├── loginModalStore.ts
+│   └── searchModalStore.ts
+└── types
+    ├── DBTypes.ts
+    └── web-speech.d.ts
 ```
 
 # 사용 방법
