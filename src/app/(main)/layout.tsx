@@ -23,6 +23,8 @@ export default function MainLayout({
               width={200}
               height={200}
               className="hidden lg:block px-4 w-full"
+              priority
+              fetchPriority="high"
             />
           </Link>
           <Sidebar />
