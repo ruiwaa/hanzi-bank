@@ -19,7 +19,11 @@ export default function WordDetailCard({ word }: Props) {
             <h3 className="text-4xl font-bold text-primary font-chinese whitespace-nowrap">
               {word.word}
             </h3>
-            <SoundButton size={40} />
+            <SoundButton
+              text={word.word}
+              size={30}
+              ariaLabel={`${word.meaning_ko} 중국어 발음 듣기`}
+            />
           </div>
           <span className="text-xl font-semibold mt-2">[{word.pinyin}]</span>
           <div className="flex flex-wrap items-center gap-2">
@@ -63,7 +67,11 @@ export default function WordDetailCard({ word }: Props) {
                     className="flex flex-col gap-1 border border-border mx-6 p-5 rounded-2xl"
                   >
                     <div className="flex flex-row gap-3">
-                      <SoundButton size={30} />
+                      <SoundButton
+                        text={word.word_examples[index].sentence}
+                        size={30}
+                        ariaLabel={`예문 ${word.word_examples[index].meaning} 중국어 발음 듣기`}
+                      />
                       <div>
                         <p className="font-chinese font-semibold">
                           {word.word_examples[index].sentence}

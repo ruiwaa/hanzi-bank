@@ -1,5 +1,5 @@
 import { HSK_LEVELS } from "@/constants/hskLevelStyle";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase/client";
 import { HskWord } from "@/types/DBTypes";
 
 export interface MainLevelWords {

@@ -1,10 +1,10 @@
 "use client";
 import { MainLevelWords } from "@/app/api/fetchMainLevelWord";
 import { HSK_LEVELS } from "@/constants/hskLevelStyle";
-import { Volume2 } from "lucide-react";
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
 import SaveWordBtn from "./SaveWordBtn";
+import SoundButton from "./SoundButton";
 
 interface Props {
   levelWords: MainLevelWords[];
@@ -59,17 +59,15 @@ export default function HskLevelCardList({ levelWords }: Props) {
             >
               보기
             </Link>
-            {/* 비회원 일 경우 로그인 요청 모달창 표시 */}
             {/* 이미 저장된 단어일 경우 아이콘 색깔이 꽉 채워지게 설정 */}
             {/* 저장됨을 안내해주는 aria-label 삼항 연산자로 표시해줘야함 */}
             <div className="flex justify-between md:flex-row md:justify-center md:items-center gap-2 h-full ">
               <SaveWordBtn />
-              <button
-                aria-label={`중단어 ${word.word} 발음 듣기`}
-                className="hover:text-primary text-muted-foreground"
-              >
-                <Volume2 />
-              </button>
+              <SoundButton
+                text={word.word}
+                size={30}
+                ariaLabel={`${word.meaning_ko} 중국어 발음 듣기`}
+              />
             </div>
           </div>
         ))}

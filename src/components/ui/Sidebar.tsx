@@ -13,7 +13,7 @@ export default function Sidebar() {
   const router = useRouter();
   const { open, isOpen } = useSearchModal();
   const { open: openLoginModal } = useLoginModal();
-  const { user } = useSession();
+  const { user, loading } = useSession();
 
   const handleMoveMemu = (menu: (typeof SIDEBAR_MENUS)[number]) => {
     if (menu.requireAuth && !user) {
@@ -67,7 +67,7 @@ export default function Sidebar() {
           })}
         </ol>
         <div className="mt-3 px-4 whitespace-nowrap font-semibold ">
-          {user ? (
+          {loading ? null : user ? (
             <Logout />
           ) : (
             <button

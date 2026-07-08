@@ -1,11 +1,12 @@
 "use client";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 
 export function useSession() {
   // 사용자 정보 저장하기
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   // 최초 마운트 되었을 때 유저 정보 가져오기
   useEffect(() => {
@@ -17,6 +18,7 @@ export function useSession() {
 
       // 가져오고 나서 그 유저로 상태 업데이트
       setUser(user);
+      setLoading(false);
     };
     getUser();
 
@@ -27,6 +29,7 @@ export function useSession() {
       // _event는 SIGNED_IN, SIGNED_OUT 등의 이벤트가 전달되지만
       // 현재는 사용하지 않기 때문에 '_'를 붙여 의도적으로 무시함
       setUser(session?.user ?? null);
+      setLoading(false);
     });
 
     // 컴포넌트가 사라질 때 클린업 함수를 실행 시켜 부수 효과 방지
@@ -35,5 +38,5 @@ export function useSession() {
     };
   }, []);
 
-  return { user };
+  return { user, loading };
 }
