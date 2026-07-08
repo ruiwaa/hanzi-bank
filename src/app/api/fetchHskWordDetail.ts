@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase/client";
 
 export async function fetchHskWordDetail(id: string) {
   const { data, error } = await supabase
