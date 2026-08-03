@@ -20,7 +20,7 @@ export default async function SearchPage({
       <h1 className="sr-only">검색 결과 페이지</h1>
       {words.totalCount === 0 ? (
         <div className="desktop-layout flex flex-col gap-3">
-          <BackButton page={"/"} text="메인으로" />
+          <BackButton href={"/"} text="메인으로" />
           <p className="text-red-500 whitespace-pre-wrap self-center font-bold text-lg">
             검색 결과가 없습니다.
           </p>

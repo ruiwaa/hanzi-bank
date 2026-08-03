@@ -5,33 +5,36 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   text?: string;
-  page?: string;
+  href?: string;
   level?: (typeof HSK_LEVELS)[number];
+  ariaLabel?: string;
 }
 
-export default function BackButton({ text, page, level }: Props) {
+export default function BackButton({
+  text,
+  href,
+  level,
+  ariaLabel = "이전 페이지로 이동",
+}: Props) {
   const router = useRouter();
   const handleBack = () => {
-    if (page) {
-      router.push(page);
+    if (href) {
+      router.push(href);
     } else {
       router.back();
     }
   };
   return (
-    <div>
-      <button
-        onClick={handleBack}
-        className={`flex items-center cursor-pointer transition-transform duration-200 hover:-translate-x-2 ${
-          text ? "text-primary" : level?.textClass
-        }`}
-      >
-        <ChevronLeft
-          aria-label="급수별 단어 목록 페이지로 이동하기"
-          strokeWidth={4}
-        />
-        {text && <span className="font-semibold">{text}</span>}
-      </button>
-    </div>
+    <button
+      type="button"
+      onClick={handleBack}
+      className={`flex items-center cursor-pointer transition-transform duration-200 hover:-translate-x-2 ${
+        text ? "text-primary" : level?.textClass
+      }`}
+      aria-label={ariaLabel}
+    >
+      <ChevronLeft strokeWidth={4} />
+      {text && <span className="font-semibold">{text}</span>}
+    </button>
   );
 }
