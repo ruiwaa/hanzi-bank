@@ -10,12 +10,12 @@ export default function MypageSidebar() {
   return (
     <>
       <ol className="flex flex-col gap-4 px-4 ">
-        {MYPAGE_SIDEBAR_MENUS.map((memu) => {
-          const Icon = memu.icon;
-          const isActive = memu.href === pathName;
+        {MYPAGE_SIDEBAR_MENUS.map((menu) => {
+          const Icon = menu.icon;
+          const isActive = menu.href === pathName;
           return (
             <li
-              key={memu.label}
+              key={menu.label}
               className={`p-3 flex ${
                 isActive
                   ? "rounded-2xl bg-[#EFF6FF] text-primary"
@@ -23,12 +23,12 @@ export default function MypageSidebar() {
               }`}
             >
               <button
-                onClick={() => handleMoveMemu(memu)}
+                onClick={() => handleMoveMemu(menu)}
                 className="flex flex-row lg:gap-3 justify-start w-full cursor-pointer"
-                aria-label={memu.ariaLabel}
+                aria-label={menu.ariaLabel}
               >
                 <Icon />
-                <span className="hidden lg:block">{memu.label}</span>
+                <span className="hidden lg:block">{menu.label}</span>
               </button>
             </li>
           );

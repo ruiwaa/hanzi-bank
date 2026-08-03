@@ -34,24 +34,38 @@ export const SIDEBAR_MENUS = [
 
 export const MYPAGE_SIDEBAR_MENUS = [
   {
-    type: "link",
+    href: "/",
+    label: "홈",
+    icon: Home,
+    iconColor: "text-blue-500",
+    iconBgColor: "bg-blue-100",
+    ariaLabel: "메인으로 이동",
+  },
+  {
     href: "/myWord",
     label: "나의 단어",
     icon: BookMarked,
+    iconColor: "text-emerald-500",
+    iconBgColor: "bg-emerald-100",
     ariaLabel: "나의 단어로 이동",
+    description: "내가 저장한 단어를 확인하세요",
   },
   {
-    type: "link",
     href: "/mySentence",
     label: "나의 예문",
     icon: NotebookPenIcon,
+    iconColor: "text-amber-500",
+    iconBgColor: "bg-amber-100",
     ariaLabel: "나의 예문으로 이동",
+    description: "내가 저장한 예문을 확인하세요",
   },
   {
-    type: "link",
     href: "/settings",
     label: "설정",
     icon: Settings,
+    iconColor: "text-violet-500",
+    iconBgColor: "bg-violet-100",
     ariaLabel: "설정으로 이동",
+    description: "프로필 편집, 회원 탈퇴 등 설정할 수 있어요.",
   },
 ];
