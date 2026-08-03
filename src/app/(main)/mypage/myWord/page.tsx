@@ -1,3 +1,7 @@
 export default function MyWord() {
-  return <>나의 단어</>;
+  return (
+    <>
+      <h1>나의 단어</h1>
+    </>
+  );
 }

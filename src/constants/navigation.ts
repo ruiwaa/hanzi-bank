@@ -42,7 +42,7 @@ export const MYPAGE_SIDEBAR_MENUS = [
     ariaLabel: "메인으로 이동",
   },
   {
-    href: "/myWord",
+    href: "/mypage/myWord",
     label: "나의 단어",
     icon: BookMarked,
     iconColor: "text-emerald-500",
@@ -51,7 +51,7 @@ export const MYPAGE_SIDEBAR_MENUS = [
     description: "내가 저장한 단어를 확인하세요",
   },
   {
-    href: "/mySentence",
+    href: "/mypage/mySentence",
     label: "나의 예문",
     icon: NotebookPenIcon,
     iconColor: "text-amber-500",
@@ -60,12 +60,12 @@ export const MYPAGE_SIDEBAR_MENUS = [
     description: "내가 저장한 예문을 확인하세요",
   },
   {
-    href: "/settings",
+    href: "/mypage/settings",
     label: "설정",
     icon: Settings,
     iconColor: "text-violet-500",
     iconBgColor: "bg-violet-100",
     ariaLabel: "설정으로 이동",
-    description: "프로필 편집, 회원 탈퇴 등 설정할 수 있어요.",
+    description: "프로필 편집, 회원 탈퇴 등 설정할 수 있어요",
   },
 ];
