@@ -5,10 +5,18 @@ import { Volume2Icon } from "lucide-react";
 interface Props {
   text: string;
   size?: number;
+  width?: number;
+  height?: number;
   ariaLabel: string;
 }
 
-export default function SoundButton({ text, size = 32, ariaLabel }: Props) {
+export default function SoundButton({
+  text,
+  size = 20,
+  width = 35,
+  height = 35,
+  ariaLabel,
+}: Props) {
   const handleSpeak = () => {
     speechSynthesis.cancel();
 
@@ -27,7 +35,7 @@ export default function SoundButton({ text, size = 32, ariaLabel }: Props) {
     utterance.lang = "zh-CN";
     utterance.rate = 0.8;
     utterance.pitch = 1;
-    utterance.volume = 2;
+    utterance.volume = 1;
 
     speechSynthesis.speak(utterance);
   };
@@ -37,7 +45,11 @@ export default function SoundButton({ text, size = 32, ariaLabel }: Props) {
       type="button"
       onClick={handleSpeak}
       aria-label={ariaLabel}
-      className="flex items-center justify-center rounded-full bg-blue-100 h-10 w-10 text-primary transition-colors hover:bg-green-200 hover:text-green-500"
+      className="flex items-center justify-center rounded-full bg-blue-100 text-primary transition-colors hover:bg-green-200 hover:text-green-500"
+      style={{
+        width,
+        height,
+      }}
     >
       <Volume2Icon size={size} />
     </button>
