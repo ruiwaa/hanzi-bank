@@ -12,58 +12,103 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import Pagination from "@/components/ui/Pagination";
 
 export default function MyWordSection() {
   const { user } = useSession();
-  const { data: myWords = [], isLoading } = useMyWords(user?.id);
-  const [selectedLevel, setSelectedLevel] = useState("all");
-  const [sortOrder, setSortOrder] = useState("latest");
+  const [level, setLevel] = useState<"all" | 1 | 2 | 3 | 4 | 5 | 6>("all");
+  const [sort, setSort] = useState<"latest" | "oldest">("latest");
+  const searchParams = useSearchParams();
+  const page = Number(searchParams.get("page") ?? 1);
+  const pageSize = 20;
+
+  const { data, isLoading, isError, error } = useMyWords({
+    userId: user?.id ?? "",
+    page,
+    pageSize,
+    level,
+    sort,
+  });
+
+  console.log({
+    isLoading,
+    isError,
+    error,
+    data,
+  });
+
+  const totalPages = data ? Math.ceil(data.totalCount / pageSize) : 0;
 
   if (isLoading) {
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col mx-auto justify-center items-center gap-2 mt-3">
         <Loader2Icon className="animate-spin" />
         <p> 불러오는 중...</p>
       </div>
     );
   }
+  if (isError) {
+    return (
+      <p className="text-center text-red-500 font-bold">
+        단어를 불러오지 못했습니다.{" "}
+      </p>
+    );
+  }
+
+  if (!data) return null;
 
   return (
     <>
-      {myWords.length === 0 ? (
-        <p>저장된 단어가 없습니다.</p>
+      <div className="flex flex-row gap-2">
+        <Select
+          value={String(level)}
+          onValueChange={(value) =>
+            setLevel(
+              value === "all"
+                ? "all"
+                : (Number(value) as 1 | 2 | 3 | 4 | 5 | 6),
+            )
+          }
+        >
+          <SelectTrigger className="w-30">
+            <SelectValue placeholder="급수 선택" />
+          </SelectTrigger>
+          <SelectContent className="text-center">
+            <SelectItem value="all">전체</SelectItem>
+            <SelectItem value="1">HSK 1급</SelectItem>
+            <SelectItem value="2">HSK 2급</SelectItem>
+            <SelectItem value="3">HSK 3급</SelectItem>
+            <SelectItem value="4">HSK 4급</SelectItem>
+            <SelectItem value="5">HSK 5급</SelectItem>
+            <SelectItem value="6">HSK 6급</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select
+          value={sort}
+          onValueChange={(value) => setSort(value as "latest" | "oldest")}
+        >
+          <SelectTrigger className="w-30">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="latest">최신순</SelectItem>
+            <SelectItem value="oldest">오래된순</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      {data.items.length === 0 ? (
+        <p className="text-red-500 font-bold text-center mt-3">
+          저장된 단어가 없습니다.
+        </p>
       ) : (
         <div>
-          <div className="flex flex-row gap-2">
-            <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-              <SelectTrigger className="w-30">
-                <SelectValue placeholder="급수 선택" />
-              </SelectTrigger>
-              <SelectContent className="text-center">
-                <SelectItem value="all">전체</SelectItem>
-                <SelectItem value="1">HSK 1급</SelectItem>
-                <SelectItem value="2">HSK 2급</SelectItem>
-                <SelectItem value="3">HSK 3급</SelectItem>
-                <SelectItem value="4">HSK 4급</SelectItem>
-                <SelectItem value="5">HSK 5급</SelectItem>
-                <SelectItem value="6">HSK 6급</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={sortOrder} onValueChange={setSortOrder}>
-              <SelectTrigger className="w-30">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="latest">최신순</SelectItem>
-                <SelectItem value="oldest">오래된순</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
           <ul className="mt-4 space-y-4 bg-white p-4 rounded-2xl border border-gray-200">
-            {myWords.map((item) => (
+            {data?.items.map((item) => (
               <MyWordCard key={item.hsk_words.id} word={item} />
             ))}
           </ul>
+          <Pagination page={page} totalPages={totalPages} />
         </div>
       )}
     </>

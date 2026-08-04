@@ -51,6 +51,13 @@ export interface MyWord {
   hsk_words: Pick<HskWord, "id" | "word" | "pinyin" | "meanings" | "hsk_level">;
 }
 
+export interface MyWordResponse {
+  items: MyWord[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+}
+
 // user_examples
 export interface UserExample {
   id: string;
