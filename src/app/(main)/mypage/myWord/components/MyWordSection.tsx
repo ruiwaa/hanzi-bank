@@ -39,7 +39,7 @@ export default function MyWordSection() {
               <SelectTrigger className="w-30">
                 <SelectValue placeholder="급수 선택" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="text-center">
                 <SelectItem value="all">전체</SelectItem>
                 <SelectItem value="1">HSK 1급</SelectItem>
                 <SelectItem value="2">HSK 2급</SelectItem>
