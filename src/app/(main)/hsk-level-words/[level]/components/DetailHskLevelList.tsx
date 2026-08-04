@@ -36,7 +36,7 @@ export default async function DetailHskLevelList({ words }: Props) {
             </span>
             <span className=" hidden md:block">{word.hsk_level} 급</span>
           </Link>
-          <SaveWordBtn />
+          <SaveWordBtn wordId={word.id} />
         </li>
       ))}
     </>

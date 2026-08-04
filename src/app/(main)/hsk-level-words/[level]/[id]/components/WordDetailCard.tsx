@@ -40,7 +40,11 @@ export default function WordDetailCard({ word }: Props) {
             ))}
           </div>
         </div>
-        <SaveWordBtn showText={true} className="h-20 w-30 self-center " />
+        <SaveWordBtn
+          wordId={word.id}
+          showText={true}
+          className="h-20 w-30 self-center "
+        />
       </div>
       <ul>
         {word.meanings.map((meaning, index) => (

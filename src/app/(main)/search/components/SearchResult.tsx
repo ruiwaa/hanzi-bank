@@ -39,7 +39,7 @@ export default function SearchResult({ words }: Props) {
               </span>
             ))}
           </Link>
-          <SaveWordBtn />
+          <SaveWordBtn wordId={word.id} />
           <SoundButton
             text={word.word}
             size={30}
