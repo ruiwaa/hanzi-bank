@@ -11,31 +11,30 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Pagination from "@/components/ui/Pagination";
 
 export default function MyWordSection() {
   const { user } = useSession();
-  const [level, setLevel] = useState<"all" | 1 | 2 | 3 | 4 | 5 | 6>("all");
-  const [sort, setSort] = useState<"latest" | "oldest">("latest");
   const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams.toString());
+  const router = useRouter();
+  const pathName = usePathname();
   const page = Number(searchParams.get("page") ?? 1);
+  const levelParam = searchParams.get("level");
+  const level =
+    levelParam === null || levelParam === "all"
+      ? "all"
+      : (Number(levelParam) as 1 | 2 | 3 | 4 | 5 | 6);
+  const sort = (searchParams.get("sort") as "latest" | "oldest") ?? "latest";
   const pageSize = 20;
 
-  const { data, isLoading, isError, error } = useMyWords({
+  const { data, isLoading, isError } = useMyWords({
     userId: user?.id ?? "",
     page,
     pageSize,
     level,
     sort,
-  });
-
-  console.log({
-    isLoading,
-    isError,
-    error,
-    data,
   });
 
   const totalPages = data ? Math.ceil(data.totalCount / pageSize) : 0;
@@ -63,13 +62,11 @@ export default function MyWordSection() {
       <div className="flex flex-row gap-2">
         <Select
           value={String(level)}
-          onValueChange={(value) =>
-            setLevel(
-              value === "all"
-                ? "all"
-                : (Number(value) as 1 | 2 | 3 | 4 | 5 | 6),
-            )
-          }
+          onValueChange={(value) => {
+            params.set("level", value);
+            params.set("page", "1");
+            router.push(`${pathName}?${params.toString()}`);
+          }}
         >
           <SelectTrigger className="w-30">
             <SelectValue placeholder="급수 선택" />
@@ -86,7 +83,11 @@ export default function MyWordSection() {
         </Select>
         <Select
           value={sort}
-          onValueChange={(value) => setSort(value as "latest" | "oldest")}
+          onValueChange={(value) => {
+            params.set("sort", value);
+            params.set("page", "1");
+            router.push(`${pathName}?${params.toString()}`);
+          }}
         >
           <SelectTrigger className="w-30">
             <SelectValue />
