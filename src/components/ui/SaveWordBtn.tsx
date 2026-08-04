@@ -1,39 +1,44 @@
 "use client";
+import { useSaveWord } from "@/hooks/useSaveWord";
 import { useSession } from "@/hooks/useSession";
 import { useLoginModal } from "@/stores/loginModalStore";
 import { Bookmark } from "lucide-react";
 
 interface Props {
+  wordId: string;
   showText?: boolean;
   className?: string;
 }
 
 export default function SaveWordBtn({
+  wordId,
   showText = false,
   className = "",
 }: Props) {
   const { user } = useSession();
   const { open } = useLoginModal();
+  const { mutate, isPending } = useSaveWord();
 
   const handleSaveWord = () => {
-    console.log("클릭");
-
     if (!user) {
-      console.log("모달 열기");
-
       open();
       return;
     }
-    console.log(user);
+    mutate({
+      userId: user.id,
+      wordId,
+    });
   };
   return showText ? (
     <button
       type="button"
       onClick={handleSaveWord}
+      aria-disabled={isPending}
       className={`
         group
         relative
         overflow-hidden
+        aria-disabled:cursor-not-allowed
         border border-primary
         text-primary
         bg-white
@@ -121,8 +126,9 @@ export default function SaveWordBtn({
   ) : (
     <button
       aria-label="단어 수집하기"
-      className={`text-muted-foreground hover:text-primary ${className}`}
+      className={`text-muted-foreground hover:text-primary ${className} aria-disabled:cursor-not-allowed`}
       onClick={handleSaveWord}
+      aria-disabled={isPending}
     >
       <Bookmark />
     </button>

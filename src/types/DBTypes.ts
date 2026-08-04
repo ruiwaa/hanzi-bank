@@ -46,6 +46,11 @@ export interface UserWord {
   saved_at: string;
 }
 
+export interface MyWord {
+  saved_at: string;
+  hsk_words: Pick<HskWord, "id" | "word" | "pinyin" | "meanings" | "hsk_level">;
+}
+
 // user_examples
 export interface UserExample {
   id: string;

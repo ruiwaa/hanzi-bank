@@ -1,6 +1,6 @@
 "use cache";
 
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase/client";
 import { HskWord } from "@/types/DBTypes";
 import { cacheLife } from "next/cache";
 
