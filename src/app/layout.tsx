@@ -6,6 +6,7 @@ import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import LoginRequiredModal from "./(auth)/components/LoginRequiredModal";
+import QueryProvider from "@/components/providers/QueryProvider";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -53,7 +54,9 @@ export default function RootLayout({
           본문 바로가기
         </a>
         <Toaster />
-        <ThemeProvider>{children}</ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </QueryProvider>
         <LoginRequiredModal />
       </body>
     </html>
