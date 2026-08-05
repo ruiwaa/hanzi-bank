@@ -5,16 +5,18 @@ import { BookCheck, Notebook } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import MypageGuide from "./components/MypageGuide";
+import { useMyWordCount } from "@/hooks/useMyWordCount";
 
 export default function Mypage() {
   const { user } = useSession();
   const { data: profile } = useProfile(user?.id);
+  const { data: wordCount = 0 } = useMyWordCount(user?.id);
 
   return (
     <div className="max-w-full min-h-screen desktop-layout flex flex-col gap-3 px-5">
       <h1 className="text-2xl font-bold whitespace-nowrap mt-2">마이페이지</h1>
       <p className="text-gray-500 font-semibold">우리 같이 공부해요~</p>
-      <div className="bg-white p-4 rounded-xl border border-gray-200 h-60 flex flex-col">
+      <div className="bg-white p-4 rounded-xl border border-gray-200 md:h-60 flex flex-col">
         <div className="flex flex-row gap-2 pb-3">
           <Image
             src={profile?.profile_image || "/profile.png"}
@@ -37,10 +39,10 @@ export default function Mypage() {
             <div className="bg-primary text-white w-12 h-12 p-2 rounded-xl">
               <BookCheck aria-hidden="true" size={30} />
             </div>
-            <div className="flex flex-col flex-1 ">
+            <div className="flex flex-col flex-1 whitespace-nowrap">
               <span className="text-sm">저장 단어</span>
-              <span className="font-extrabold text-3xl">
-                단어 개수 연동 필요
+              <span className="font-extrabold text-md md:text-3xl">
+                {wordCount} 개
               </span>
             </div>
           </Link>
@@ -53,7 +55,7 @@ export default function Mypage() {
             </div>
             <div className="flex flex-col flex-1 ">
               <span className="text-sm">작성 예문</span>
-              <span className="font-extrabold text-3xl">
+              <span className="font-extrabold text-md md:text-3xl">
                 예문 개수 연동 필요
               </span>
             </div>
