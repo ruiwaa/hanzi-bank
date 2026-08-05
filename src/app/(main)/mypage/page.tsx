@@ -10,7 +10,7 @@ import { useMyWordCount } from "@/hooks/useMyWordCount";
 export default function Mypage() {
   const { user } = useSession();
   const { data: profile } = useProfile(user?.id);
-  const { data: wordCount = 0 } = useMyWordCount(user?.id);
+  const { data: wordCount = 0, isLoading } = useMyWordCount(user?.id);
 
   return (
     <div className="max-w-full min-h-screen desktop-layout flex flex-col gap-3 px-5">
@@ -42,7 +42,7 @@ export default function Mypage() {
             <div className="flex flex-col flex-1 whitespace-nowrap">
               <span className="text-sm">저장 단어</span>
               <span className="font-extrabold text-md md:text-3xl">
-                {wordCount} 개
+                {isLoading ? "-" : `${wordCount ?? 0} 개`}
               </span>
             </div>
           </Link>
