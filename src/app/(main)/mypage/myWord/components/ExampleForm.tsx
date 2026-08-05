@@ -2,6 +2,8 @@ import { useState } from "react";
 import ExampleInputSection from "./ExampleInputSection";
 import FormActionButton from "./FormActionButton";
 import { X } from "lucide-react";
+import { validateChinese } from "@/lib/validation/chinese";
+import { validateKorean } from "@/lib/validation/korean";
 import { toast } from "sonner";
 
 interface Props {
@@ -10,37 +12,52 @@ interface Props {
 export default function ExampleForm({ onClose }: Props) {
   const [sentence, setSentence] = useState("");
   const [meaning, setMeaning] = useState("");
-  const chineseRegex = /^[\u4E00-\u9FFF\s，。！？、；：“”‘’（）《》…]+$/;
-  const koreanRegex = /^[가-힣\s.,!?'"()]+$/;
+  const [sentenceError, setSentenceError] = useState("");
+  const [meaningError, setMeaningError] = useState("");
 
-  const handleSave = () => {
-    if (!sentence.trim()) {
-      toast.error("중국어 예문을 입력하세요.");
+  const handleSentenceChange = (value: string) => {
+    setSentence(value);
+    if (!value.trim()) {
+      setSentenceError("");
+      return;
+    }
+    const result = validateChinese(value);
+    setSentenceError(result.message);
+  };
+  const handleMeaningChange = (value: string) => {
+    setMeaning(value);
+    if (!value.trim()) {
+      setMeaningError("");
+      return;
+    }
+    const result = validateKorean(value);
+    setMeaningError(result.message);
+  };
+  const handleSave = async () => {
+    const chineseResult = validateChinese(sentence);
+    const koreanResult = validateKorean(meaning);
+    if (!chineseResult.isValid) {
+      toast.error(chineseResult.message);
+      return;
+    }
+    if (!koreanResult.isValid) {
+      toast.error(koreanResult.message);
       return;
     }
 
-    if (!meaning.trim()) {
-      toast.error("한국어 의미를 입력하세요.");
-      return;
-    }
+    toast.success("예문 추가 완료");
+    setSentence("");
+    setMeaning("");
+    setSentenceError("");
+    setMeaningError("");
 
-    if (!chineseRegex.test(sentence)) {
-      toast.error("중국어 예문만 입력해주세요.");
-      return;
-    }
-
-    if (!koreanRegex.test(meaning)) {
-      toast.error("한국어 의미만 입력해주세요.");
-      return;
-    }
-    console.log({
-      sentence,
-      meaning,
-    });
+    onClose();
   };
   const handleCancel = () => {
     setSentence("");
     setMeaning("");
+    setSentenceError("");
+    setMeaningError("");
     onClose();
   };
 
@@ -61,7 +78,8 @@ export default function ExampleForm({ onClose }: Props) {
         title="중국어 예문 작성"
         placeholder="중국어로 예문을 작성하세요."
         value={sentence}
-        onChange={setSentence}
+        error={sentenceError}
+        onChange={handleSentenceChange}
       />
       <div className="border-b border-b-gray-300"></div>
       <ExampleInputSection
@@ -69,7 +87,8 @@ export default function ExampleForm({ onClose }: Props) {
         title="한국어 의미 작성"
         placeholder="한국어로 에문의 의미를 작성하세요."
         value={meaning}
-        onChange={setMeaning}
+        error={meaningError}
+        onChange={handleMeaningChange}
       />
       <FormActionButton handleSave={handleSave} handleCancel={handleCancel} />
     </div>

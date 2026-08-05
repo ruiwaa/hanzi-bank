@@ -4,6 +4,7 @@ interface Props {
   id: string;
   title: string;
   value: string;
+  error: string;
   placeholder: string;
   onChange: (value: string) => void;
 }
@@ -12,6 +13,7 @@ export default function ExampleInputSection({
   id,
   title,
   value,
+  error,
   placeholder,
   onChange,
 }: Props) {
@@ -23,10 +25,17 @@ export default function ExampleInputSection({
       <textarea
         id={id}
         value={value}
+        aria-invalid={!!error}
+        aria-describedby={`${id}-error`}
         className="border border-primary/70 h-10 p-1 rounded-md"
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
       />
+      {error && (
+        <p id={`${id}-error`} className="text-sm text-red-500">
+          {error}
+        </p>
+      )}
       <VoiceInputButton />
     </div>
   );
