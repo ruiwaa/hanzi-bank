@@ -1,12 +1,20 @@
 import { Pen } from "lucide-react";
 
-export default function AddWordExample() {
+interface Props {
+  onClick: () => void;
+}
+
+export default function AddWordExample({ onClick }: Props) {
   return (
-    <button className="flex flex-row items-center justify-center gap-2 bg-primary rounded-lg p-1 w-30 text-sm whitespace-nowrap text-white font-bold">
-      <div className="w-5">
+    <div className="flex flex-col w-fit">
+      <button
+        type="button"
+        onClick={onClick}
+        className="flex w-30 items-center justify-center gap-2 rounded-lg bg-primary p-1 text-sm font-bold text-white"
+      >
         <Pen size={20} aria-hidden="true" />
-      </div>
-      예문 추가하기
-    </button>
+        예문 추가하기
+      </button>
+    </div>
   );
 }

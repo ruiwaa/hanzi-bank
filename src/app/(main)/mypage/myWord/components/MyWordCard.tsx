@@ -3,12 +3,15 @@ import { MyWord } from "@/types/DBTypes";
 import Link from "next/link";
 import AddWordExample from "./AddWordExample";
 import DeleteMyWord from "./DeleteMyWord";
+import ExampleForm from "./ExampleForm";
+import { useState } from "react";
 
 interface Props {
   word: MyWord;
 }
 
 export default function MyWordCard({ word }: Props) {
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const myWord = word.hsk_words;
   return (
     <li className="border-b border-b-gray-100 last:border-b-0">
@@ -33,9 +36,10 @@ export default function MyWordCard({ word }: Props) {
         <p className="text-gray-500 text-md">[{word.hsk_words.pinyin}]</p>
         <p className="text-sm">{myWord.meanings[0].ko}</p>
         <div className="flex flex-row gap-2">
-          <AddWordExample />
+          <AddWordExample onClick={() => setIsFormOpen(true)} />
           <DeleteMyWord />
         </div>
+        {isFormOpen && <ExampleForm onClose={() => setIsFormOpen(false)} />}
       </div>
     </li>
   );
