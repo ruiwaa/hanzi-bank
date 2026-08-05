@@ -54,7 +54,7 @@ export default function MyWordSection() {
       </p>
     );
   }
-
+  if (!user) return null;
   if (!data) return null;
 
   return (
@@ -106,7 +106,11 @@ export default function MyWordSection() {
         <div>
           <ul className="mt-4 space-y-4 bg-white p-4 rounded-2xl border border-gray-200">
             {data?.items.map((item) => (
-              <MyWordCard key={item.hsk_words.id} word={item} />
+              <MyWordCard
+                key={item.hsk_words.id}
+                word={item}
+                userId={user.id}
+              />
             ))}
           </ul>
           <Pagination page={page} totalPages={totalPages} />
