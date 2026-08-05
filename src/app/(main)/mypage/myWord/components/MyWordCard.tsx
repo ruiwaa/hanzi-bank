@@ -39,7 +39,12 @@ export default function MyWordCard({ word }: Props) {
           <AddWordExample onClick={() => setIsFormOpen(true)} />
           <DeleteMyWord />
         </div>
-        {isFormOpen && <ExampleForm onClose={() => setIsFormOpen(false)} />}
+        {isFormOpen && (
+          <ExampleForm
+            wordId={myWord.id}
+            onClose={() => setIsFormOpen(false)}
+          />
+        )}
       </div>
     </li>
   );

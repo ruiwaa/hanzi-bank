@@ -5,16 +5,22 @@ import { X } from "lucide-react";
 import { validateChinese } from "@/lib/validation/chinese";
 import { validateKorean } from "@/lib/validation/korean";
 import { toast } from "sonner";
+import { useCreateUserExample } from "@/hooks/useCreateUserExamples";
+import { useSession } from "@/hooks/useSession";
+import { useLoginModal } from "@/stores/loginModalStore";
 
 interface Props {
+  wordId: string;
   onClose: () => void;
 }
-export default function ExampleForm({ onClose }: Props) {
+export default function ExampleForm({ wordId, onClose }: Props) {
   const [sentence, setSentence] = useState("");
   const [meaning, setMeaning] = useState("");
   const [sentenceError, setSentenceError] = useState("");
   const [meaningError, setMeaningError] = useState("");
-
+  const { user } = useSession();
+  const { mutate, isPending } = useCreateUserExample();
+  const { open } = useLoginModal();
   const handleSentenceChange = (value: string) => {
     setSentence(value);
     if (!value.trim()) {
@@ -33,6 +39,7 @@ export default function ExampleForm({ onClose }: Props) {
     const result = validateKorean(value);
     setMeaningError(result.message);
   };
+
   const handleSave = async () => {
     const chineseResult = validateChinese(sentence);
     const koreanResult = validateKorean(meaning);
@@ -45,14 +52,31 @@ export default function ExampleForm({ onClose }: Props) {
       return;
     }
 
-    toast.success("예문 추가 완료");
-    setSentence("");
-    setMeaning("");
-    setSentenceError("");
-    setMeaningError("");
+    if (!user) {
+      open();
+      return;
+    }
 
-    onClose();
+    mutate(
+      {
+        userId: user.id,
+        wordId,
+        sentence,
+        meaning,
+      },
+      {
+        onSuccess: () => {
+          setSentence("");
+          setMeaning("");
+          setSentenceError("");
+          setMeaningError("");
+
+          onClose();
+        },
+      },
+    );
   };
+
   const handleCancel = () => {
     setSentence("");
     setMeaning("");
@@ -90,7 +114,11 @@ export default function ExampleForm({ onClose }: Props) {
         error={meaningError}
         onChange={handleMeaningChange}
       />
-      <FormActionButton handleSave={handleSave} handleCancel={handleCancel} />
+      <FormActionButton
+        isPending={isPending}
+        handleSave={handleSave}
+        handleCancel={handleCancel}
+      />
     </div>
   );
 }

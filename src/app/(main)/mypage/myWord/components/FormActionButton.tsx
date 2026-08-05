@@ -1,22 +1,32 @@
 interface Props {
+  isPending: boolean;
   handleSave: () => void;
   handleCancel: () => void;
 }
 
-export default function FormActionButton({ handleSave, handleCancel }: Props) {
+export default function FormActionButton({
+  isPending,
+  handleSave,
+  handleCancel,
+}: Props) {
   return (
     <div className="flex flex-row gap-5 justify-center">
       <button
+        type="button"
         onClick={handleCancel}
         className="border border-red-500 px-3 rounded-lg"
       >
         취소
       </button>
       <button
-        onClick={handleSave}
-        className="border border-primary px-3 rounded-lg"
+        aria-disabled={isPending}
+        onClick={() => {
+          if (isPending) return;
+          handleSave();
+        }}
+        className={`border border-primary px-3 rounded-lg ${isPending ? "cursor-not-allowed opacity-50" : ""}`}
       >
-        저장
+        {isPending ? "저장 중..." : "저장"}
       </button>
     </div>
   );
