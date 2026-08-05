@@ -20,15 +20,15 @@ export async function getMyWords({
     .from("user_words")
     .select(
       `
-      saved_at,
-      hsk_words!inner!user_words_word_id_fkey (
-        id,
-        word,
-        pinyin,
-        meanings,
-        hsk_level
-      )
-    `,
+  saved_at,
+  hsk_words!user_words_word_id_fkey (
+    id,
+    word,
+    pinyin,
+    meanings,
+    hsk_level
+  )
+  `,
       { count: "exact" },
     )
     .eq("user_id", userId);

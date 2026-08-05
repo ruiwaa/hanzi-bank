@@ -13,6 +13,9 @@ export function useSaveWord() {
       queryClient.invalidateQueries({
         queryKey: ["myWords", variables.userId],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["savedWord", variables.userId, variables.wordId],
+      });
       toast.success("단어 저장 성공");
     },
     onError: (error) => {

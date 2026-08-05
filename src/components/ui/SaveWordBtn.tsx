@@ -1,4 +1,6 @@
 "use client";
+import { useDeleteMyWord } from "@/hooks/useDeleteMyWord";
+import { useIsSavedWord } from "@/hooks/useIsSavedWord";
 import { useSaveWord } from "@/hooks/useSaveWord";
 import { useSession } from "@/hooks/useSession";
 import { useLoginModal } from "@/stores/loginModalStore";
@@ -17,17 +19,30 @@ export default function SaveWordBtn({
 }: Props) {
   const { user } = useSession();
   const { open } = useLoginModal();
-  const { mutate, isPending } = useSaveWord();
+  const { mutate: saveWord, isPending: isSaving } = useSaveWord();
+  const { mutate: deleteWord, isPending: isDeleting } = useDeleteMyWord();
+  const { data: isSaved = false } = useIsSavedWord({
+    userId: user?.id,
+    wordId,
+  });
+  const isPending = isSaving || isDeleting;
 
   const handleSaveWord = () => {
     if (!user) {
       open();
       return;
     }
-    mutate({
-      userId: user.id,
-      wordId,
-    });
+    if (isSaved) {
+      deleteWord({
+        userId: user.id,
+        wordId,
+      });
+    } else {
+      saveWord({
+        userId: user.id,
+        wordId,
+      });
+    }
   };
   return showText ? (
     <button
@@ -58,7 +73,7 @@ export default function SaveWordBtn({
       `}
     >
       <span className="whitespace-normal break-keep text-[16px] md:text-lg">
-        단어 수집하기
+        {isSaved ? "수집 완료" : "단어 수집하기"}
       </span>
 
       <span aria-hidden="true">
@@ -126,11 +141,11 @@ export default function SaveWordBtn({
   ) : (
     <button
       aria-label="단어 수집하기"
-      className={`text-muted-foreground hover:text-primary ${className} aria-disabled:cursor-not-allowed`}
+      className={`text-muted-foreground hover:text-primary ${className} aria-disabled:cursor-not-allowed `}
       onClick={handleSaveWord}
       aria-disabled={isPending}
     >
-      <Bookmark />
+      <Bookmark className={`${isSaved ? "fill-primary text-primary " : ""}`} />
     </button>
   );
 }

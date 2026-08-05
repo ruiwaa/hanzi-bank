@@ -9,9 +9,12 @@ export function useDeleteMyWord() {
     mutationFn: ({ userId, wordId }: { userId: string; wordId: string }) =>
       deleteMyWord(userId, wordId),
 
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["myWords"],
+        queryKey: ["myWords", variables.userId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["savedWord", variables.userId, variables.wordId],
       });
       toast.success("단어가 삭제되었습니다.");
     },

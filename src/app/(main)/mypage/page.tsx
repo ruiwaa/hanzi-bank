@@ -34,7 +34,7 @@ export default function Mypage() {
         <div className="flex flex-row gap-3 h-full">
           <Link
             className="w-full flex flex-row bg-hover p-3 rounded-xl gap-2 items-center"
-            href={"/myword"}
+            href={"/mypage/myWord"}
           >
             <div className="bg-primary text-white w-12 h-12 p-2 rounded-xl">
               <BookCheck aria-hidden="true" size={30} />
@@ -48,7 +48,7 @@ export default function Mypage() {
           </Link>
           <Link
             className="w-full flex flex-row bg-green-200 p-3 rounded-xl gap-2 items-center"
-            href={"/myword"}
+            href={"/mypage/mySentence"}
           >
             <div className="bg-green-500 text-white w-12 h-12 p-2 rounded-xl">
               <Notebook aria-hidden="true" size={30} />
