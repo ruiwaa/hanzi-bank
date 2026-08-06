@@ -20,7 +20,7 @@ export default function VoiceInputButton({ language, onResult }: Props) {
         {isListening ? "음성 입력 종료" : "음성 입력"}
       </button>
       <p
-        className={`text-center rounded-lg ${VOICE_STATUS[voiceStatus].className}`}
+        className={` px-2 py-1 w-full md:w-100 text-center rounded-lg self-center font-semibold ${VOICE_STATUS[voiceStatus].className}`}
         aria-live="polite"
       >
         {VOICE_STATUS[voiceStatus].text}
