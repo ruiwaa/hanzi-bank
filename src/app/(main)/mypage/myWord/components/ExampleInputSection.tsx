@@ -28,7 +28,7 @@ export default function ExampleInputSection({
         id={id}
         value={value}
         aria-invalid={!!error}
-        aria-describedby={`${id}-error`}
+        aria-describedby={error ? `${id}-error` : undefined}
         className="border border-primary/70 h-10 p-1 rounded-md"
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
