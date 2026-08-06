@@ -104,6 +104,7 @@ export default function ExampleForm({ wordId, onClose }: Props) {
         value={sentence}
         error={sentenceError}
         onChange={handleSentenceChange}
+        language={"zh-CN"}
       />
       <div className="border-b border-b-gray-300"></div>
       <ExampleInputSection
@@ -113,6 +114,7 @@ export default function ExampleForm({ wordId, onClose }: Props) {
         value={meaning}
         error={meaningError}
         onChange={handleMeaningChange}
+        language={"ko-KR"}
       />
       <FormActionButton
         isPending={isPending}

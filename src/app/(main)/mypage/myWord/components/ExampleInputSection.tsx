@@ -7,6 +7,7 @@ interface Props {
   error: string;
   placeholder: string;
   onChange: (value: string) => void;
+  language: "ko-KR" | "zh-CN";
 }
 
 export default function ExampleInputSection({
@@ -15,6 +16,7 @@ export default function ExampleInputSection({
   value,
   error,
   placeholder,
+  language,
   onChange,
 }: Props) {
   return (
@@ -36,7 +38,10 @@ export default function ExampleInputSection({
           {error}
         </p>
       )}
-      <VoiceInputButton />
+      <VoiceInputButton
+        language={language}
+        onResult={(text) => onChange(text)}
+      />
     </div>
   );
 }
