@@ -1,14 +1,10 @@
-import { getMyWords } from "@/app/api/getMyWords";
+import { getMyWords, GetMyWordsParams } from "@/app/api/getMyWords";
 import { useQuery } from "@tanstack/react-query";
 
-export function useMyWords(userId?: string) {
+export function useMyWords(params: GetMyWordsParams) {
   return useQuery({
-    queryKey: ["myWords", userId],
-    enabled: !!userId,
-    queryFn: () => {
-      if (!userId) throw new Error("userId가 없습니다.");
-
-      return getMyWords(userId);
-    },
+    queryKey: ["myWords", params],
+    enabled: !!params.userId,
+    queryFn: () => getMyWords(params),
   });
 }
