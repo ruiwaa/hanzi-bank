@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase/client";
-import { MyWordResponse } from "@/types/DBTypes";
+import { MySentenceResponse } from "@/types/DBTypes";
 
-export interface GetMyWordsParams {
+export interface GetMySentenceParams {
   userId: string;
   page: number;
   pageSize: number;
@@ -9,19 +9,23 @@ export interface GetMyWordsParams {
   sort: "latest" | "oldest";
 }
 
-export async function getMyWords({
+export async function getMySentences({
   userId,
   page = 1,
   pageSize = 20,
   level = "all",
   sort = "latest",
-}: GetMyWordsParams): Promise<MyWordResponse> {
+}: GetMySentenceParams): Promise<MySentenceResponse> {
   let query = supabase
-    .from("user_words")
+    .from("user_examples")
     .select(
       `
-  saved_at,
-  hsk_words!inner (
+  id,
+  created_at,
+  sentence,
+  sentence_pinyin,
+  meaning,
+  hsk_words!inner(
     id,
     word,
     pinyin,
@@ -37,24 +41,32 @@ export async function getMyWords({
     query = query.eq("hsk_words.hsk_level", level);
   }
 
-  query = query.order("saved_at", { ascending: sort === "oldest" });
+  query = query.order("created_at", {
+    ascending: sort === "oldest",
+  });
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
+
   query = query.range(from, to);
 
   const { data, error, count } = await query;
+
   if (error) {
-    console.log(error);
     throw error;
   }
+
   const items = (data ?? []).map((item) => {
     const word = Array.isArray(item.hsk_words)
       ? item.hsk_words[0]
       : item.hsk_words;
 
     return {
-      saved_at: item.saved_at,
+      id: item.id,
+      created_at: item.created_at,
+      sentence: item.sentence,
+      sentence_pinyin: item.sentence_pinyin,
+      meaning: item.meaning,
       hsk_words: {
         id: word.id,
         word: word.word,
@@ -64,6 +76,7 @@ export async function getMyWords({
       },
     };
   });
+
   return {
     items,
     totalCount: count ?? 0,

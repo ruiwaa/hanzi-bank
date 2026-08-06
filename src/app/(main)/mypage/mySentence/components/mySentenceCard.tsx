@@ -1,17 +1,34 @@
+import { MySentence } from "@/types/DBTypes";
 import MySentenceFormActionBtn from "./MysentenceFormActionBtn";
+import Link from "next/link";
 
-export default function MySentenceCard() {
+interface Props {
+  sentence: MySentence;
+}
+
+export default function MySentenceCard({ sentence }: Props) {
+  const MySentence = sentence.sentence;
+
   return (
-    <li className="flex flex-col gap-2">
+    <li className="flex flex-col gap-2 border-b border-b-gray-200 last:border-b-0 py-3">
       <div className="flex flex-row items-center gap-2">
-        <h2 className="text-lg font-chinese font-bold">단어</h2>
-        <span>급수</span>
+        <Link
+          className="hover:text-primary"
+          href={`/hsk-level-words/${sentence.hsk_words.hsk_level}/${sentence.hsk_words.id}`}
+        >
+          <h2 className="text-lg font-chinese font-bold">
+            {sentence.hsk_words.word}
+          </h2>
+        </Link>
+        <span className="bg-blue-100 text-primary px-1.5 py-1 rounded-lg self-center text-sm text-center font-semibold">
+          HSK {sentence.hsk_words.hsk_level}급{" "}
+        </span>
       </div>
-      <p>한어병음</p>
-      <p>단어 의미</p>
-      <div className="w-full bg-gray-100 p-2 rounded-md">
-        <h3 className="font-chinese">작성한 중국어 예문</h3>
-        <p>예문 한국어 뜻</p>
+      <p>[{sentence.hsk_words.pinyin}]</p>
+      <p>{sentence.hsk_words.meanings[0].ko}</p>
+      <div className="w-full bg-gray-100 p-3 rounded-md">
+        <h3 className="font-chinese">{MySentence}</h3>
+        <p>{sentence.meaning}</p>
       </div>
       <MySentenceFormActionBtn />
     </li>
