@@ -3,13 +3,26 @@ import { MyWord } from "@/types/DBTypes";
 import Link from "next/link";
 import AddWordExample from "./AddWordExample";
 import DeleteMyWord from "./DeleteMyWord";
+import ExampleForm from "./ExampleForm";
+import { useState } from "react";
+import { useDeleteMyWord } from "@/hooks/useDeleteMyWord";
 
 interface Props {
+  userId: string;
   word: MyWord;
 }
 
-export default function MyWordCard({ word }: Props) {
+export default function MyWordCard({ userId, word }: Props) {
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const myWord = word.hsk_words;
+  const { mutate, isPending } = useDeleteMyWord();
+
+  const handleDelete = () => {
+    mutate({
+      userId: userId,
+      wordId: myWord.id,
+    });
+  };
   return (
     <li className="border-b border-b-gray-100 last:border-b-0">
       <div className="p-2 flex flex-col gap-2">
@@ -33,9 +46,15 @@ export default function MyWordCard({ word }: Props) {
         <p className="text-gray-500 text-md">[{word.hsk_words.pinyin}]</p>
         <p className="text-sm">{myWord.meanings[0].ko}</p>
         <div className="flex flex-row gap-2">
-          <AddWordExample />
-          <DeleteMyWord />
+          <AddWordExample onClick={() => setIsFormOpen(true)} />
+          <DeleteMyWord handleDelete={handleDelete} isPending={isPending} />
         </div>
+        {isFormOpen && (
+          <ExampleForm
+            wordId={myWord.id}
+            onClose={() => setIsFormOpen(false)}
+          />
+        )}
       </div>
     </li>
   );
