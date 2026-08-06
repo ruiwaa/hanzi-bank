@@ -30,7 +30,9 @@ export default function MyWordCard({ userId, word }: Props) {
           <Link
             href={`/hsk-level-words/${word.hsk_words.hsk_level}/${myWord.id}`}
           >
-            <h2 className="text-lg font-extrabold">{myWord.word}</h2>
+            <h2 className="text-lg font-extrabold font-chinese">
+              {myWord.word}
+            </h2>
           </Link>
           <span className="bg-blue-100 text-primary px-1.5 py-1 rounded-lg self-center text-sm text-center font-semibold">
             HSK {myWord.hsk_level}급{" "}
