@@ -140,7 +140,7 @@ export default function SaveWordBtn({
     </button>
   ) : (
     <button
-      aria-label="단어 수집하기"
+      aria-label={isSaved ? "단어 수집 완료" : "단어 수집 하기"}
       className={`text-muted-foreground hover:text-primary ${className} aria-disabled:cursor-not-allowed `}
       onClick={handleSaveWord}
       aria-disabled={isPending}
