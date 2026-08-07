@@ -5,18 +5,22 @@ import MySentenceFormActionBtn from "./MysentenceFormActionBtn";
 import Link from "next/link";
 import { useState } from "react";
 import { useUpdateMySentence } from "@/hooks/useUpdateMySentence";
+import { useDeleteMySentence } from "@/hooks/useDeleteMySentence";
 
 interface Props {
+  userId: string;
   word: MySentenceWord;
   sentences: MySentence[];
 }
 
-export default function MySentenceCard({ word, sentences }: Props) {
+export default function MySentenceCard({ userId, word, sentences }: Props) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editSentence, setEditSentence] = useState("");
   const [editMeaning, setEditMeaning] = useState("");
 
   const updateSentenceMutation = useUpdateMySentence();
+  const deleteSentenceMutation = useDeleteMySentence();
+
   const handleSave = (id: string) => {
     updateSentenceMutation.mutate(
       {
@@ -32,6 +36,14 @@ export default function MySentenceCard({ word, sentences }: Props) {
     );
   };
 
+  const handleDelete = (sentenceId: string) => {
+    console.log({
+      userId,
+      sentenceId,
+    });
+
+    deleteSentenceMutation.mutate({ userId, sentenceId });
+  };
   return (
     <li className="flex flex-col gap-2 border-b border-b-gray-200 last:border-b-0 py-3">
       <div className="flex flex-row items-center gap-2">
@@ -96,6 +108,7 @@ export default function MySentenceCard({ word, sentences }: Props) {
                     setEditMeaning(sentence.meaning);
                     setEditSentence(sentence.sentence);
                   }}
+                  onDelete={() => handleDelete(sentence.id)}
                 />
               </>
             )}

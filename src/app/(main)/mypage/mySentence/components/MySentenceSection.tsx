@@ -133,6 +133,7 @@ export default function MySentenceSection() {
             {groupedItems.map((item) => (
               <MySentenceCard
                 key={item.word.id}
+                userId={user.id}
                 word={item.word}
                 sentences={item.sentences}
               />
