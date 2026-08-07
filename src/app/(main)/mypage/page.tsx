@@ -6,11 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import MypageGuide from "./components/MypageGuide";
 import { useMyWordCount } from "@/hooks/useMyWordCount";
+import { useMySentenceCount } from "@/hooks/useMySentenceCount";
 
 export default function Mypage() {
   const { user } = useSession();
   const { data: profile } = useProfile(user?.id);
   const { data: wordCount = 0, isLoading } = useMyWordCount(user?.id);
+  const { data: sentenceCount = 0, isLoading: sentenceLoading } =
+    useMySentenceCount(user?.id);
 
   return (
     <div className="max-w-full min-h-screen desktop-layout flex flex-col gap-3 px-5">
@@ -41,7 +44,7 @@ export default function Mypage() {
             </div>
             <div className="flex flex-col flex-1 whitespace-nowrap">
               <span className="text-sm">저장 단어</span>
-              <span className="font-extrabold text-md md:text-3xl">
+              <span className="font-extrabold text-md md:text-2xl">
                 {isLoading ? "-" : `${wordCount ?? 0} 개`}
               </span>
             </div>
@@ -55,8 +58,8 @@ export default function Mypage() {
             </div>
             <div className="flex flex-col flex-1 ">
               <span className="text-sm">작성 예문</span>
-              <span className="font-extrabold text-md md:text-3xl">
-                예문 개수 연동 필요
+              <span className="font-extrabold text-md md:text-2xl">
+                {sentenceLoading ? "-" : `${sentenceCount ?? 0} 개`}
               </span>
             </div>
           </Link>

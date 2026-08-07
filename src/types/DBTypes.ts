@@ -69,3 +69,21 @@ export interface UserExample {
   sentence_pinyin: string;
   meaning: string;
 }
+export type MySentenceWord = Pick<
+  HskWord,
+  "id" | "word" | "pinyin" | "meanings" | "hsk_level"
+>;
+
+export interface MySentence extends Pick<
+  UserExample,
+  "id" | "created_at" | "sentence" | "sentence_pinyin" | "meaning"
+> {
+  hsk_words: Pick<HskWord, "id" | "word" | "pinyin" | "meanings" | "hsk_level">;
+}
+
+export interface MySentenceResponse {
+  items: MySentence[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+}

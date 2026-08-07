@@ -1,12 +1,18 @@
 import { Pen } from "lucide-react";
+interface Props {
+  onEdit: () => void;
+}
 
-export default function ModifySentenceBtn() {
+export default function ModifySentenceBtn({ onEdit }: Props) {
   return (
-    <button className="flex flex-row gap-1 bg-primary text-white rounded-lg px-2 py-1">
+    <button
+      onClick={onEdit}
+      className="flex flex-row gap-1 items-center bg-primary text-white font-semibold rounded-lg px-2 py-1 cursor-pointer"
+    >
       <div>
         <Pen aria-hidden="true" />
       </div>
-      수정
+      예문 수정
     </button>
   );
 }

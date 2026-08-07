@@ -1,11 +1,16 @@
 import DeleteMySentenceBtn from "./DeleteMySentenceBtn";
 import ModifySentenceBtn from "./ModifySentenceBtn";
 
-export default function MySentenceFormActionBtn() {
+interface Props {
+  onEdit: () => void;
+  onDelete: () => void;
+}
+
+export default function MySentenceFormActionBtn({ onEdit, onDelete }: Props) {
   return (
     <div className="flex flex-row gap-3">
-      <ModifySentenceBtn />
-      <DeleteMySentenceBtn />
+      <ModifySentenceBtn onEdit={onEdit} />
+      <DeleteMySentenceBtn onDelete={onDelete} />
     </div>
   );
 }
