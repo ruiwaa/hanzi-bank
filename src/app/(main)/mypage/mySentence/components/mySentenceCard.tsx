@@ -27,7 +27,7 @@ export default function MySentenceCard({ sentence }: Props) {
       <p>[{sentence.hsk_words.pinyin}]</p>
       <p>{sentence.hsk_words.meanings[0].ko}</p>
       <div className="w-full bg-gray-100 p-3 rounded-md">
-        <h3 className="font-chinese">{MySentence}</h3>
+        <h3 className="font-chinese font-bold">{MySentence}</h3>
         <p>{sentence.meaning}</p>
       </div>
       <MySentenceFormActionBtn />
