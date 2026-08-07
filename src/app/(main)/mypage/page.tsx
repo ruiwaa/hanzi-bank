@@ -44,7 +44,7 @@ export default function Mypage() {
             </div>
             <div className="flex flex-col flex-1 whitespace-nowrap">
               <span className="text-sm">저장 단어</span>
-              <span className="font-extrabold text-md md:text-3xl">
+              <span className="font-extrabold text-md md:text-2xl">
                 {isLoading ? "-" : `${wordCount ?? 0} 개`}
               </span>
             </div>
@@ -58,7 +58,7 @@ export default function Mypage() {
             </div>
             <div className="flex flex-col flex-1 ">
               <span className="text-sm">작성 예문</span>
-              <span className="font-extrabold text-md md:text-3xl">
+              <span className="font-extrabold text-md md:text-2xl">
                 {sentenceLoading ? "-" : `${sentenceCount ?? 0} 개`}
               </span>
             </div>

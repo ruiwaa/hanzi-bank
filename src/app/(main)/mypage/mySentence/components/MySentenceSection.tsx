@@ -59,6 +59,29 @@ export default function MySentenceSection() {
   if (!user) return null;
   if (!data) return null;
 
+  // 데이터 그룹 맵핑
+  type Group = {
+    word: (typeof data.items)[number]["hsk_words"];
+    sentences: typeof data.items;
+  };
+
+  const grouped: Record<string, Group> = {};
+
+  for (const item of data.items) {
+    const wordId = item.hsk_words.id;
+
+    if (!grouped[wordId]) {
+      grouped[wordId] = {
+        word: item.hsk_words,
+        sentences: [],
+      };
+    }
+
+    grouped[wordId].sentences.push(item);
+  }
+
+  const groupedItems = Object.values(grouped);
+
   return (
     <div>
       <div className="flex flex-row gap-2 pb-3">
@@ -107,8 +130,12 @@ export default function MySentenceSection() {
       ) : (
         <>
           <ul className="w-full bg-white p-5 border border-gray-100 rounded-lg">
-            {data.items.map((item) => (
-              <MySentenceCard key={item.hsk_words.id} sentence={item} />
+            {groupedItems.map((item) => (
+              <MySentenceCard
+                key={item.word.id}
+                word={item.word}
+                sentences={item.sentences}
+              />
             ))}
           </ul>
           <Pagination page={page} totalPages={totalPages} />

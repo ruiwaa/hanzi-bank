@@ -69,6 +69,10 @@ export interface UserExample {
   sentence_pinyin: string;
   meaning: string;
 }
+export type MySentenceWord = Pick<
+  HskWord,
+  "id" | "word" | "pinyin" | "meanings" | "hsk_level"
+>;
 
 export interface MySentence extends Pick<
   UserExample,

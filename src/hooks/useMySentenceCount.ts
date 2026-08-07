@@ -1,4 +1,4 @@
-import { getMySentenceCount } from "@/app/api/getMySentence";
+import { getMySentenceCount } from "@/app/api/getMySentenceCount";
 import { useQuery } from "@tanstack/react-query";
 
 export function useMySentenceCount(userId?: string) {
