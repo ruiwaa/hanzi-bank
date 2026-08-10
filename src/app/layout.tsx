@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import LoginRequiredModal from "./(auth)/components/LoginRequiredModal";
 import QueryProvider from "@/components/providers/QueryProvider";
+import AuthEmailSync from "./(auth)/components/AuthEmailSync";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -55,7 +56,10 @@ export default function RootLayout({
         </a>
         <Toaster />
         <QueryProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <AuthEmailSync />
+            {children}
+          </ThemeProvider>
         </QueryProvider>
         <LoginRequiredModal />
       </body>
