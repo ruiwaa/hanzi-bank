@@ -5,8 +5,14 @@ export interface User {
   email: string;
   profile_image: string | null;
   nickname: string;
-  level: number;
+  hsk_level: number;
 }
+export type UserProfile = Pick<
+  User,
+  "id" | "email" | "profile_image" | "nickname"
+>;
+
+export type UserLevel = Pick<User, "hsk_level">;
 
 // meaning
 export interface Meaning {
