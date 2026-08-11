@@ -23,7 +23,7 @@ export default function SettingsSection() {
         <h2 className="font-extrabold text-xl self-start text-red-500">
           회원 탈퇴
         </h2>
-        <DeleteAccountSection />
+        <DeleteAccountSection key={user?.id} />
       </div>
     </div>
   );
