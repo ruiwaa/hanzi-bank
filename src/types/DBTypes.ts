@@ -12,7 +12,7 @@ export type UserProfile = Pick<
   "id" | "email" | "profile_image" | "nickname"
 >;
 
-export type UserLevel = Pick<User, "hsk_level">;
+export type UserLevel = Pick<User, "hsk_level" | "id">;
 
 // meaning
 export interface Meaning {
