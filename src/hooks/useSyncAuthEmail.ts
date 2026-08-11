@@ -8,6 +8,21 @@ export function useSyncAuthEmail() {
   const { mutate: syncUserEmail } = useSyncUserEmail();
 
   useEffect(() => {
+    const syncCurrentUserEmail = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user?.email) return;
+
+      syncUserEmail({
+        userId: user.id,
+        email: user.email,
+      });
+    };
+
+    syncCurrentUserEmail();
+
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {

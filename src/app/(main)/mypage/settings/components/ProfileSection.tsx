@@ -34,6 +34,7 @@ export default function ProfileSection({ profile }: Props) {
   };
 
   const handleEmailUpdate = () => {
+    console.log("변경 요청 직전:", newEmail);
     if (!newEmail.trim()) {
       toast.error("새 이메일을 입력해주세요.");
       return;
@@ -142,7 +143,7 @@ export default function ProfileSection({ profile }: Props) {
                   id="userEmail"
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
-                  className="flex-1 border border-gray-200 rounded-md p-1"
+                  className="flex-1 border border-gray-200 rounded-md p-1 "
                 />
 
                 <button
@@ -155,18 +156,15 @@ export default function ProfileSection({ profile }: Props) {
               </div>
             ) : (
               <div className="flex flex-row gap-2 items-center">
-                <p className="flex-1 border border-gray-100 rounded-lg p-1">
+                <p
+                  className="flex-1 border border-gray-100 rounded-lg p-1 aria-disabled:cursor-not-allowed"
+                  aria-disabled={!isChangingEmail}
+                >
                   {profile?.email}
                 </p>
                 <button
                   type="button"
                   onClick={() => {
-                    console.log("profile.email:", profile?.email);
-                    console.log(
-                      "profile.email JSON:",
-                      JSON.stringify(profile?.email),
-                    );
-
                     setNewEmail(profile?.email ?? "");
                     setIsChangingEmail(true);
                   }}
@@ -187,7 +185,7 @@ export default function ProfileSection({ profile }: Props) {
             height={100}
             className="rounded-full self-center"
           />
-          <div className="flex flex-col flex-1">
+          <div className="flex flex-col flex-1 cursor-not-allowed">
             <span className="font-bold text-[16px]">닉네임</span>
             <p className="border border-gray-100 rounded-lg p-1">
               {profile?.nickname}
