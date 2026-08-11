@@ -8,5 +8,6 @@ export async function getUserProfile(userId: string) {
     .single();
 
   if (error) throw error;
+
   return data;
 }
