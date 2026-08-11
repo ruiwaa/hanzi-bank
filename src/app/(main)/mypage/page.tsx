@@ -26,6 +26,7 @@ export default function Mypage() {
             alt="프로필 사진"
             width={60}
             height={60}
+            className="rounded-full"
           />
           <div className="flex flex-col gap-1">
             <span className="font-bold text-lg">{profile?.nickname} 👋</span>

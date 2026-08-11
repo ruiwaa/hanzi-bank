@@ -34,7 +34,6 @@ export default function ProfileSection({ profile }: Props) {
   };
 
   const handleEmailUpdate = () => {
-    console.log("변경 요청 직전:", newEmail);
     if (!newEmail.trim()) {
       toast.error("새 이메일을 입력해주세요.");
       return;
