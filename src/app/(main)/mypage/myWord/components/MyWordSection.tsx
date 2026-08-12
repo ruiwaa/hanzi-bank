@@ -71,7 +71,10 @@ export default function MyWordSection() {
           <SelectTrigger className="w-30">
             <SelectValue placeholder="급수 선택" />
           </SelectTrigger>
-          <SelectContent className="text-center">
+          <SelectContent
+            className="min-w-0 text-center -translate-x-0.5"
+            align="start"
+          >
             <SelectItem value="all">전체</SelectItem>
             <SelectItem value="1">HSK 1급</SelectItem>
             <SelectItem value="2">HSK 2급</SelectItem>
@@ -92,7 +95,10 @@ export default function MyWordSection() {
           <SelectTrigger className="w-30">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent
+            className="min-w-0 text-center -translate-x-0.5"
+            align="start"
+          >
             <SelectItem value="latest">최신순</SelectItem>
             <SelectItem value="oldest">오래된순</SelectItem>
           </SelectContent>
