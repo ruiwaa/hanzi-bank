@@ -37,7 +37,7 @@ export default function Mypage() {
         </div>
         <div className="flex flex-row gap-3 h-full">
           <Link
-            className="w-full flex flex-row bg-hover p-3 rounded-xl gap-2 items-center"
+            className="w-full flex flex-row bg-hover p-3 rounded-xl gap-4 items-center"
             href={"/mypage/myWord"}
           >
             <div className="bg-primary text-white w-12 h-12 p-2 rounded-xl">
@@ -51,7 +51,7 @@ export default function Mypage() {
             </div>
           </Link>
           <Link
-            className="w-full flex flex-row bg-green-200 p-3 rounded-xl gap-2 items-center"
+            className="w-full flex flex-row bg-green-200 p-3 rounded-xl gap-4 items-center"
             href={"/mypage/mySentence"}
           >
             <div className="bg-green-500 text-white w-12 h-12 p-2 rounded-xl">

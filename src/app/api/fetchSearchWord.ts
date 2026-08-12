@@ -8,19 +8,57 @@ export interface SearchProps {
   totalCount: number;
 }
 
+export type SortSearchOption = "frequency" | "relevance";
+
 export async function fetchSearchWords(
   keyword: string,
   page: number,
   limit: number,
+  sort: SortSearchOption,
 ): Promise<SearchProps> {
   "use cache";
+
   const from = (page - 1) * limit;
   const to = from + limit - 1;
 
+  console.log("SORT:", sort);
+
+  // 관련도순
+  if (sort === "relevance") {
+    const { data, error } = await supabase.rpc("search_hsk_words", {
+      search_keyword: keyword,
+      page_offset: from,
+      page_limit: limit,
+    });
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    // totalCount는 별도로 구해야 함
+    const { count, error: countError } = await supabase
+      .from("hsk_words")
+      .select("*", { count: "exact", head: true })
+      .or(`word.ilike.%${keyword}%,meaning_ko.ilike.%${keyword}%`);
+
+    if (countError) {
+      throw new Error(countError.message);
+    }
+
+    return {
+      words: data ?? [],
+      page,
+      limit,
+      totalCount: count ?? 0,
+    };
+  }
+
+  // 빈도순
   const query = supabase
     .from("hsk_words")
     .select("*", { count: "exact" })
-    .or(`word.ilike.%${keyword}%,meaning_ko.ilike.%${keyword}%`);
+    .or(`word.ilike.%${keyword}%,meaning_ko.ilike.%${keyword}%`)
+    .order("frequency", { ascending: true });
 
   const { data, error, count } = await query.range(from, to);
 
@@ -29,7 +67,7 @@ export async function fetchSearchWords(
   }
 
   return {
-    words: data,
+    words: data ?? [],
     page,
     limit,
     totalCount: count ?? 0,
