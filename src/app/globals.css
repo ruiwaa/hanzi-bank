@@ -144,7 +144,7 @@ Light Theme 기본 테마 색상
 @layer components {
   /* ----------- Layout 페이지 최대 너비 및 공통 여백 ------------- */
   .container-layout {
-    @apply mx-auto max-w-7xl px-4 md:px-6 lg:px-8;
+    @apply mx-auto max-w-7xl px-4 md:px-2;
   }
   .page-layout {
     @apply px-4 py-6 md:px-6 md:py-8 lg:px-8;
