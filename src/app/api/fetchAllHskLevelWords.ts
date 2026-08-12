@@ -12,10 +12,13 @@ export interface HskLevelWords {
   totalCount: number;
 }
 
+export type SortOption = "frequency" | "latest";
+
 export async function fetchAllHskLevelWords(
   level: number,
   page: number,
   limit: number,
+  sort: SortOption,
 ): Promise<HskLevelWords> {
   cacheLife("days");
   const from = (page - 1) * limit;
@@ -24,8 +27,15 @@ export async function fetchAllHskLevelWords(
   const query = supabase
     .from("hsk_words")
     .select("*", { count: "exact" })
-    .eq("hsk_level", level)
-    .order("frequency", { ascending: true });
+    .eq("hsk_level", level);
+
+  if (sort === "frequency") {
+    query.order("frequency", { ascending: true });
+  }
+
+  if (sort === "latest") {
+    query.order("created_at", { ascending: false });
+  }
 
   const { data, error, count } = await query.range(from, to);
 
