@@ -33,7 +33,7 @@ export default async function HskLevelDetailPage({
 
   return (
     <div className="container-layout flex flex-col px-0">
-      <div className="w-fit flex items-center justify-between gap-1 mb-10">
+      <div className="flex items-center justify-between gap-1 mb-10">
         <div className="flex flex-row items-center gap-1">
           <BackButton href={`/hsk-level-words`} level={levelData} />
           <h2
