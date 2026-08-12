@@ -40,7 +40,7 @@ export default function TodayWordsSwiper({ words }: Props) {
             className="h-full"
             inert={activeIndex !== index}
           >
-            <article className="flex flex-col gap-2 bg-white/70 p-3 rounded-2xl items-center justify-center h-full py-5 pb-10">
+            <article className="flex flex-col gap-2 bg-white/70  dark:bg-accent/30 dark:text-black p-3 rounded-2xl items-center justify-center h-full py-5 pb-10">
               {/* 해당 단어 상세 페이지로 이동할 수 있도록 추후에 기능 추가 필요 */}
               {/* 단어, 예문 옆에 음성 지원 서비스 추가 필요 */}
               <h3 className="font-chinese font-bold text-3xl">{word.word}</h3>
@@ -64,7 +64,7 @@ export default function TodayWordsSwiper({ words }: Props) {
           swiperRef.current?.slidePrev();
         }}
         aria-label="이전 단어"
-        className="text-primary absolute left-0 top-1/2 -translate-y-1/2 z-10"
+        className="text-primary absolute left-0 top-1/2 -translate-y-1/2 z-10 dark:text-blue-700"
       >
         <ChevronLeft aria-hidden="true" size={30} />
       </button>
@@ -73,7 +73,7 @@ export default function TodayWordsSwiper({ words }: Props) {
           swiperRef.current?.slideNext();
         }}
         aria-label="다음 단어"
-        className="text-primary absolute right-0 top-1/2 -translate-y-1/2 z-10"
+        className="text-primary absolute right-0 top-1/2 -translate-y-1/2 z-10 dark:text-blue-700"
       >
         <ChevronRight aria-hidden="true" size={30} />
       </button>

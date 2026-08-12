@@ -67,13 +67,13 @@ export default function ConfirmModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div
-        className="w-[90%] max-w-md rounded-xl bg-white p-6"
+        className="w-[90%] max-w-md rounded-xl bg-card p-6"
         role="dialog"
         aria-modal="true"
       >
         <h2 className="text-xl font-bold">{title}</h2>
 
-        <p className="mt-3 text-gray-500">{description}</p>
+        <p className="mt-3 text-gray-500 dark:text-white">{description}</p>
 
         <div className="mt-6 flex justify-end gap-2">
           <button

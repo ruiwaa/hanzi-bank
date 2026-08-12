@@ -83,7 +83,7 @@ export default function SearchModal() {
     >
       {/* 이벤트 전파 방지하기 위해서 e.stopPropagation */}
       <div
-        className="w-full md:m-auto lg:max-w-5xl bg-white rounded-2xl p-8 shadow-xl"
+        className="w-full md:m-auto lg:max-w-5xl bg-card rounded-2xl p-8 shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col gap-2">

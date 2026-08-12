@@ -45,7 +45,7 @@ export default function HskLevelSection({ level }: Props) {
   };
   return (
     <div>
-      <p className="text-[16px] text-gray-500 mb-3">
+      <p className="text-[16px] text-gray-500 mb-3 dark:text-white">
         학습 중인 HSK 급수를 선택하세요
       </p>
       <div className="flex flex-row gap-5">
@@ -83,7 +83,7 @@ export default function HskLevelSection({ level }: Props) {
           </>
         ) : (
           <>
-            <p className="flex-1">{level?.hsk_level} 급</p>
+            <p className="flex-1 font-semibold">HSK {level?.hsk_level} 급</p>
             <button
               type="button"
               onClick={handleEdit}

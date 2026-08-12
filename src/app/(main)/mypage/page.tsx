@@ -19,7 +19,7 @@ export default function Mypage() {
     <div className="max-w-full min-h-screen desktop-layout flex flex-col gap-3 px-5">
       <h1 className="text-2xl font-bold whitespace-nowrap mt-2">마이페이지</h1>
       <p className="text-gray-500 font-semibold">우리 같이 공부해요~</p>
-      <div className="bg-white p-4 rounded-xl border border-gray-200 md:h-60 flex flex-col">
+      <div className="bg-background p-4 rounded-xl border border-gray-200 md:h-60 flex flex-col">
         <div className="flex flex-row gap-2 pb-3">
           <Image
             src={profile?.profile_image || "/profile.png"}

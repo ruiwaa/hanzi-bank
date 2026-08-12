@@ -59,7 +59,7 @@ export default function LoginRequiredModal() {
         ref={modalRef}
         role="dialog"
         aria-modal="true"
-        className="w-full max-w-md rounded-2xl bg-white p-10 flex flex-col items-center gap-4"
+        className="w-full max-w-md rounded-2xl bg-background p-10 flex flex-col items-center gap-4"
         onClick={(e) => e.stopPropagation()}
       >
         <span className="font-semibold flex items-center gap-2">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import DarkMode from "./DarkMode";
 
 export default function Header() {
   return (
@@ -13,6 +14,7 @@ export default function Header() {
           priority
         />
       </Link>
+      <DarkMode />
     </header>
   );
 }

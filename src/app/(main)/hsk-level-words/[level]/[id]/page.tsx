@@ -21,7 +21,7 @@ export default async function WordDetailPage({
         <h2 className="text-lg md:text-3xl font-bold">단어 상세</h2>
         <div className="w-16 md:hidden" />
       </div>
-      <div className="w-full bg-white shadow-lg rounded-2xl p-5">
+      <div className="w-full bg-background shadow-lg rounded-2xl p-5">
         <WordDetailCard word={word} />
       </div>
     </div>

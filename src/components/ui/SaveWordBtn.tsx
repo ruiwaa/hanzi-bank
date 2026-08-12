@@ -70,6 +70,7 @@ export default function SaveWordBtn({
         focus-visible:ring-primary
         focus-visible:ring-offset-2
         ${className}
+  
       `}
     >
       <span className="whitespace-normal break-keep text-[16px] md:text-lg">

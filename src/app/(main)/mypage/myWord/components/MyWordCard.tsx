@@ -45,7 +45,9 @@ export default function MyWordCard({ userId, word }: Props) {
             height={25}
           />
         </div>
-        <p className="text-gray-500 text-md">[{word.hsk_words.pinyin}]</p>
+        <p className="text-gray-500 text-md dark:text-white">
+          [{word.hsk_words.pinyin}]
+        </p>
         <p className="text-sm">{myWord.meanings[0].ko}</p>
         <div className="flex flex-row gap-2">
           <AddWordExample onClick={() => setIsFormOpen(true)} />
