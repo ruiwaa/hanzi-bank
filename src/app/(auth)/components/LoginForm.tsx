@@ -67,11 +67,15 @@ export default function LoginForm() {
       className="bg-background w-full  max-w-md  flex flex-col items-center p-8 shadow-lg  gap-3  rounded-2xl "
     >
       <div className="rounded-full bg-hover w-15 h-15 p-4 flex justify-center items-center">
-        <Lock size={30} color="var(--primary)" aria-hidden />
+        <Lock
+          size={30}
+          aria-hidden="true"
+          className="text-primary dark:text-white"
+        />
       </div>
       <h2 className="font-bold  text-lg pt-2">로그인</h2>
       <div className="flex flex-col  gap-3  w-full items-center">
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-gray-500 dark:text-gray-200">
           중단어 창고에 오신 것을 환영합니다.
         </span>
         <div className="space-y-2 w-full">
@@ -81,7 +85,7 @@ export default function LoginForm() {
           <div className="relative">
             <Mail
               className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
-              aria-hidden
+              aria-hidden="true"
             />
             <input
               type="text"
@@ -109,7 +113,7 @@ export default function LoginForm() {
           <div className="relative">
             <LockIcon
               className="absolute left-3  top-1/2 -translate-y-1/2 text-gray-500"
-              aria-hidden
+              aria-hidden="true"
             />
             <input
               id="userPassword"
@@ -143,7 +147,7 @@ export default function LoginForm() {
         <button
           type="submit"
           className={`w-full rounded-lg  p-1 hover:bg-accent hover:text-gray-400
-           bg-primary text-white font-semibold aria-disabled:cursor-not-allowed`}
+           bg-primary text-white font-semibold dark:bg-blue-600 aria-disabled:cursor-not-allowed`}
           aria-disabled={isSubmitting}
         >
           {isSubmitting ? "로그인 중..." : "로그인 하기"}
@@ -156,7 +160,7 @@ export default function LoginForm() {
       </div>
       <button
         type="button"
-        className="w-full rounded-lg  p-1 border  border-primary text-primary font-semibold  hover:bg-accent"
+        className="w-full rounded-lg  p-1 border  border-primary text-primary font-semibold  hover:bg-accent dark:border-blue-600 dark:text-blue-600"
         onClick={() => router.push("/signup")}
       >
         회원가입
@@ -164,7 +168,7 @@ export default function LoginForm() {
       <button
         onClick={() => window.history.back()}
         type="button"
-        className="group w-full flex  flex-row  items-center justify-center  rounded-lg  p-1  border  border-muted-foreground text-sm text-muted-foreground font-semibold  hover:bg-accent"
+        className="group w-full flex  flex-row  items-center justify-center  rounded-lg  p-1  border  border-muted-foreground text-sm text-muted-foreground font-semibold  hover:bg-accent dark:text-gray-200"
       >
         <ArrowLeft className="transition-all duration-200 group-hover:-translate-x-2" />
         <span>뒤로 가기</span>

@@ -2,6 +2,7 @@ import Header from "@/components/ui/Header";
 import SearchModal from "@/components/ui/SearchModal";
 import Sidebar from "@/components/ui/Sidebar";
 import SidebarMobile from "@/components/ui/SidebarMobile";
+import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -14,7 +15,13 @@ export default function MainLayout({
   return (
     <div className="max-w-full min-h-screen desktop-layout">
       <h1 className="sr-only">중단어 창고 메인페이지</h1>
-      <Suspense fallback={<div className="animate-pulse">로딩 중...</div>}>
+      <Suspense
+        fallback={
+          <div className="mx-auto">
+            <Loader className="animate-spin" />
+          </div>
+        }
+      >
         <aside className="sidebar border-r border-border min-h-screen bg-card">
           <Link href={"/"} aria-label="중단어 창고 홈 이동">
             <Image
@@ -27,11 +34,11 @@ export default function MainLayout({
               fetchPriority="high"
             />
             <Image
-              src="/logo2-dark.png"
+              src="/logo2Dark.png"
               alt=""
-              width={200}
-              height={200}
-              className="hidden dark:lg:block px-4 w-full"
+              width={100}
+              height={50}
+              className="hidden dark:lg:block px-4 w-full dark:mt-2"
               priority
               fetchPriority="high"
             />
