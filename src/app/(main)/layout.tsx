@@ -36,8 +36,8 @@ export default function MainLayout({
             <Image
               src="/logo2Dark.png"
               alt=""
-              width={100}
-              height={50}
+              width={200}
+              height={100}
               className="hidden dark:lg:block px-4 w-full dark:mt-2"
               priority
               fetchPriority="high"
