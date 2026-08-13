@@ -129,7 +129,7 @@ export default function MySentenceSection() {
         </p>
       ) : (
         <>
-          <ul className="w-full bg-white p-5 border border-gray-100 rounded-lg">
+          <ul className="w-full bg-card p-5 border border-gray-100 rounded-lg">
             {groupedItems.map((item) => (
               <MySentenceCard
                 key={item.word.id}

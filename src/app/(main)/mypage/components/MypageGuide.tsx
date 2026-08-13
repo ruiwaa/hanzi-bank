@@ -11,7 +11,7 @@ export default function MypageGuide() {
   return (
     <div className="flex flex-col gap-2">
       <h2 className="font-bold">메뉴</h2>
-      <ol className="bg-white rounded-xl border border-gray-200 flex flex-col">
+      <ol className="bg-card rounded-xl border border-gray-200 flex flex-col">
         {myPageMenus.map((menu) => {
           const Icon = menu.icon;
           return (
@@ -33,7 +33,7 @@ export default function MypageGuide() {
                   <span className="self-start font-bold text-lg">
                     {menu.label}
                   </span>
-                  <span className="text-gray-500 text-sm">
+                  <span className="text-gray-500 text-sm dark:text-white">
                     {menu.description}
                   </span>
                 </span>

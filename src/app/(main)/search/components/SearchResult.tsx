@@ -13,7 +13,7 @@ export default function SearchResult({ words }: Props) {
       {words.map((word) => (
         <li
           key={word.id}
-          className="flex flex-row gap-3 items-center w-full border border-olive-200 p-8 rounded-2xl bg-white hover:bg-blue-100/55 "
+          className="flex flex-row gap-3 items-center w-full border border-olive-200 p-8 rounded-2xl bg-card hover:bg-blue-100/55 "
         >
           <Link
             href={`/hsk-level-words/${word.hsk_level}/${word.id}`}

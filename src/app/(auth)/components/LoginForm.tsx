@@ -64,7 +64,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white w-full  max-w-md  flex flex-col items-center p-8 shadow-lg  gap-3  rounded-2xl "
+      className="bg-background w-full  max-w-md  flex flex-col items-center p-8 shadow-lg  gap-3  rounded-2xl "
     >
       <div className="rounded-full bg-hover w-15 h-15 p-4 flex justify-center items-center">
         <Lock size={30} color="var(--primary)" aria-hidden />

@@ -46,14 +46,14 @@ export default function MySentenceCard({ userId, word, sentences }: Props) {
   };
   return (
     <li className="flex flex-col gap-2 border-b border-b-gray-200 last:border-b-0 py-3">
-      <div className="flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-2 ">
         <Link
           className="hover:text-primary"
           href={`/hsk-level-words/${word.hsk_level}/${word.id}`}
         >
           <h2 className="text-2xl font-chinese font-bold">{word.word}</h2>
         </Link>
-        <span className="bg-blue-100 text-primary px-1.5 py-1 rounded-lg self-center text-sm text-center font-semibold">
+        <span className="bg-blue-100 text-primary px-1.5 py-1 rounded-lg self-center text-sm text-center font-semibold dark:bg-blue-500 dark:text-white">
           HSK {word.hsk_level}급{" "}
         </span>
       </div>
@@ -63,9 +63,9 @@ export default function MySentenceCard({ userId, word, sentences }: Props) {
         {sentences.map((sentence, index) => (
           <div
             key={sentence.id}
-            className="flex flex-col gap-1 w-full bg-gray-100 p-3 rounded-md"
+            className="flex flex-col gap-1 w-full bg-gray-100 dark:bg-card py-3 rounded-md p-2 dark:border dark:border-primary"
           >
-            <h3 className="bg-blue-300 w-fit px-2  py-1 rounded-lg text-primary font-semibold">
+            <h3 className="bg-blue-300 w-fit px-2  py-1 rounded-lg text-primary font-semibold dark:bg-blue-500/50 dark:text-white">
               예문 {index + 1}{" "}
             </h3>
 
@@ -74,12 +74,12 @@ export default function MySentenceCard({ userId, word, sentences }: Props) {
                 <input
                   value={editSentence}
                   onChange={(e) => setEditSentence(e.target.value)}
-                  className="border border-primary p-2 rounded-lg bg-white"
+                  className="border border-primary p-2 rounded-lg bg-card"
                 />
                 <textarea
                   value={editMeaning}
                   onChange={(e) => setEditMeaning(e.target.value)}
-                  className="border border-primary p-2 rounded-lg bg-white"
+                  className="border border-primary p-2 rounded-lg bg-card"
                 />
 
                 <div className="flex flex-row gap-2 justify-center ">

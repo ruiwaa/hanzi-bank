@@ -8,7 +8,7 @@ export default function SidebarMobile() {
   const isMypage = pathName.startsWith("/mypage");
 
   return (
-    <nav className="mobile-bottom-nav bg-white py-3 border-t border-border ">
+    <nav className="mobile-bottom-nav bg-card py-3 border-t border-border ">
       {isMypage ? <MypageMoblileSidebar /> : <MainMobileSidebar />}
     </nav>
   );

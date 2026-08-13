@@ -25,7 +25,7 @@ export default function HskLevelCardList({ levelWords }: Props) {
             value={levels.level}
             type="button"
             key={levels.level}
-            className={`rounded-xl bg-input px-3 py-2   whitespace-nowrap ${levels.hoverClass}  ${selectedLevel === levels.level ? "bg-primary text-white font-semibold" : ""}`}
+            className={`rounded-xl bg-input px-3 py-2 whitespace-nowrap ${levels.hoverClass}  ${selectedLevel === levels.level ? "bg-primary text-white font-semibold dark:bg-blue-600" : ""}`}
             onClick={handleLevelWords}
             aria-pressed={selectedLevel === levels.level}
           >
@@ -37,9 +37,9 @@ export default function HskLevelCardList({ levelWords }: Props) {
         {selectedWords.map((word) => (
           <div
             key={word.id}
-            className="flex flex-col md:flex-row items-center md:items-start bg-white border border-slate-300 rounded-xl gap-2 md:gap-4 p-3 md:p-6"
+            className="flex flex-col md:flex-row items-center md:items-start bg-card border border-slate-300 rounded-xl gap-2 md:gap-4 p-3 md:p-6"
           >
-            <span className="bg-blue-200 text-primary p-1 w-10 rounded-xl self-center text-center font-semibold">
+            <span className="bg-blue-200 text-primary dark:bg-blue-600 dark:text-white p-1 w-10 rounded-xl self-center text-center font-semibold">
               {word.hsk_level}급{" "}
             </span>
             <div className="flex flex-col flex-1 gap-2 py-2 md:justify-center group">

@@ -112,18 +112,36 @@ Light Theme 기본 테마 색상
 
 .dark {
   --background: #25292d;
-  --foreground: #ffffff;
+  --foreground: #e5e7eb;
+
   --card: #2f3439;
-  --card-foreground: #ffffff;
+  --card-foreground: #e5e7eb;
+
   --popover: #2f3439;
-  --popover-foreground: #ffffff;
+  --popover-foreground: #e5e7eb;
+
+  --primary: #60a5fa;
+  --primary-foreground: #ffffff;
+
+  --secondary: #374151;
+  --secondary-foreground: #e5e7eb;
+
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+
+  --accent: #1e3a5f;
+  --accent-foreground: #bfdbfe;
+
   --border: rgb(255 255 255 / 10%);
   --input: rgb(255 255 255 / 10%);
+  --ring: #60a5fa;
+
+  --hover: #374151;
+
   --sidebar: #2f3439;
-  --sidebar-foreground: #ffffff;
+  --sidebar-foreground: #e5e7eb;
   --sidebar-border: rgb(255 255 255 / 10%);
 }
-
 /* ====== Base Layer 프로젝트 전역 기본 스타일 ======= */
 @layer base {
   * {

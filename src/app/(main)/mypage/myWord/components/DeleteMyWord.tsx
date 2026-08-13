@@ -27,7 +27,7 @@ export default function DeleteMyWord({ handleDelete, isPending }: Props) {
               e.preventDefault();
             }
           }}
-          className={`${isPending ? "opacity-50 cursor-not-allowed" : ""} w-20 flex items-center justify-center gap-1 whitespace-nowrap border border-red-500 rounded-lg p-1 text-red-500 text-sm font-bold`}
+          className={`${isPending ? "opacity-50 cursor-not-allowed" : ""} w-20 flex items-center justify-center gap-1 whitespace-nowrap border border-red-500 rounded-lg p-1 text-red-500 text-sm font-bold dark:bg-red-500 dark:text-white`}
         >
           <Trash size={20} aria-hidden="true" />
           {isPending ? "삭제 중..." : "삭제"}
