@@ -110,7 +110,7 @@ export default function MyWordSection() {
         </p>
       ) : (
         <div>
-          <ul className="mt-4 space-y-4 bg-white p-4 rounded-2xl border border-gray-200">
+          <ul className="mt-4 space-y-4 bg-card p-4 rounded-2xl border border-gray-200">
             {data?.items.map((item) => (
               <MyWordCard
                 key={item.hsk_words.id}

@@ -62,6 +62,8 @@ export default function SaveWordBtn({
         font-semibold
         whitespace-nowrap
         transition-colors
+        dark:border-blue-600
+        dark:text-blue-600
         hover:bg-pink-300
         hover:text-white
         hover:border-none
@@ -70,6 +72,7 @@ export default function SaveWordBtn({
         focus-visible:ring-primary
         focus-visible:ring-offset-2
         ${className}
+  
       `}
     >
       <span className="whitespace-normal break-keep text-[16px] md:text-lg">

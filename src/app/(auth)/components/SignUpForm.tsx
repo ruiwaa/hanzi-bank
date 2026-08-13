@@ -63,7 +63,7 @@ export default function SignUpForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white w-full  max-w-md h-150 flex  flex-col p-8 gap-3 rounded-2xl shadow-lg"
+      className="bg-background w-full  max-w-md h-150 flex  flex-col p-8 gap-3 rounded-2xl shadow-lg"
     >
       <h2 className="font-bold text-xl">회원가입</h2>
       <span className="text-sm  text-gray-500">

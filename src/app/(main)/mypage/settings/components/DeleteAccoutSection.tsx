@@ -15,7 +15,7 @@ export default function DeleteAccountSection() {
 
   return (
     <div className="flex flex-row gap-2">
-      <p className="text-gray-500 text-[16px] flex-1">
+      <p className="text-gray-500 text-[16px] flex-1 dark:text-white">
         회원 탈퇴 시 데이터가 삭제되며, 해당 계정은 복구할 수 없습니다.
       </p>
       <button

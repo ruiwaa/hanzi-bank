@@ -45,7 +45,7 @@ export default function SoundButton({
       type="button"
       onClick={handleSpeak}
       aria-label={ariaLabel}
-      className="flex items-center justify-center rounded-full bg-blue-100 text-primary transition-colors hover:bg-green-200 hover:text-green-500"
+      className="flex items-center justify-center rounded-full bg-blue-100 text-primary transition-colors hover:bg-green-200 hover:text-green-500 dark:bg-orange-400 dark:text-white"
       style={{
         width,
         height,

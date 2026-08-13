@@ -25,7 +25,9 @@ export default function SearchForm({
   const searchWord = useWatch({ control, name: "keyWord" });
   return (
     <div className="flex flex-col gap-1">
-      <h3 className="text-muted-foreground font-semibold">텍스트 검색</h3>
+      <h3 className="text-muted-foreground font-semibold dark:text-blue-300">
+        텍스트 검색
+      </h3>
       <label htmlFor="textSearch" className="sr-only">
         텍스트 검색
       </label>
@@ -35,7 +37,7 @@ export default function SearchForm({
             id="textSearch"
             placeholder="찾으시는 단어를 검색해주세요."
             aria-describedby="textSearchHelp"
-            className="bg-input p-2 rounded-xl w-full font-chinese"
+            className="bg-input p-2 rounded-xl w-full font-chinese dark:text-white"
             {...register("keyWord")}
           />
           {searchWord?.trim() && (

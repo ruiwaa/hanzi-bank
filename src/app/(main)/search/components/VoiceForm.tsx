@@ -34,7 +34,9 @@ export default function VoiceForm({
 
   return (
     <>
-      <h3 className="text-muted-foreground font-semibold pb-3">음성 검색</h3>
+      <h3 className="text-muted-foreground font-semibold pb-3 dark:text-blue-300">
+        음성 검색
+      </h3>
       <div className="flex flex-col gap-3 items-center">
         <div className="flex flex-row gap-2">
           <label htmlFor="korean">한국어</label>
@@ -54,10 +56,10 @@ export default function VoiceForm({
             onChange={() => setLanguage("zh-CN")}
           />
         </div>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground dark:text-white">
           선택한 언어로 말씀해 주세요.
         </p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground dark:text-white">
           해당 언어 외의 언어로 검색할 시, 음성 인식 정확도가 떨어질 수
           있습니다.
         </p>

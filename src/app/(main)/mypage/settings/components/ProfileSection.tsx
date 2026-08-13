@@ -167,7 +167,7 @@ export default function ProfileSection({ profile }: Props) {
                     setNewEmail(profile?.email ?? "");
                     setIsChangingEmail(true);
                   }}
-                  className="bg-blue-200 rounded-lg px-2 py-1 font-semibold"
+                  className="bg-blue-200 rounded-lg px-2 py-1 font-semibold dark:text-black"
                 >
                   이메일 변경
                 </button>
@@ -209,7 +209,7 @@ export default function ProfileSection({ profile }: Props) {
           <button
             type="button"
             onClick={handleCancel}
-            className="w-full border border-red-500 text-red-500 p-1 rounded-lg font-bold text-[15px]"
+            className="w-full border border-red-500 text-red-500 p-1 rounded-lg font-bold text-[15px] dark:text-white dark:bg-red-500"
           >
             취소
           </button>
