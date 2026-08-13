@@ -53,7 +53,7 @@ export default function MySentenceCard({ userId, word, sentences }: Props) {
         >
           <h2 className="text-2xl font-chinese font-bold">{word.word}</h2>
         </Link>
-        <span className="bg-blue-100 text-primary px-1.5 py-1 rounded-lg self-center text-sm text-center font-semibold">
+        <span className="bg-blue-100 text-primary px-1.5 py-1 rounded-lg self-center text-sm text-center font-semibold dark:bg-blue-500 dark:text-white">
           HSK {word.hsk_level}급{" "}
         </span>
       </div>
@@ -63,9 +63,9 @@ export default function MySentenceCard({ userId, word, sentences }: Props) {
         {sentences.map((sentence, index) => (
           <div
             key={sentence.id}
-            className="flex flex-col gap-1 w-full bg-gray-100 dark:bg-card p-3 rounded-md"
+            className="flex flex-col gap-1 w-full bg-gray-100 dark:bg-card py-3 rounded-md p-2 dark:border dark:border-primary"
           >
-            <h3 className="bg-blue-300 w-fit px-2  py-1 rounded-lg text-primary font-semibold dark:text-gray-700">
+            <h3 className="bg-blue-300 w-fit px-2  py-1 rounded-lg text-primary font-semibold dark:bg-blue-500/50 dark:text-white">
               예문 {index + 1}{" "}
             </h3>
 

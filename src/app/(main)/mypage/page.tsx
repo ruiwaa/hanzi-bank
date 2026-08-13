@@ -18,7 +18,9 @@ export default function Mypage() {
   return (
     <div className="max-w-full min-h-screen desktop-layout flex flex-col gap-3 px-5">
       <h1 className="text-2xl font-bold whitespace-nowrap mt-2">마이페이지</h1>
-      <p className="text-gray-500 font-semibold">우리 같이 공부해요~</p>
+      <p className="text-gray-500 font-semibold dark:text-white">
+        우리 같이 공부해요~
+      </p>
       <div className="bg-background p-4 rounded-xl border border-gray-200 md:h-60 flex flex-col">
         <div className="flex flex-row gap-2 pb-3">
           <Image
@@ -30,7 +32,7 @@ export default function Mypage() {
           />
           <div className="flex flex-col gap-1">
             <span className="font-bold text-lg">{profile?.nickname} 👋</span>
-            <span className="text-sm text-gray-400 font-semibold">
+            <span className="text-sm text-gray-400 font-semibold dark:text-blue-300 dark:font-bold">
               HSK{profile?.hsk_level}급
             </span>
           </div>
@@ -57,7 +59,7 @@ export default function Mypage() {
             <div className="bg-green-500 text-white w-12 h-12 p-2 rounded-xl">
               <Notebook aria-hidden="true" size={30} />
             </div>
-            <div className="flex flex-col flex-1 ">
+            <div className="flex flex-col flex-1 dark:text-gray-500">
               <span className="text-sm">작성 예문</span>
               <span className="font-extrabold text-md md:text-2xl">
                 {sentenceLoading ? "-" : `${sentenceCount ?? 0} 개`}

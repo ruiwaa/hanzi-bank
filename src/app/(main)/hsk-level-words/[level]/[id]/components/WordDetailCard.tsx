@@ -33,7 +33,7 @@ export default function WordDetailCard({ word }: Props) {
             {word.pos.slice(0, 3).map((p) => (
               <span
                 key={p}
-                className="text-muted-foreground rounded-full bg-gray-200 px-2 py-1 text-sm md:text-[15px]"
+                className="text-muted-foreground rounded-full bg-gray-200 px-2 py-1 font-semibold text-sm md:text-[15px] dark:bg-white dark:text-black"
               >
                 {POS_KO_MAP[p]}
               </span>
