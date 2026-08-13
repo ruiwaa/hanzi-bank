@@ -18,7 +18,7 @@ export default function MypageSidebar() {
               key={menu.label}
               className={`p-3 flex ${
                 isActive
-                  ? "rounded-2xl bg-[#EFF6FF] text-primary"
+                  ? "rounded-2xl bg-[#EFF6FF] text-primary dark:bg-blue-800 dark:text-white"
                   : "hover:rounded-2xl hover:bg-[#EFF6FF] hover:text-primary"
               }`}
             >

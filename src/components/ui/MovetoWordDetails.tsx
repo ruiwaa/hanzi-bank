@@ -32,6 +32,7 @@ export default function MovetoWordDetails({ wordId, level }: Props) {
   hover:text-blue-500
   hover:border
   hover: border-pink-300
+  dark:bg-blue-600
   focus-visible:outline-none
   focus-visible:ring-2
   focus-visible:ring-primary
