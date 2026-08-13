@@ -11,7 +11,7 @@ export function useSaveWord() {
 
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["myWords", variables.userId],
+        queryKey: ["myWordCount", variables.userId],
       });
       queryClient.invalidateQueries({
         queryKey: ["savedWord", variables.userId, variables.wordId],
