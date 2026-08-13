@@ -9,6 +9,7 @@ import { LoginFormValues, loginSchema } from "../schemas/loginSchemas";
 import { login } from "../../api/login";
 import ResetButton from "./ResetButton";
 import { toast } from "sonner";
+import { fetchUser } from "@/app/api/fetchUser";
 
 export default function LoginForm() {
   const {
@@ -40,10 +41,9 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       const result = await login(data.email.trim(), data.password);
+      const user = await fetchUser(result.user.id);
       const nickName =
-        result.user.user_metadata.nickname ??
-        result.user.email?.split("@")[0] ??
-        "회원";
+        user?.nickname ?? result.user.email?.split("@")[0] ?? "회원";
       toast.success(`${nickName}님, 어서오세요! 🙌`);
 
       router.replace("/");
