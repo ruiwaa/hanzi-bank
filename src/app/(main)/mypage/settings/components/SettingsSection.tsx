@@ -4,6 +4,7 @@ import { useSession } from "@/hooks/useSession";
 import ProfileSection from "./ProfileSection";
 import HskLevelSection from "./HskLevelSection";
 import DeleteAccountSection from "./DeleteAccoutSection";
+import ResetPasswordSection from "../../resetPassword/components/ResetPasswordSection";
 
 export default function SettingsSection() {
   const { user } = useSession();
@@ -18,6 +19,10 @@ export default function SettingsSection() {
       <div className="w-full bg-card rounded-lg p-5 border border-gray-100 flex flex-col gap-3 ">
         <h2 className="font-bold text-xl self-start">HSK 급수 변경</h2>
         <HskLevelSection level={profile} />
+      </div>
+      <div className="w-full bg-card rounded-lg p-5 border border-gray-100 flex flex-col gap-3">
+        <h2 className="font-extrabold text-xl self-start">비밀번호 재설정</h2>
+        <ResetPasswordSection email={user?.email} />
       </div>
       <div className="w-full bg-card rounded-lg p-5 border border-gray-100 flex flex-col gap-3">
         <h2 className="font-extrabold text-xl self-start text-red-500">
