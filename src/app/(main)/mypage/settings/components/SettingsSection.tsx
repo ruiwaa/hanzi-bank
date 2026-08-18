@@ -4,7 +4,7 @@ import { useSession } from "@/hooks/useSession";
 import ProfileSection from "./ProfileSection";
 import HskLevelSection from "./HskLevelSection";
 import DeleteAccountSection from "./DeleteAccoutSection";
-import ResetPasswordSection from "../../resetPassword/components/ResetPasswordSection";
+import ResetPasswordSection from "../../../../(auth)/resetPassword/components/ResetPasswordSection";
 
 export default function SettingsSection() {
   const { user } = useSession();

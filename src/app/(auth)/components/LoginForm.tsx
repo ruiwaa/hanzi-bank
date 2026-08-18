@@ -10,6 +10,7 @@ import { login } from "../../api/login";
 import ResetButton from "./ResetButton";
 import { toast } from "sonner";
 import { fetchUser } from "@/app/api/fetchUser";
+import ForgotPasswordSection from "./ForgotPasswordSection";
 
 export default function LoginForm() {
   const {
@@ -157,6 +158,7 @@ export default function LoginForm() {
         >
           {isSubmitting ? "로그인 중..." : "로그인 하기"}
         </button>
+        <ForgotPasswordSection />
       </div>
       <div className="w-full flex items-center ">
         <div className="flex-1 border-t border-slate-200" />
