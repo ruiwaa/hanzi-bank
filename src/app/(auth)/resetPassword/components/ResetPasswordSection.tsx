@@ -22,11 +22,12 @@ export default function ResetPasswordSection({ email }: Props) {
         <div>
           <p>비밀번호 재설정 이메일을 보냈습니다.</p>
           <p>이메일을 확인하여 비밀번호를 재설정해주세요.</p>
-          <div className="flex flex-row gap-3 justify-center border-4 border-dotted p-2s">
+          <div className="flex flex-row gap-3 justify-center border-4 border-dotted p-2 mt-2">
             <MailWarning />
             <p>
               {" "}
-              재설정 링크는 <strong>1시간</strong>동안 유효합니다.
+              재설정 링크는 <strong className="text-red-500">1시간</strong>동안
+              유효합니다.
             </p>
           </div>
         </div>

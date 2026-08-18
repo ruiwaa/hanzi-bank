@@ -55,7 +55,7 @@ export default function ResetPasswordForm() {
   ) : (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-card w-full h-100 flex flex-col p-5 rounded-2xl gap-3 border-2 border-accent"
+      className="bg-card w-1/2 h-100 flex flex-col p-5 rounded-2xl gap-3 border-2 border-accent"
     >
       <h2 className="text-xl font-bold text-center mt-5">비밀번호 재설정</h2>
       <div className="flex-1 flex flex-col justify-center gap-3">
@@ -70,6 +70,7 @@ export default function ResetPasswordForm() {
               className="w-full h-8 bg-card-foreground/40 rounded-lg p-2"
               placeholder="비밀번호를 입력하세요"
               aria-describedby="passwordHelp"
+              autoComplete="new-password"
               {...register("password")}
             />
             <button
@@ -102,6 +103,7 @@ export default function ResetPasswordForm() {
               className="w-full h-8 bg-card-foreground/40 rounded-lg p-2"
               placeholder="재설정할 비밀번호를 다시 한번 더 입력하세요"
               aria-describedby="passwordConfirmHelp"
+              autoComplete="new-password"
               {...register("passwordConfirm")}
             />
             <button
