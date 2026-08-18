@@ -27,7 +27,7 @@ export default function ForgotPasswordAuthForm() {
     }
   };
   return (
-    <div className="max-w-xl bg-card h-120 w-full p-15">
+    <div className="max-w-2xl bg-card h-120 w-full p-15">
       {isEmailSent ? (
         <div className="flex flex-col justify-center items-center">
           <h2>이메일을 확인해주세요.</h2>
