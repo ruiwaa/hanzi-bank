@@ -90,7 +90,12 @@ export default function SignUpForm() {
           <span id="userName" className="sr-only">
             이메일을 입력하세요.
           </span>
-          {email && <ResetButton onClick={() => setValue("email", "")} />}
+          {email && (
+            <ResetButton
+              onClick={() => setValue("email", "")}
+              text="작성 중인 이메일 초기화 하기"
+            />
+          )}
         </div>
         {errors.email && (
           <p className="text-sm text-red-600">{errors.email.message}</p>

@@ -96,7 +96,12 @@ export default function LoginForm() {
               "
               {...register("email")}
             />
-            {email && <ResetButton onClick={() => setValue("email", "")} />}
+            {email && (
+              <ResetButton
+                onClick={() => setValue("email", "")}
+                text="작성 중인 이메일 초기화 하기"
+              />
+            )}
           </div>
           {errors.email && (
             <p className="text-sm text-red-600">{errors.email.message}</p>
