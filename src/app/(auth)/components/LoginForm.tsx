@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, EyeIcon, EyeOff, Lock, LockIcon, Mail } from "lucide-react";
+import { EyeIcon, EyeOff, Lock, LockIcon, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
