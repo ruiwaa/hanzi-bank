@@ -200,14 +200,6 @@ export default function LoginForm() {
         >
           회원가입
         </button>
-        <button
-          onClick={() => window.history.back()}
-          type="button"
-          className="group w-full flex  flex-row  items-center justify-center  rounded-lg  p-1  border  border-muted-foreground text-sm text-muted-foreground font-semibold  hover:bg-accent dark:text-gray-200"
-        >
-          <ArrowLeft className="transition-all duration-200 group-hover:-translate-x-2" />
-          <span>뒤로 가기</span>
-        </button>
         <UserGuide />
       </form>
     </div>
