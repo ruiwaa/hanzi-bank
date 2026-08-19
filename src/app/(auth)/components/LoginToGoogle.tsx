@@ -9,7 +9,7 @@ export default function LogintoGoogle({ onCLick }: Props) {
     <button
       type="button"
       onClick={onCLick}
-      className="w-full rounded-lg flex flex-row gap-2 items-center justify-center border border-primary hover:bg-accent dark:border-blue-600 dark:text-blue-600"
+      className="w-full p-0.5 rounded-lg flex flex-row gap-2 items-center justify-center border border-primary hover:bg-accent dark:border-blue-600 dark:text-blue-600"
     >
       <Image
         src={"/images/lightGoogle.svg"}
