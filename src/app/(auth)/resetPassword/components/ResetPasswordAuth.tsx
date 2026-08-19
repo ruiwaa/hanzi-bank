@@ -12,10 +12,7 @@ export default function ResetPasswordAuth() {
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log("AUTH EVENT:", event);
-      console.log("SESSION:", session);
-
+    } = supabase.auth.onAuthStateChange((event) => {
       if (event === "PASSWORD_RECOVERY") {
         setIsRecovery(true);
       }
