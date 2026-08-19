@@ -15,6 +15,7 @@ import { loginWithGoogle } from "@/app/api/loginWithGoogle";
 import LogintoGoogle from "./LoginToGoogle";
 import Link from "next/link";
 import Image from "next/image";
+import UserGuide from "@/components/ui/UserGuilde";
 
 export default function LoginForm() {
   const {
@@ -88,7 +89,10 @@ export default function LoginForm() {
             className="text-primary dark:text-white"
           />
         </div>
-        <h2 className="font-bold  text-lg pt-2">로그인</h2>
+        <h2 className="font-sans font-semibold text-primary">
+          PORTFOLIO_PROJECT
+        </h2>
+        <h2 className="font-bold text-lg">로그인</h2>
         <div className="flex flex-col  gap-3  w-full items-center">
           <span className="text-sm text-gray-500 dark:text-gray-200">
             중단어 창고에 오신 것을 환영합니다.
@@ -204,6 +208,7 @@ export default function LoginForm() {
           <ArrowLeft className="transition-all duration-200 group-hover:-translate-x-2" />
           <span>뒤로 가기</span>
         </button>
+        <UserGuide />
       </form>
     </div>
   );
