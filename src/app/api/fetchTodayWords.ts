@@ -7,7 +7,6 @@ export interface TodayWords extends HskWord {
 }
 export async function fetchTodayWords(): Promise<TodayWords[]> {
   "use cache";
-  console.log("fetchTodayWords 실행");
   cacheLife("days");
 
   const { data, error } = await supabase

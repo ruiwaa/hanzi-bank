@@ -66,7 +66,7 @@ export default function SignUpForm() {
       className="bg-background w-full  max-w-md h-150 flex  flex-col p-8 gap-3 rounded-2xl shadow-lg"
     >
       <h2 className="font-bold text-xl">회원가입</h2>
-      <span className="text-sm  text-gray-500">
+      <span className="text-sm  text-gray-500 dark:text-gray-200">
         중단어 창고에 오신 것을 환영합니다.
       </span>
 
@@ -90,7 +90,12 @@ export default function SignUpForm() {
           <span id="userName" className="sr-only">
             이메일을 입력하세요.
           </span>
-          {email && <ResetButton onClick={() => setValue("email", "")} />}
+          {email && (
+            <ResetButton
+              onClick={() => setValue("email", "")}
+              text="작성 중인 이메일 초기화 하기"
+            />
+          )}
         </div>
         {errors.email && (
           <p className="text-sm text-red-600">{errors.email.message}</p>
@@ -218,7 +223,7 @@ export default function SignUpForm() {
       </div>
       <button
         type="submit"
-        className="w-full  bg-primary  text-white  py-2 hover:bg-blue-400 hover:text-gray-300 font-semibold  rounded-lg"
+        className="w-full bg-primary text-white  py-2 hover:bg-blue-400 hover:text-gray-300 font-semibold  rounded-lg dark:bg-blue-600"
       >
         가입 완료하기
       </button>
@@ -230,9 +235,12 @@ export default function SignUpForm() {
         <ArrowLeft className="transition-all duration-200 group-hover:-translate-x-2" />
         <span>뒤로 가기</span>
       </button>
-      <span className="text-sm  text-gray-500 self-center">
+      <span className="text-sm  text-gray-500 self-center dark:text-gray-200">
         이미 계정이 있으신가요?{" "}
-        <Link href={"/login"} className="text-primary">
+        <Link
+          href={"/login"}
+          className="text-primary dark:text-blue-600 dark:font-semibold"
+        >
           로그인하러가기
         </Link>
       </span>

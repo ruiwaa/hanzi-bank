@@ -18,9 +18,9 @@ export default function Header() {
           src="/logo2-dark.png"
           alt="중단어 창고 로고"
           width={150}
-          height={100}
+          height={56}
           priority
-          className="hidden dark:block"
+          className="hidden dark:block h-auto"
         />
       </Link>
       <DarkMode />
