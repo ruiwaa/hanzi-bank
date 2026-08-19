@@ -13,7 +13,7 @@ export default async function DetailHskLevelList({ words }: Props) {
       {words.words.map((word) => (
         <li
           key={word.id}
-          className=" hover:bg-taupe-100 border-b py-3 h-25 text-[12px]  md:text-[16px] border-gray-300 grid grid-cols-[1fr_1fr_2fr_1fr] md:grid-cols-[1fr_1fr_2fr_1fr_1fr_1fr] items-center justify-items-center gap-2 "
+          className=" hover:bg-taupe-100 dark:hover:bg-taupe-500 border-b py-3 h-25 text-[12px]  md:text-[16px] border-gray-300 grid grid-cols-[1fr_1fr_2fr_1fr] md:grid-cols-[1fr_1fr_2fr_1fr_1fr_1fr] items-center justify-items-center gap-2 "
         >
           <Link
             href={`/hsk-level-words/${word.hsk_level}/${word.id}`}

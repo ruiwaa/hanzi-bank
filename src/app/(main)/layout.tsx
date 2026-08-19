@@ -17,7 +17,7 @@ export default function MainLayout({
       <h1 className="sr-only">중단어 창고 메인페이지</h1>
       <Suspense
         fallback={
-          <div className="mx-auto">
+          <div className="fixed inset-0 flex items-center justify-center">
             <Loader className="animate-spin" />
           </div>
         }
