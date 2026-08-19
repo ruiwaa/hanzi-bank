@@ -27,7 +27,7 @@ export default function ForgotPasswordAuthForm() {
     }
   };
   return (
-    <div className="max-w-2xl bg-card h-120 w-full p-15 rounded-xl">
+    <div className="max-w-2xl bg-background h-120 w-full p-15 rounded-2xl shadow-md">
       {isEmailSent ? (
         <div className="flex flex-col justify-center items-center">
           <h2>이메일을 확인해주세요.</h2>
@@ -53,7 +53,7 @@ export default function ForgotPasswordAuthForm() {
           )}
           <button
             type="submit"
-            className="bg-primary w-fit px-4 py-1 rounded-lg self-end font-semibold mt-3"
+            className="bg-primary w-fit px-4 py-1 rounded-lg self-end font-medium mt-3 text-white"
           >
             제출
           </button>
