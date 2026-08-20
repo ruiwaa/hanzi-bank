@@ -23,5 +23,14 @@ export async function updateUserProfile({
 
   if (error) throw error;
 
+  const { error: nicknameError } = await supabase
+    .from("users_nickname")
+    .update({
+      user_nickname: nickname,
+    })
+    .eq("id", id);
+
+  if (nicknameError) throw nicknameError;
+
   return data;
 }
