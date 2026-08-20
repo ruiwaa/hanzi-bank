@@ -16,6 +16,7 @@ export function useUpdateUserProfile() {
       nickname: string;
       profileImage: File | null;
     }) => {
+      // 사용자가 업로드한 이미지 url 변수
       const imageUrl = profileImage
         ? await uploadProfileImage(id, profileImage)
         : undefined;

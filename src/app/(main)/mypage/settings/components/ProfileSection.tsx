@@ -1,5 +1,6 @@
 "use client";
 
+import { checkNickname } from "@/app/api/checkNickname";
 import { useUpdateEmail } from "@/hooks/useUpdateEmail";
 import { useUpdateUserProfile } from "@/hooks/useUpdateUserProfile";
 import { UserProfile } from "@/types/DBTypes";
@@ -19,8 +20,39 @@ export default function ProfileSection({ profile }: Props) {
   const [newEmail, setNewEmail] = useState("");
   const [isChangingEmail, setIsChangingEmail] = useState(false);
   const [profileImage, setProfileImage] = useState<File | null>(null);
+  const [isNicknameChecked, setIsNicknameChecked] = useState(false);
+  const [nicknameMessage, setNicknameMessage] = useState("");
+
   const { mutate: updateProfile, isPending } = useUpdateUserProfile();
   const { mutate: updateEmail } = useUpdateEmail();
+
+  // 닉네임 변경 여부 확인
+  const isNicknameChanged = editingProfile.nickname !== profile?.nickname;
+  const handleNicknameCheck = async () => {
+    if (!profile) return;
+
+    try {
+      const isDuplicate = await checkNickname(
+        editingProfile.nickname.trim(),
+        profile.id,
+      );
+
+      if (isDuplicate) {
+        setNicknameMessage("이미 사용 중인 닉네임입니다.");
+        setIsNicknameChecked(false);
+        return;
+      }
+
+      setNicknameMessage("사용 가능한 닉네임입니다.");
+      setIsNicknameChecked(true);
+    } catch (error) {
+      console.error(error);
+      setNicknameMessage("닉네임 중복 검사에 실패했습니다.");
+      setIsNicknameChecked(false);
+    }
+  };
+
+  const canSave = !isNicknameChanged || isNicknameChecked;
 
   const handleEdit = () => {
     setEditingProfile({
@@ -69,6 +101,7 @@ export default function ProfileSection({ profile }: Props) {
 
   const handleSave = () => {
     if (!profile) return;
+    if (!canSave) return;
     updateProfile(
       {
         id: profile.id,
@@ -88,7 +121,7 @@ export default function ProfileSection({ profile }: Props) {
     <>
       {isEditing ? (
         <>
-          <label htmlFor="profileImage" className="cursor-pointer">
+          <label htmlFor="profileImage" className="cursor-pointer self-center">
             <Image
               src={
                 profileImage
@@ -98,7 +131,7 @@ export default function ProfileSection({ profile }: Props) {
               alt="프로필 사진"
               width={100}
               height={100}
-              className="rounded-full object-cover self-center"
+              className="rounded-full object-cover"
             />
           </label>
 
@@ -117,21 +150,43 @@ export default function ProfileSection({ profile }: Props) {
           />
 
           <div className="flex flex-col flex-1 gap-2">
-            <label htmlFor="userNickname" className="font-bold text-[16px]">
-              닉네임
-            </label>
-            <input
-              type="text"
-              id="userNickname"
-              value={editingProfile.nickname}
-              onChange={(e) =>
-                setEditingProfile((prev) => ({
-                  ...prev,
-                  nickname: e.target.value,
-                }))
-              }
-              className="border border-gray-200 rounded-md p-1"
-            />
+            <div className="flex flex-row gap-2">
+              <label htmlFor="userNickname" className="font-bold text-[16px]">
+                닉네임
+              </label>
+              <input
+                type="text"
+                id="userNickname"
+                value={editingProfile.nickname}
+                onChange={(e) => {
+                  setEditingProfile((prev) => ({
+                    ...prev,
+                    nickname: e.target.value,
+                  }));
+                  setIsNicknameChecked(false);
+                  setNicknameMessage("");
+                }}
+                className="flex-1 border border-gray-200 rounded-md p-1"
+              />
+              {isNicknameChanged && (
+                <button
+                  onClick={handleNicknameCheck}
+                  className="bg-blue-200 rounded-lg px-2 font-medium dark:text-black"
+                >
+                  닉네임 중복 검사
+                </button>
+              )}
+            </div>
+            {isNicknameChanged && nicknameMessage && (
+              <p
+                className={`${
+                  isNicknameChecked ? "text-green-500" : "text-red-500"
+                } text-end
+                  `}
+              >
+                {nicknameMessage}
+              </p>
+            )}
             <label htmlFor="userEmail" className="font-bold text-[16px]">
               이메일
             </label>
@@ -148,7 +203,7 @@ export default function ProfileSection({ profile }: Props) {
                 <button
                   type="button"
                   onClick={handleEmailUpdate}
-                  className="bg-blue-200 rounded-lg px-2 py-1 font-semibold"
+                  className="bg-blue-200 rounded-lg px-2 py-1 font-medium dark:text-black"
                 >
                   변경하기
                 </button>
@@ -167,7 +222,7 @@ export default function ProfileSection({ profile }: Props) {
                     setNewEmail(profile?.email ?? "");
                     setIsChangingEmail(true);
                   }}
-                  className="bg-blue-200 rounded-lg px-2 py-1 font-semibold dark:text-black"
+                  className="bg-blue-200 rounded-lg px-2 py-1 font-medium dark:text-black"
                 >
                   이메일 변경
                 </button>
@@ -182,7 +237,7 @@ export default function ProfileSection({ profile }: Props) {
             alt="프로필 사진"
             width={100}
             height={100}
-            className="rounded-full self-center"
+            className="rounded-full object-cover self-center"
           />
           <div className="flex flex-col flex-1 cursor-not-allowed">
             <span className="font-bold text-[16px]">닉네임</span>
@@ -202,7 +257,8 @@ export default function ProfileSection({ profile }: Props) {
           <button
             type="button"
             onClick={handleSave}
-            className="w-full bg-primary text-white px-2 py-1 rounded-lg font-bold text-[15px]"
+            aria-disabled={!canSave}
+            className="w-full bg-primary text-white px-2 py-1 rounded-lg font-bold text-[15px] aria-disabled:bg-gray-400 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
           >
             {isPending ? "저장 중..." : "저장하기"}
           </button>
