@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:where(.dark, .dark *));
+
 /* ======================================== 
  Theme Tokens CSS Variables ↔ Tailwind Utility 연결 Tailwind v4 디자인 토큰 
  ======================================== */
@@ -24,11 +25,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-hover: var(--hover);
-
-  /* Sidebar */
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-border: var(--sidebar-border);
 
   /* HSK */
   --color-hsk-1: var(--hsk-1);
@@ -79,11 +75,6 @@ Light Theme 기본 테마 색상
   --input: #e5e7eb;
   --ring: #2563eb;
   --hover: #dbeafe;
-
-  /* Sidebar */
-  --sidebar: #ffffff;
-  --sidebar-foreground: #111827;
-  --sidebar-border: #e5e7eb;
 
   /* HSK Colors */
   /* HSK Colors */
