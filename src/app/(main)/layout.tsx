@@ -15,50 +15,47 @@ export default function MainLayout({
   return (
     <div className="max-w-full min-h-screen desktop-layout">
       <h1 className="sr-only">중단어 창고 메인페이지</h1>
-
-      <aside className="sidebar border-r border-border min-h-screen bg-card">
-        <Link href={"/"} aria-label="중단어 창고 홈 이동">
-          <Image
-            src="/logo2.png"
-            alt=""
-            width={200}
-            height={200}
-            className="hidden lg:block px-4 w-full dark:hidden"
-            fetchPriority="high"
-            preload
-          />
-          <Image
-            src="/logo2Dark.png"
-            alt=""
-            width={200}
-            height={100}
-            className="hidden dark:lg:block px-4 w-full dark:mt-2"
-            fetchPriority="high"
-            preload
-          />
-        </Link>
-        <Suspense
-          fallback={
-            <div className="fixed inset-0 flex items-center justify-center">
-              <Loader className="animate-spin" />
-            </div>
-          }
-        >
+      <Suspense
+        fallback={
+          <div className="fixed inset-0 flex items-center justify-center">
+            <Loader className="animate-spin" />
+          </div>
+        }
+      >
+        <aside className="sidebar border-r border-border min-h-screen bg-card">
+          <Link href={"/"} aria-label="중단어 창고 홈 이동">
+            <Image
+              src="/logo2.png"
+              alt=""
+              width={200}
+              height={200}
+              className="hidden lg:block px-4 w-full dark:hidden"
+              priority
+              fetchPriority="high"
+            />
+            <Image
+              src="/logo2Dark.png"
+              alt=""
+              width={200}
+              height={100}
+              className="hidden dark:lg:block px-4 w-full dark:mt-2"
+              priority
+              fetchPriority="high"
+            />
+          </Link>
           <Sidebar />
-        </Suspense>
-      </aside>
-      <SearchModal />
-      <div className="flex flex-col min-w-0">
-        <div className="bg-card border-b border-border p-2">
-          <Header />
-        </div>
-        <main id="main-content" className="flex-1  p-3 mb-20">
-          {children}
-        </main>
-        <Suspense fallback={null}>
+        </aside>
+        <SearchModal />
+        <div className="flex flex-col min-w-0">
+          <div className="bg-card border-b border-border p-2">
+            <Header />
+          </div>
+          <main id="main-content" className="flex-1  p-3 mb-20">
+            {children}
+          </main>
           <SidebarMobile />
-        </Suspense>
-      </div>
+        </div>
+      </Suspense>
     </div>
   );
 }
