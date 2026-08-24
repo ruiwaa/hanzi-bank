@@ -70,7 +70,8 @@ export default function SignUpForm() {
           alt="홈으로 이동"
           width={250}
           height={200}
-          priority
+          fetchPriority="high"
+          preload
         />
       </Link>
       <form
