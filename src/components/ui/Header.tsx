@@ -11,7 +11,7 @@ export default function Header() {
           alt="중단어 창고 로고"
           width={150}
           height={100}
-          priority
+          fetchPriority="high"
           className="dark:hidden"
         />
         <Image
@@ -19,7 +19,7 @@ export default function Header() {
           alt="중단어 창고 로고"
           width={150}
           height={50}
-          priority
+          fetchPriority="high"
           className="hidden dark:block "
         />
       </Link>
