@@ -63,7 +63,7 @@ export default function MySentenceCard({ userId, word, sentences }: Props) {
         {sentences.map((sentence, index) => (
           <div
             key={sentence.id}
-            className="flex flex-col gap-1 w-full bg-gray-100 dark:bg-card py-3 rounded-md p-2 dark:border dark:border-primary"
+            className="flex flex-col gap-1 w-full bg-gray-100 dark:bg-card p-3 rounded-md dark:border dark:border-primary"
           >
             <h3 className="bg-blue-300 w-fit px-2  py-1 rounded-lg text-primary font-semibold dark:bg-blue-500/50 dark:text-white">
               예문 {index + 1}{" "}
