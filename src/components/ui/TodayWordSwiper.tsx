@@ -10,6 +10,7 @@ import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SaveWordBtn from "./SaveWordBtn";
 import MovetoWordDetails from "./MovetoWordDetails";
+import { chineseFont } from "@/lib/fonts";
 
 interface Props {
   words: TodayWords[];
@@ -41,11 +42,15 @@ export default function TodayWordsSwiper({ words }: Props) {
             inert={activeIndex !== index}
           >
             <article className="flex flex-col gap-2 bg-white/70 dark:bg-accent/30 dark:text-black p-3 items-center justify-center h-full py-5 pb-10">
-              <h3 className="font-chinese font-bold text-3xl">{word.word}</h3>
+              <h3
+                className={`${chineseFont.variable} font-chinese font-bold text-3xl`}
+              >
+                {word.word}
+              </h3>
               <span className="font-semibold">{`[ ${word.pinyin} ]`}</span>
               <span className="text-lg">{word.meanings[0].ko}</span>
               <h4 className="sr-only">예문</h4>
-              <span className="font-chinese text-xl">
+              <span className={`${chineseFont.variable} font-chinese text-xl`}>
                 {word.word_examples[0].sentence}
               </span>
               <span>{word.word_examples[0].meaning}</span>

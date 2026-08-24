@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { chineseFont, pretendard } from "@/lib/fonts";
+import { pretendard } from "@/lib/fonts";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,6 @@ export default function RootLayout({
         "h-full",
         "antialiased",
         pretendard.variable,
-        chineseFont.variable,
         "font-sans",
         geist.variable,
       )}

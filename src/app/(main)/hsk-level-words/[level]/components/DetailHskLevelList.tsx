@@ -1,6 +1,7 @@
 import { HskLevelWords } from "@/app/api/fetchAllHskLevelWords";
 import SaveWordBtn from "@/components/ui/SaveWordBtn";
 import { POS_KO_MAP } from "@/constants/posToKo";
+import { chineseFont } from "@/lib/fonts";
 import Link from "next/link";
 
 interface Props {
@@ -19,7 +20,13 @@ export default async function DetailHskLevelList({ words }: Props) {
             href={`/hsk-level-words/${word.hsk_level}/${word.id}`}
             className="contents"
           >
-            <h3 className="font-chinese font-semibold text-lg">{word.word}</h3>
+            <h3
+              className={`${
+                chineseFont.variable
+              } font-chinese font-semibold text-lg`}
+            >
+              {word.word}
+            </h3>
             <span className="text-muted-foreground whitespace-nowrap">
               [ {word.pinyin} ]
             </span>

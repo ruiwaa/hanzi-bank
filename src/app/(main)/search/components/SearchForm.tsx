@@ -1,5 +1,6 @@
 "use client";
 import { searchValue } from "@/app/(auth)/schemas/searchSchemas";
+import { chineseFont } from "@/lib/fonts";
 import { X } from "lucide-react";
 import {
   Control,
@@ -37,7 +38,7 @@ export default function SearchForm({
             id="textSearch"
             placeholder="찾으시는 단어를 검색해주세요."
             aria-describedby="textSearchHelp"
-            className="bg-input p-2 rounded-xl w-full font-chinese dark:text-white"
+            className={` ${chineseFont.variable} bg-input p-2 rounded-xl w-full font-chinese dark:text-white`}
             {...register("keyWord")}
           />
           {searchWord?.trim() && (
