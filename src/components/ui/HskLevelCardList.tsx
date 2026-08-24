@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MouseEvent, useState } from "react";
 import SaveWordBtn from "./SaveWordBtn";
 import SoundButton from "./SoundButton";
+import { chineseFont } from "@/lib/fonts";
 
 interface Props {
   levelWords: MainLevelWords[];
@@ -43,7 +44,9 @@ export default function HskLevelCardList({ levelWords }: Props) {
               {word.hsk_level}급{" "}
             </span>
             <div className="flex flex-col flex-1 gap-2 py-2 md:justify-center group">
-              <h3 className="font-chinese font-semibold text-center md:text-left  group-hover:text-primary ">
+              <h3
+                className={`${chineseFont.variable} font-chinese font-semibold text-center md:text-left  group-hover:text-primary `}
+              >
                 {word.word}{" "}
                 <span className="text-muted-foreground group-hover:text-primary ">
                   [{word.pinyin}]

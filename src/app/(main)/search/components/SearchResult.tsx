@@ -1,6 +1,7 @@
 import SaveWordBtn from "@/components/ui/SaveWordBtn";
 import SoundButton from "@/components/ui/SoundButton";
 import { POS_KO_MAP } from "@/constants/posToKo";
+import { chineseFont } from "@/lib/fonts";
 import { HskWord } from "@/types/DBTypes";
 import Link from "next/link";
 
@@ -20,7 +21,9 @@ export default function SearchResult({ words }: Props) {
             className="flex flex-row flex-1 gap-2 items-center"
           >
             <div className="flex flex-col  flex-1 gap-2">
-              <h2 className="font-chinese text-xl font-semibold">
+              <h2
+                className={`${chineseFont.variable} font-chinese text-xl font-semibold`}
+              >
                 {word.word}{" "}
                 <span className="font-medium pl-2 text-muted-foreground text-sm">
                   [ {word.pinyin} ]

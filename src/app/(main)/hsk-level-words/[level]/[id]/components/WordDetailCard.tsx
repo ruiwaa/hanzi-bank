@@ -1,6 +1,7 @@
 import SaveWordBtn from "@/components/ui/SaveWordBtn";
 import SoundButton from "@/components/ui/SoundButton";
 import { POS_KO_MAP } from "@/constants/posToKo";
+import { chineseFont } from "@/lib/fonts";
 import { HskWord, WordExample } from "@/types/DBTypes";
 
 export interface HskWordDetail extends HskWord {
@@ -77,7 +78,11 @@ export default function WordDetailCard({ word }: Props) {
                         ariaLabel={`예문 ${word.word_examples[index].meaning} 중국어 발음 듣기`}
                       />
                       <div>
-                        <p className="font-chinese font-semibold">
+                        <p
+                          className={`${
+                            chineseFont.variable
+                          } font-chinese font-semibold `}
+                        >
                           {word.word_examples[index].sentence}
                         </p>
                         <p className="text-muted-foreground">
