@@ -2,8 +2,10 @@ import Header from "@/components/ui/Header";
 import SearchModal from "@/components/ui/SearchModal";
 import Sidebar from "@/components/ui/Sidebar";
 import SidebarMobile from "@/components/ui/SidebarMobile";
+import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function MainLayout({
   children,
@@ -35,7 +37,15 @@ export default function MainLayout({
             preload
           />
         </Link>
-        <Sidebar />
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 flex items-center justify-center">
+              <Loader className="animate-spin" />
+            </div>
+          }
+        >
+          <Sidebar />
+        </Suspense>
       </aside>
       <SearchModal />
       <div className="flex flex-col min-w-0">
@@ -45,7 +55,9 @@ export default function MainLayout({
         <main id="main-content" className="flex-1  p-3 mb-20">
           {children}
         </main>
-        <SidebarMobile />
+        <Suspense fallback={null}>
+          <SidebarMobile />
+        </Suspense>
       </div>
     </div>
   );
