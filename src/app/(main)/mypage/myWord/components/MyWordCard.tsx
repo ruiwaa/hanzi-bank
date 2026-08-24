@@ -30,7 +30,7 @@ export default function MyWordCard({ userId, word }: Props) {
           <Link
             href={`/hsk-level-words/${word.hsk_words.hsk_level}/${myWord.id}`}
           >
-            <h2 className="text-lg font-extrabold font-chinese hover:text-primary dark:text-white">
+            <h2 className="text-lg font-bold font-chinese hover:text-primary dark:text-white">
               {myWord.word}
             </h2>
           </Link>
