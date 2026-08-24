@@ -155,26 +155,12 @@ Light Theme 기본 테마 색상
   .container-layout {
     @apply mx-auto max-w-7xl px-4 md:px-2;
   }
-  .page-layout {
-    @apply px-4 py-6 md:px-6 md:py-8 lg:px-8;
-  }
-  .page-section {
-    @apply space-y-8;
-  }
 
   /* ----------- Responsive Navigation Desktop : Sidebar  ------------- */
   .desktop-layout {
     @apply grid md:grid-cols-[5rem_1fr] lg:grid-cols-[16rem_1fr];
   }
-  .desktop-sidebar {
-    @apply w-64 flex-col lg:flex;
-  }
-  .tablet-sidebar {
-    @apply hidden md:flex lg:hidden flex-col;
-  }
-  .sidebar {
-    @apply hidden md:flex flex-col;
-  }
+
   .mobile-bottom-nav {
     @apply fixed right-0 bottom-0 left-0 md:hidden;
   }
