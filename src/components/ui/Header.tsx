@@ -20,7 +20,7 @@ export default function Header() {
           width={150}
           height={50}
           fetchPriority="high"
-          className="hidden dark:block "
+          className="hidden dark:block h-auto"
         />
       </Link>
       <DarkMode />
