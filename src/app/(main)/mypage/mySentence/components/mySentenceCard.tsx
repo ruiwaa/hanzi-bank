@@ -104,7 +104,11 @@ export default function MySentenceCard({ userId, word, sentences }: Props) {
               </div>
             ) : (
               <>
-                <h4 className="font-chinese font-bold">{sentence.sentence}</h4>
+                <h4
+                  className={`${chineseFont.variable} font-chinese font-bold`}
+                >
+                  {sentence.sentence}
+                </h4>
                 <p>{sentence.meaning}</p>
 
                 <MySentenceFormActionBtn

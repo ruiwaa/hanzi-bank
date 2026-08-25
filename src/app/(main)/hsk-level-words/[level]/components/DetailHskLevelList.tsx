@@ -23,7 +23,7 @@ export default async function DetailHskLevelList({ words }: Props) {
             <h3
               className={`${
                 chineseFont.variable
-              } font-chinese font-semibold text-lg`}
+              } font-chinese font-bold text-lg`}
             >
               {word.word}
             </h3>
