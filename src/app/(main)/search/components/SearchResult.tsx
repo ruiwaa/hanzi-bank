@@ -22,7 +22,7 @@ export default function SearchResult({ words }: Props) {
           >
             <div className="flex flex-col  flex-1 gap-2">
               <h2
-                className={`${chineseFont.variable} font-chinese text-xl font-semibold`}
+                className={`${chineseFont.variable} font-chinese text-xl font-bold`}
               >
                 {word.word}{" "}
                 <span className="font-medium pl-2 text-muted-foreground text-sm">
