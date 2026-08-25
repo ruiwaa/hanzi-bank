@@ -1,4 +1,3 @@
-// users
 export interface User {
   id: string;
   created_at: string;
@@ -14,13 +13,11 @@ export type UserProfile = Pick<
 
 export type UserLevel = Pick<User, "hsk_level" | "id">;
 
-// meaning
 export interface Meaning {
   en: string;
   ko: string;
 }
 
-// hsk_words
 export interface HskWord {
   id: string;
   created_at: string;
@@ -33,7 +30,6 @@ export interface HskWord {
   meaning_ko: string[];
 }
 
-// word_examples
 export interface WordExample {
   id: string;
   created_at: string;
@@ -44,7 +40,6 @@ export interface WordExample {
   source: string;
 }
 
-// user_words
 export interface UserWord {
   id: string;
   user_id: string;
@@ -64,7 +59,6 @@ export interface MyWordResponse {
   pageSize: number;
 }
 
-// user_examples
 export interface UserExample {
   id: string;
   user_id: string;
