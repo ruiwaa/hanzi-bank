@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useUpdateMySentence } from "@/hooks/useUpdateMySentence";
 import { useDeleteMySentence } from "@/hooks/useDeleteMySentence";
+import { chineseFont } from "@/lib/fonts";
 
 interface Props {
   userId: string;
@@ -51,7 +52,11 @@ export default function MySentenceCard({ userId, word, sentences }: Props) {
           className="hover:text-primary"
           href={`/hsk-level-words/${word.hsk_level}/${word.id}`}
         >
-          <h2 className="text-2xl font-chinese font-bold">{word.word}</h2>
+          <h2
+            className={`${chineseFont.variable} text-2xl font-chinese font-bold`}
+          >
+            {word.word}
+          </h2>
         </Link>
         <span className="bg-blue-100 text-primary px-1.5 py-1 rounded-lg self-center text-sm text-center font-semibold dark:bg-blue-500 dark:text-white">
           HSK {word.hsk_level}급{" "}
