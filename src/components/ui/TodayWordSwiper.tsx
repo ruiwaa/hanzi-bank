@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { TodayWords } from "@/app/api/fetchTodayWords";
 import { useRef, useState } from "react";

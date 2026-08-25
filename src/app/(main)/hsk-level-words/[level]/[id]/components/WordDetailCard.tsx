@@ -81,7 +81,7 @@ export default function WordDetailCard({ word }: Props) {
                         <p
                           className={`${
                             chineseFont.variable
-                          } font-chinese font-semibold `}
+                          } font-chinese font-bold `}
                         >
                           {word.word_examples[index].sentence}
                         </p>
