@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { pretendard } from "@/lib/fonts";
 import ThemeProvider from "@/components/providers/ThemeProvider";
-import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import LoginRequiredModal from "./(auth)/components/LoginRequiredModal";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthEmailSync from "./(auth)/components/AuthEmailSync";
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "중단어  창고",
@@ -24,13 +21,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={cn(
-        "h-full",
-        "antialiased",
-        pretendard.variable,
-        "font-sans",
-        geist.variable,
-      )}
+      className={cn("h-full", "antialiased", pretendard.variable, "font-sans")}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background">
