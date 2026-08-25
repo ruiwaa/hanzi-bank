@@ -30,7 +30,7 @@ export default function MainLayout({
               width={200}
               height={200}
               className="hidden lg:block px-4 w-full dark:hidden"
-              priority
+              preload
               fetchPriority="high"
             />
             <Image
@@ -39,7 +39,7 @@ export default function MainLayout({
               width={200}
               height={100}
               className="hidden dark:lg:block px-4 w-full dark:mt-2"
-              priority
+              preload
               fetchPriority="high"
             />
           </Link>
