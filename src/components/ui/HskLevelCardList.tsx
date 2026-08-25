@@ -62,8 +62,6 @@ export default function HskLevelCardList({ levelWords }: Props) {
             >
               보기
             </Link>
-            {/* 이미 저장된 단어일 경우 아이콘 색깔이 꽉 채워지게 설정 */}
-            {/* 저장됨을 안내해주는 aria-label 삼항 연산자로 표시해줘야함 */}
             <div className="flex justify-between md:flex-row md:justify-center md:items-center gap-2 h-full ">
               <SaveWordBtn wordId={word.id} />
               <SoundButton
