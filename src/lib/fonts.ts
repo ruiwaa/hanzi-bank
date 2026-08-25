@@ -9,6 +9,6 @@ export const pretendard = localFont({
 export const chineseFont = Noto_Sans_SC({
   subsets: ["latin"],
   variable: "--font-chinese",
-  weight: ["400", "600", "700"],
+  weight: ["400", "700"],
   preload: false,
 });
