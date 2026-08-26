@@ -40,7 +40,7 @@ export default function HskLevelCardList({ levelWords }: Props) {
             key={word.id}
             className="flex flex-col md:flex-row items-center md:items-start bg-card border border-slate-300 rounded-xl gap-2 md:gap-4 p-3 md:p-6"
           >
-            <span className="bg-blue-200 text-primary dark:bg-blue-600 dark:text-white p-1 w-10 rounded-xl self-center text-center font-semibold">
+            <span className="bg-blue-100 text-primary dark:bg-blue-600 dark:text-white p-1 w-10 rounded-xl self-center text-center font-semibold">
               {word.hsk_level}급{" "}
             </span>
             <div className="flex flex-col flex-1 gap-2 py-2 md:justify-center group">

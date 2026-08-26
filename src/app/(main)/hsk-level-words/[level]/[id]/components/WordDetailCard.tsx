@@ -47,55 +47,48 @@ export default function WordDetailCard({ word }: Props) {
           className="h-20 w-30 self-center "
         />
       </div>
-      <ul>
+      <ul className="flex flex-col pt-3">
         {word.meanings.map((meaning, index) => (
-          <div
-            key={word.word_examples[index].id}
-            className="flex flex-col pt-3"
-          >
-            <li key={index}>
-              <div className="flex flex-col mb-3">
-                <span className="text-primary font-semibold mb-2">
-                  {word.meanings.length > 1 && `의미 ${index + 1} `}
+          <li key={index}>
+            <div className="flex flex-col mb-3">
+              <span className="text-primary font-semibold mb-2">
+                {word.meanings.length > 1 && `의미 ${index + 1} `}
+              </span>
+              <div className="flex flex-row items-center gap-2 mb-3">
+                <span className="rounded-xl bg-blue-500 text-white py-1 px-3 text-sm font-semibold">
+                  {index + 1}
                 </span>
-                <div className="flex flex-row items-center gap-2 mb-3">
-                  <span className="rounded-xl bg-blue-500 text-white py-1 px-3 text-sm font-semibold">
-                    {index + 1}
-                  </span>
-                  <span className="font-semibold text-[18px]">
-                    {meaning.ko}
-                  </span>
-                </div>
-                {word.word_examples[index] && (
-                  <div
-                    key={index}
-                    className="flex flex-col gap-1 border border-border mx-6 p-5 rounded-2xl"
-                  >
-                    <div className="flex flex-row gap-3">
-                      <SoundButton
-                        text={word.word_examples[index].sentence}
-                        size={30}
-                        ariaLabel={`예문 ${word.word_examples[index].meaning} 중국어 발음 듣기`}
-                      />
-                      <div>
-                        <p
-                          className={`${
-                            chineseFont.variable
-                          } font-chinese font-bold `}
-                        >
-                          {word.word_examples[index].sentence}
-                        </p>
-                        <p className="text-muted-foreground">
-                          [{word.word_examples[index].sentence_pinyin}]
-                        </p>
-                        <p>{word.word_examples[index].meaning}</p>
-                      </div>
+                <span className="font-semibold text-[18px]">{meaning.ko}</span>
+              </div>
+              {word.word_examples[index] && (
+                <div
+                  key={index}
+                  className="flex flex-col gap-1 border border-border mx-6 p-5 rounded-2xl"
+                >
+                  <div className="flex flex-row gap-3">
+                    <SoundButton
+                      text={word.word_examples[index].sentence}
+                      size={30}
+                      ariaLabel={`예문 ${word.word_examples[index].meaning} 중국어 발음 듣기`}
+                    />
+                    <div>
+                      <p
+                        className={`${
+                          chineseFont.variable
+                        } font-chinese font-bold `}
+                      >
+                        {word.word_examples[index].sentence}
+                      </p>
+                      <p className="text-muted-foreground">
+                        [{word.word_examples[index].sentence_pinyin}]
+                      </p>
+                      <p>{word.word_examples[index].meaning}</p>
                     </div>
                   </div>
-                )}
-              </div>
-            </li>
-          </div>
+                </div>
+              )}
+            </div>
+          </li>
         ))}
       </ul>
     </>
