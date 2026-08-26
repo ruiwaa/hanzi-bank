@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary/20 w-full pb-20 px-3 md:pb-5 md:px-10 pt-5 flex  flex-col md:flex-row md:gap-20 md:items-center justify-center mx-auto">
+    <footer className="bg-primary/20 w-full mt-auto pb-20 px-3 md:px-10 pt-5 flex flex-col md:flex-row md:gap-20 md:items-center justify-center">
       <div>
         <h4>중단어 창고</h4>
         <p>중국어 단어를 쉽고 편하게 학습하세요.</p>

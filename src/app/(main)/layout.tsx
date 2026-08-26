@@ -23,7 +23,7 @@ export default function MainLayout({
           </div>
         }
       >
-        <aside className="sidebar border-r border-border min-h-screen bg-card">
+        <aside className="sidebar border-r border-border bg-card">
           <Link href={"/"} aria-label="중단어 창고 홈 이동">
             <Image
               src="/logo2.png"
@@ -46,12 +46,12 @@ export default function MainLayout({
           </Link>
           <Sidebar />
         </aside>
-        <SearchModal />
-        <div className="flex flex-col min-w-0">
+        <div className="flex min-h-screen min-w-0 flex-col">
+          <SearchModal />
           <div className="bg-card border-b border-border p-2">
             <Header />
           </div>
-          <main id="main-content" className="flex-1">
+          <main id="main-content" className="flex flex-1 flex-col">
             <div className="p-3">{children}</div>
             <Footer />
           </main>
