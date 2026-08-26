@@ -97,7 +97,7 @@ export default function SignUpForm() {
               id="userEmail"
               placeholder="사용자 이메일"
               aria-describedby="userName"
-              className="w-full pl-12 text-gray-700 bg-gray-100  py-3  rounded-lg "
+              className="w-full pl-12 text-gray-700 placeholder:text-gray-800 bg-gray-100  py-3  rounded-lg "
               {...register("email")}
             />
             <span id="userName" className="sr-only">
@@ -128,7 +128,7 @@ export default function SignUpForm() {
               id="password"
               placeholder="비밀번호"
               aria-describedby="userPassword"
-              className="w-full pl-12 text-gray-500 bg-gray-100  py-3  rounded-lg "
+              className="w-full pl-12 text-gray-500 placeholder:text-gray-800 bg-gray-100  py-3  rounded-lg "
               {...register("password")}
             />
             {passwordValue && (
@@ -172,7 +172,7 @@ export default function SignUpForm() {
               id="passwordCheck"
               placeholder="비밀번호 확인"
               aria-describedby="userPasswordCheck"
-              className="w-full pl-12 text-gray-700 bg-gray-100  py-3  rounded-lg "
+              className="w-full pl-12 text-gray-700 placeholder:text-gray-800 bg-gray-100  py-3  rounded-lg "
               {...register("passwordConfirm")}
             />
             {passwordConfirmValue && (
@@ -215,10 +215,10 @@ export default function SignUpForm() {
                 onValueChange={(value) => field.onChange(Number(value))}
               >
                 <SelectTrigger
-                  className="w-full"
+                  className="w-full placeholder:text-white"
                   aria-labelledby="hsk-level-label"
                 >
-                  <SelectValue placeholder="HSK 급수  선택" />
+                  <SelectValue placeholder="HSK 급수 선택" />
                 </SelectTrigger>
 
                 <SelectContent>
@@ -256,7 +256,7 @@ export default function SignUpForm() {
           이미 계정이 있으신가요?{" "}
           <Link
             href={"/login"}
-            className="text-primary dark:text-blue-600 dark:font-semibold"
+            className="text-primary dark:text-white dark:font-semibold dark:hover:text-blue-600"
           >
             로그인하러가기
           </Link>

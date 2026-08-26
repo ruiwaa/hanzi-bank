@@ -63,7 +63,7 @@ export default function LoginRequiredModal() {
         onClick={(e) => e.stopPropagation()}
       >
         <span className="font-semibold flex items-center gap-2">
-          <Hand className="animate-wave" />
+          <Hand className="animate-wave" aria-hidden="true" />
           로그인 후 서비스를 이용하실 수 있습니다.
         </span>
         <div className="flex flex-row gap-2">
