@@ -8,8 +8,12 @@ export default function LoginLayout({
 }) {
   return (
     <main className="relative min-h-screen flex items-center justify-center bg-white dark:bg-[#F9FAFB]">
-      <Link href={"/"} className="absolute left-6 top-6 dark:text-black">
-        <X aria-label="현재 페이지 닫기" />
+      <Link
+        href={"/"}
+        className="absolute left-6 top-6 dark:text-black "
+        aria-label="현재 페이지 닫기"
+      >
+        <X aria-hidden="true" />
       </Link>
       {children}
     </main>
