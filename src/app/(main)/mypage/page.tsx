@@ -59,7 +59,7 @@ export default function Mypage() {
             <div className="bg-green-500 text-white w-12 h-12 p-2 rounded-xl">
               <Notebook aria-hidden="true" size={30} />
             </div>
-            <div className="flex flex-col flex-1 dark:text-gray-500">
+            <div className="flex flex-col flex-1 dark:text-gray-700">
               <span className="text-sm">작성 예문</span>
               <span className="font-extrabold text-md md:text-2xl">
                 {sentenceLoading ? "-" : `${sentenceCount ?? 0} 개`}
