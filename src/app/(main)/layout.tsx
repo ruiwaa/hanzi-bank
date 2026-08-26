@@ -1,3 +1,4 @@
+import Footer from "@/components/ui/Footer";
 import Header from "@/components/ui/Header";
 import SearchModal from "@/components/ui/SearchModal";
 import Sidebar from "@/components/ui/Sidebar";
@@ -50,8 +51,9 @@ export default function MainLayout({
           <div className="bg-card border-b border-border p-2">
             <Header />
           </div>
-          <main id="main-content" className="flex-1  p-3 mb-20">
-            {children}
+          <main id="main-content" className="flex-1">
+            <div className="p-3">{children}</div>
+            <Footer />
           </main>
           <SidebarMobile />
         </div>
