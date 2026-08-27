@@ -8,11 +8,20 @@ interface Props {
 }
 type voiceStatus = keyof typeof VOICE_STATUS;
 
+/**
+ * Web Speech API를 활용한 음성 인식 기능을 관리합니다.
+ * 음성 인식 시작 및 종료, 인식 결과 처리와 음성 인식 상태를 관리합니다.
+ *
+ * @param language - 음성 인식에 사용할 언어 (`ko-KR`: 한국어, `zh-CN`: 중국어)
+ * @param onResult - 음성 인식이 완료되었을 때 인식된 텍스트를 전달하는 콜백 함수
+ * @returns 음성 인식 상태, 실행 중 여부, 음성 인식 시작 및 종료 함수
+ */
+
 export function useSpeechRecognition({ language, onResult }: Props) {
   const [voiceStatus, setVoiceStatus] = useState<voiceStatus>("idle");
   const [isListening, setIsListening] = useState(false);
 
-  // 현재 음성 인식 상태 값 저장하기
+  // 음성 인식 객체를 저장하여 시작/종료 시 참조
   const recognitionRef =
     useRef<ReturnType<typeof createSpeechRecognition>>(null);
 

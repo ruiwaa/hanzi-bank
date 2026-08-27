@@ -6,6 +6,15 @@ export interface UpdateMySentenceParams {
   meaning: string;
 }
 
+/**
+ * 사용자가 작성한 예문을 수정합니다.
+ *
+ * @param id - 수정할 예문의 ID
+ * @param sentence - 수정할 중국어 예문
+ * @param meaning - 수정할 예문의 한국어 뜻
+ * @returns 수정된 예문 데이터
+ */
+
 export async function updateMySentence({
   id,
   sentence,
