@@ -9,6 +9,18 @@ export interface GetMySentenceParams {
   sort: "latest" | "oldest";
 }
 
+/**
+ * 사용자가 작성한 예문을 조회합니다.
+ * HSK 급수와 정렬 기준으로 필터링하며 페이지네이션을 지원합니다.
+ *
+ * @param userId - 예문을 조회할 사용자 ID
+ * @param page - 조회할 페이지 번호 (기본값: 1)
+ * @param pageSize - 페이지당 조회할 예문 개수 (기본값: 20)
+ * @param level - HSK 급수 필터 (`all`: 전체, `1`~`6`: 해당 급수)
+ * @param sort - 예문 정렬 기준 (`latest`: 최신순, `oldest`: 오래된순)
+ * @returns 예문 목록과 전체 예문 개수, 페이지네이션 정보를 포함한 객체
+ */
+
 export async function getMySentences({
   userId,
   page = 1,
