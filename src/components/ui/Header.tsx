@@ -12,6 +12,7 @@ export default function Header() {
           width={150}
           height={100}
           fetchPriority="high"
+          preload
           className="dark:hidden"
         />
         <Image
@@ -20,6 +21,7 @@ export default function Header() {
           width={150}
           height={50}
           fetchPriority="high"
+          preload
           className="hidden dark:block h-auto"
         />
       </Link>
