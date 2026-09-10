@@ -28,7 +28,7 @@ export default function Footer() {
             </svg>
           </Link>
           <Link
-            href={"https://velog.io/@ruiwaa"}
+            href={"https://github.com/ruiwaa/hanzi-bank"}
             target="_blank"
             rel="noopener noreferrer"
           >
