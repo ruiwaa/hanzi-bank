@@ -3,7 +3,7 @@
 import { useMyWords } from "@/hooks/useMywords";
 import { useSession } from "@/hooks/useSession";
 import MyWordCard from "./MyWordCard";
-import { Loader2Icon } from "lucide-react";
+
 import {
   Select,
   SelectContent,
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Pagination from "@/components/ui/Pagination";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export default function MyWordSection() {
   const { user } = useSession();
@@ -41,10 +42,9 @@ export default function MyWordSection() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col mx-auto justify-center items-center gap-2 mt-3">
-        <Loader2Icon className="animate-spin" />
-        <p> 불러오는 중...</p>
-      </div>
+      <>
+        <LoadingSpinner ariaLabel={"나의 단어"} />
+      </>
     );
   }
   if (isError) {
