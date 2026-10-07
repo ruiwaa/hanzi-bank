@@ -1,10 +1,7 @@
 "use client";
 
-import { useSession } from "@/hooks/useSession";
-import MySentenceCard from "./mySentenceCard";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMySentences } from "@/hooks/useMysentences";
-import { Loader2Icon } from "lucide-react";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import Pagination from "@/components/ui/Pagination";
 import {
   Select,
   SelectContent,
@@ -12,7 +9,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Pagination from "@/components/ui/Pagination";
+import { useMySentences } from "@/hooks/useMysentences";
+import { useSession } from "@/hooks/useSession";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import MySentenceCard from "./mySentenceCard";
 
 export default function MySentenceSection() {
   const { user } = useSession();
@@ -41,10 +41,9 @@ export default function MySentenceSection() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col mx-auto justify-center items-center gap-2 mt-3">
-        <Loader2Icon className="animate-spin" />
-        <p> 불러오는 중...</p>
-      </div>
+      <>
+        <LoadingSpinner ariaLabel="나의 예문" />
+      </>
     );
   }
 
