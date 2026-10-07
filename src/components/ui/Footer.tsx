@@ -11,7 +11,7 @@ export default function Footer() {
         <p className="font-semibold">Related Links</p>
         <div className="flex flex-row gap-5 pt-2 md:justify-center">
           <Link
-            href={"https://github.com/ruiwaa"}
+            href={"https://github.com/ruiwaa/hanzi-bank"}
             target="_blank"
             rel="noopener noreferrer"
           >
